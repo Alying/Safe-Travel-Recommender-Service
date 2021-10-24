@@ -1,8 +1,10 @@
 openapi: 3.0.0
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/mli9502/test/1.0.0
+# servers:
+#   # Added by API Auto Mocking Plugin
+#   - description: SwaggerHub API Auto Mocking
+#     url: https://virtserver.swaggerhub.com/mli9502/comsw_4156_team_project/1.0.0
+#   - description: SwaggerHub API Auto Mocking
+#     url: https://virtserver.swaggerhub.com/mli9502/test/1.0.0
 info:
   version: "1.0.0"
   title: Sample Application Flow OAuth2 Project
@@ -18,7 +20,6 @@ security:
 paths:
   /recommendations/country/{countryCode}:
     get:
-      summary: test
       parameters:
         - in: path
           name: countryCode
@@ -30,7 +31,6 @@ paths:
             Should be one of codes in https://countrycode.org/
       description: >-
         Get top 10 recommanded travel destinations for the given country.
-      security: []
       responses:
         '200':
           description: A list of recommanded travel destinations, up to 10.
@@ -40,6 +40,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Destination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  
+  /recommendations/country/{countryCode}/state/{stateCode}:
+    get:
+      parameters:
+        - in: path
+          name: countryCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            Country ISO code representing the country for the state. 
+            Should be one of codes in https://countrycode.org/
+        - in: path
+          name: stateCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            State code representing the state/similar administrative division for non-us countries. 
+      description: >-
+        Get the detailed information for the state that user is interested in, as of the time user makes the request.
+      responses:
+        '200':
+          description: Detailed info about the state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationDetails'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -59,6 +91,27 @@ components:
       required:
         - name
         - score
+    
+    DestinationDetails:
+      type: object
+      description: Provides details for a state. Data is from the time user makes the request
+      properties:
+        score:
+          type: number
+          format: double
+          description: The weighted score for this place.
+        covidCases:
+          type: number
+          format: integer
+          description: Number of covid cases for the state
+        airCondition:
+          type: number
+          format: double
+          description: Air polution level for the state
+        weatherCondition:
+          type: string
+          description: Weather condition for the state
+    
     Error:
       type: object
       properties:
