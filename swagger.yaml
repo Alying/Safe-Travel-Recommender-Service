@@ -20,6 +20,8 @@ security:
 paths:
   /recommendations/country/{countryCode}:
     get:
+      description: >-
+        Get top 10 recommanded travel destinations for the given country
       parameters:
         - in: path
           name: countryCode
@@ -27,10 +29,8 @@ paths:
             type: string
           required: true
           description: >-
-            Country ISO code representing the country that user wants to visit. 
+            Country ISO code representing the country that user wants to visit 
             Should be one of codes in https://countrycode.org/
-      description: >-
-        Get top 10 recommanded travel destinations for the given country.
       responses:
         '200':
           description: A list of recommanded travel destinations, up to 10.
@@ -47,6 +47,8 @@ paths:
   
   /recommendations/country/{countryCode}/state/{stateCode}:
     get:
+      description: >-
+        Get the detailed information for the state that user is interested in, as of the time user makes the request
       parameters:
         - in: path
           name: countryCode
@@ -54,7 +56,7 @@ paths:
             type: string
           required: true
           description: >-
-            Country ISO code representing the country for the state. 
+            Country ISO code representing the country for the state
             Should be one of codes in https://countrycode.org/
         - in: path
           name: stateCode
@@ -62,9 +64,7 @@ paths:
             type: string
           required: true
           description: >-
-            State code representing the state/similar administrative division for non-us countries. 
-      description: >-
-        Get the detailed information for the state that user is interested in, as of the time user makes the request.
+            State code representing the state/similar administrative division for non-us countries
       responses:
         '200':
           description: Detailed info about the state.
@@ -77,6 +77,76 @@ paths:
         '403':
           $ref: '#/components/responses/Unauthorized'
   
+  /comments/country/{countryCode}/state/{stateCode}:
+    get:
+      description: >-
+        Get all comments from users for this country and state
+      parameters:
+        - in: path
+          name: countryCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            Country ISO code representing the country for the state
+            Should be one of codes in https://countrycode.org/
+        - in: path
+          name: stateCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            State code representing the state/similar administrative division for non-us countries
+      responses:
+        '200':
+          description: Comments from other users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+      
+    post:
+      description: >-
+        Post a comment about a travel from user
+      parameters:
+        - in: path
+          name: countryCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            Country ISO code representing the country for the state
+            Should be one of codes in https://countrycode.org/
+        - in: path
+          name: stateCode
+          schema:
+            type: string
+          required: true
+          description: >-
+            State code representing the state/similar administrative division for non-us countries
+      requestBody:
+        description: Comment for a specific travel
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Comment created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
 components:
   schemas:
     Destination:
@@ -99,7 +169,7 @@ components:
         score:
           type: number
           format: double
-          description: The weighted score for this place.
+          description: The weighted score for this place
         covidCases:
           type: number
           format: integer
@@ -111,6 +181,25 @@ components:
         weatherCondition:
           type: string
           description: Weather condition for the state
+      
+    Comment:
+      type: object
+      description: Comment for a state
+      properties:
+        user:
+          type: string
+          description: User name/id
+        startDate:
+          type: string
+          format: date
+          description: Start date of the travel
+        endDate:
+          type: string
+          format: date
+          description: End date of the travel
+        comment:
+          type: string
+          description: Comment for the travel experience
     
     Error:
       type: object
@@ -132,6 +221,12 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid input parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Post failed
       content:
         application/json:
           schema:
