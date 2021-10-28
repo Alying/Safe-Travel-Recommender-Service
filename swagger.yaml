@@ -1,0 +1,339 @@
+swagger: '2.0'
+info:
+  description: ASE# Team project API documentation
+  version: 1.0.0
+  title: Travel Recommendation API
+  # put the contact info for your development or API team
+  contact:
+    email: my2739@columbia.edu
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: user
+  description: Operations available to regular developers
+
+paths:
+  /Recommendations:
+    get:
+      tags:
+      - user
+      summary: Get top 10 places
+      description: |
+        Without any data specified, system will return the top 10 places by default
+      produces:
+      - application/json
+      responses:
+        200:
+          description: |
+            Top 10 places will be returned, with their scores.
+            If less then 10 places are available, we will return all the available recommendations.
+            An example of a single recommendation is as following:
+            {
+              locationName: Seattle
+              OveralllScore: 90
+              CovidScore: 20
+              WeatherScore: 60
+              AirQualityScore: 95
+              HighlightComment: User135 - this place is great!
+            }
+            
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Recommendation'
+        404:
+          description: |
+            Failed to found any data.
+            This should only happen when the underlying apis that we depend on does not return any valid data.
+        401:
+          description: |
+            Authorization failed
+            This will happen if we didn't receive a valid token from the user.
+  
+  /Recommendations/country/{countryCode}:
+    get:
+      tags:
+      - user
+      summary: Get top 10 places for specific country
+      description: |
+        By passing in the countrycode, return top 10 rated places for this country
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: countryCode
+        description: pass an optional search string for looking up inventory
+        required: true
+        type: string
+      responses:
+        200:
+          description: |
+            Top 10 places for the specific country will be returned, with their scores, if user is authorized and the given countryCode is supported.
+            If less than 10 places are available (e.g. The country has less than 10 states), we will return all the available recommendations.
+            An example of a single recommendation is as following:
+            {
+              locationName: NY
+              OveralllScore: 55
+              CovidScore: 50
+              WeatherScore: 60
+              AirQualityScore: 60
+              HighlightComment: User135 - this place is not great...
+            }
+          
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Recommendation'
+        400:
+          description: |
+            Country code is invalid.
+            This response will be returned when the countryCode does not confirm with ISO-3166 standard
+            For example: countryCode == XYZ
+        401:
+          description: |
+            Authorization failed
+            This will happen if we didn't receive a valid token from the user.
+        404:
+          description: |
+            Country is valid but not supported by the system.
+            This response will be returned when the countryCode user provides is valid, but when we don't yet support it.
+            For the first iteration, we will only support US.
+            As a result, if user has countryCode == AD, we will return this response.
+
+  /Recommendations/country/{countryCode}/state/{stateCode}:
+    get:
+      tags:
+      - user
+      summary: Get detailed info about the state
+      description: |
+        Return the detailed information about the state that user is interested in
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: countryCode
+        description: ISO-3166 standard country code
+        required: true
+        type: string
+      - in: path
+        name: stateCode
+        description: State code for the country
+        required: true
+        type: string
+      responses:
+        200:
+          description: |
+            The detailed information is returned if the user authorization is valid, country and state code are valid and supported, and detailed info can be successfully retrieved.
+            The detailed information will include a CovidScore, WeatherScore, AirQualityScore, as well as an OverallScore that we generated.
+            An example of the detailed information is as following:
+            {
+              OveralllScore: 90
+              CovidScore: 20
+              WeatherScore: 60
+              AirQualityScore: 95
+            }
+            
+          schema:
+            $ref: '#/definitions/DestinationDetails'
+        400:
+          description: |
+            Country code is invalid and/or state code is invalid.
+            This response will be returned when the countryCode does not confirm with ISO-3166 standard, and/or the state code does not exist within the country.
+            The following are examples of inputs that lead to this response:
+            1. Invalid countryCode: countryCode == XYZ and stateCode == ABC
+            2. Valid countryCode, but invalid stateCode: countryCode == US and stateCode == ABC
+        401:
+          description: |
+            Authorization failed
+            This will happen if we didn't receive a valid token from the user.
+        404:
+          description: |
+            Country and state code are valid, but they are not supported, or detailed information not found.
+            The following are examples of inputs that lead to this response:
+            1. The underlying apis that we depend on does not return any valid data.
+            2. Given that for iteration one we will only support countryCode US, we get {countryCode == CA, stateCode == NU}.
+  
+  /Comment/country/{countryCode}/state/{stateCode}:
+    get:
+      tags:
+      - user
+      summary: Get all comments for specific location
+      description: |
+        By passing in the country code and state code, return most recent 10 comments for this location
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: countryCode
+        description: ISO-3166 standard country code
+        required: true
+        type: string
+      - in: path
+        name: stateCode
+        description: State code for the country
+        required: true
+        type: string
+      responses:
+        200:
+          description: |
+            User authorization is valid, countryCode and stateCode are valid and supported, and there are comments for this {countryCode, stateCode} in Comment database. We will return the top 10 most recent comments, as well as the score user had for this place.
+            An example of a single comment in the response is as following:
+            {
+              UserName: superman
+              Comment: Very good place to visit!
+              CommentedAt: 2020-03-26
+              Score: 6
+            }
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CommentOutput'
+        400:
+          description: |
+            Country code is invalid and/or state code is invalid.
+            This response will be returned when the countryCode does not confirm with ISO-3166 standard, and/or the state code does not exist within the country.
+            The following are examples of inputs that lead to this response:
+            1. Invalid countryCode: countryCode == XYZ and stateCode == ABC
+            2. Valid countryCode, but invalid stateCode: countryCode == US and stateCode == ABC
+        401:
+          description: |
+            Authorization failed
+            This will happen if we didn't receive a valid token from the user.
+        404:
+          description: |
+            countryCode and stateCode are valid but but they are not supported, or failed to find in database.
+            The following are examples of inputs that lead to this response:
+            1. We get {countryCode == US, stateCode == NY}, but there's no user writing comments for NY, US yet.
+            2. Given that for iteration one we will only support countryCode US, we get {countryCode == CA, stateCode == NU}.
+            
+    post:
+      tags:
+      - user
+      summary: Add new comment for specific location
+      description: |
+        By passing the json object, add new comment record into system for the specified location
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: countryCode
+        description: ISO-3166 standard country code
+        required: true
+        type: string
+      - in: path
+        name: stateCode
+        description: State code for the country
+        required: true
+        type: string
+      - in: body
+        name: new comment
+        description: |
+          The comment and score to create.
+          An example is as following:
+          {
+            Comment: Very bad place to visit!
+            Score: 3
+          }
+        schema:
+          $ref: '#/definitions/CommentInput'
+      responses:
+        201:
+          description: |
+            User authorization is valid, countryCode and stateCode are valid and supported, and the requestBody is valid. 
+            The comment and score will be inserted into the Comment database.
+        400:
+          description: |
+            Country code is invalid and/or state code is invalid, or the requestBody is invalid.
+            This response will be returned when the countryCode does not confirm with ISO-3166 standard, and/or the state code does not exist within the country. It will also be returned if the requestBody is invalid.
+            1. Invalid countryCode: countryCode == XYZ and stateCode == ABC
+            2. Valid countryCode, but invalid stateCode: countryCode == US and stateCode == ABC
+            3. Invalid requestBody format: In the requestBody we get, there's no "Score" field.
+            4. Invalid requestBody content: For the requestBody::Score field, we get "abc" instead of an integer.
+        401:
+          description: |
+            Authorization failed
+            This will happen if we didn't receive a valid token from the user.
+
+definitions:
+  Recommendation:
+    type: object
+    properties:
+      locationName:
+        type: string
+        example: Seattle
+      OveralllScore:
+        type: integer
+        format: int64
+        example: 90
+      CovidScore:
+        type: integer
+        format: int64
+        example: 20
+      WeatherScore:
+        type: integer
+        format: int64
+        example: 60
+      AirQualityScore:
+        type: integer
+        format: int64
+        example: 95
+      HighlightComment:
+        type: string
+        example: User135 - this place is great!
+  
+  DestinationDetails:
+    type: object
+    properties:
+      OveralllScore:
+        type: integer
+        format: int64
+        example: 90
+      CovidScore:
+        type: integer
+        format: int64
+        example: 20
+      WeatherScore:
+        type: integer
+        format: int64
+        example: 60
+      AirQualityScore:
+        type: integer
+        format: int64
+        example: 95
+  
+  CommentInput:
+    type: object
+    properties:
+      Comment:
+        type: string
+        example: Very bad place to visit!
+      Score:
+        type: integer
+        example: 3
+
+  CommentOutput:
+    type: object
+    properties:
+      UserName:
+        type: string
+        example: superman
+      Comment:
+        type: string
+        example: Very good place to visit!
+      CommentedAt:
+        type: string
+        format: date
+        example: "2020-03-26"
+      Score:
+        type: integer
+        example: 6
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /test_org_comsw/comsw_test_new/1.0.0
+schemes:
+ - https
