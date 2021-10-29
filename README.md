@@ -5,6 +5,9 @@ As COVID-19 is getting more and more contained, travel demand has correspondingl
 
 # Testing
 
+# Documentation
+https://app.swaggerhub.com/apis/test_org_comsw/comsw_4156_team_project/1.0.0
+
 # Technology
 #### StyleCop
 Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
