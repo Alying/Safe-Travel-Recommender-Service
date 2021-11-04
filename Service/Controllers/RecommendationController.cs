@@ -33,8 +33,24 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        [Route("{countryCode}")]
+        [Route("country/{countryCode}")]
         public async Task<IActionResult> GetRecommendationByCountryCode([FromRoute] string countryCode)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        [Route("country/{countryCode}/state/{state}")]
+        public async Task<IActionResult> GetRecommendationByCountryCodeAndState(
+            [FromRoute] string countryCode, 
+            [FromRoute] string state)
         {
             try
             {
