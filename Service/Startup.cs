@@ -1,5 +1,7 @@
 using Management;
+using Management.Clients;
 using Management.Interface;
+using Management.Ports;
 using Management.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,9 +30,14 @@ namespace Service
 
             // Management
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDecisionEngine, DecisionEngine>();
+            services.AddScoped<ICovidDataClient, CovidDataClient>();
+            services.AddScoped<IWheatherDataClient, WheatherDataClient>();
+            services.AddScoped<IAirQualityDataClient, AirQualityDataClient>();
 
             // Ports
-            services.AddScoped<UserPort>();
+            services.AddScoped<CommentPort>();
+            services.AddScoped<RecommendationPort>();
 
             services.AddControllers();
         }
