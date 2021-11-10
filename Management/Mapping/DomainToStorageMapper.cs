@@ -13,5 +13,14 @@ namespace Management.Mapping
                 CreatedAt = domain.CreatedAt.ToString(),
                 PassportId = domain.PassportId.Value,
             };
+        public static Management.StorageModels.Comment ToStorage(Comment domain) => new Management.StorageModels.Comment
+        {
+            CommentStr = domain.CommentStr,
+            UserId = domain.UserId.Value,
+            Country = domain.Location.Country.Value,
+            State = domain.Location.State.Value,
+            CreatedAt = domain.CreatedAt.ToString(),
+            UniqueId = domain.UserId.Value + domain.CreatedAt.ToString(),
+        };
     }
 }

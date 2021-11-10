@@ -4,6 +4,10 @@ using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using System.Text.Json;
+
+using ApiComment = Management.ApiModels.Comment;
 
 namespace Service.Controllers
 {
@@ -19,42 +23,37 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        [Route("{locationId}")]
-        public async Task<IActionResult> GetCommentByLocationId([FromRoute] string locationId)
+        [Route("country/{countryCode}/state/{stateCode}")]
+        public async Task<IActionResult> GetCommentByLocation([FromRoute] string countryCode, [FromRoute] string stateCode)
         {
+            Console.WriteLine("GetCommentByLocation: countryCode: " + countryCode + ", stateCode: " + stateCode);
             try
             {
-                return Ok();
+                var getCommentTask = _commentPort.GetCommentAsync(UserId.Wrap("testUser"), new Location(Country.Wrap(countryCode), State.Wrap(stateCode)));
+                getCommentTask.Wait();
+                var rtn = JsonSerializer.Serialize(getCommentTask.Result);
+                Console.WriteLine(rtn);
+                return Ok(getCommentTask.Result);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("GetComment caught exception: " + e.Message);
                 return NotFound();
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewComment([FromBody] Comment comment)
+        [Route("country/{countryCode}/state/{stateCode}")]
+        public async Task<IActionResult> CreateNewComment([FromBody] string commentStr, [FromRoute] string countryCode, [FromRoute] string stateCode)
         {
+            Console.WriteLine("CreateNewComment: countryCode: " + countryCode + ", stateCode: " + stateCode + ", comment: " + commentStr);
             try
             {
+                _commentPort.AddCommentAsync(UserId.Wrap("testUser"), new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), commentStr).Wait();
                 return Ok();
-            }
-            catch (Exception)
+            } catch(Exception e)
             {
-                return NotFound();
-            }
-        }
-
-        [HttpPut]
-        [Route("{locationId}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] string locationId, [FromBody] CommentUpdateRequest request)
-        {
-            try
-            {
-                return Ok();
-            }
-            catch (Exception)
-            {
+                Console.WriteLine("CreateNewComment caught exception: " + e.Message);
                 return NotFound();
             }
         }

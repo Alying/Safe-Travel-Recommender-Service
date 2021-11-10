@@ -20,6 +20,18 @@ namespace Storage
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
+        public Task<int> CreateTable(string tableName, Tuple<string, string> primaryKey, List<Tuple<string, string>> columns)
+        {
+            var otherCols = columns.Select(entry => entry.Item1 + " " + entry.Item2);
+            var cols = "(" + primaryKey.Item1 + " " + primaryKey.Item2 + " PRIMARY KEY, " + String.Join(", ", otherCols) + ")";
+            var sql = $"CREATE TABLE IF NOT EXISTS {tableName} {cols}";
+            Console.WriteLine(sql);
+            using (var con = Connect())
+            {
+                return con.ExecuteAsync(sql);
+            }
+        }
+
         public Task<IEnumerable<T>> GetAllAsync<T>(string tableName)
         {
             if (string.IsNullOrEmpty(tableName))
@@ -50,6 +62,36 @@ namespace Storage
             using (var con = Connect())
             {
                 return (await con.QueryAsync<T>(sql)).FirstOrDefault();
+            }
+        }
+
+        public Task<IEnumerable<T>> GetSomeAsync<T>(
+            string tableName, 
+            List<string> columnNames, 
+            List<string> values)
+        {
+            if (string.IsNullOrEmpty(tableName) || columnNames == null || !columnNames.Any() || values == null || !values.Any() || columnNames.Count != values.Count) 
+            {
+                throw new ArgumentException("Invalid tablename/columnname/value");
+            }
+
+            string conditions = "";
+            for(int idx = 0; idx < columnNames.Count; idx++)
+            {
+                conditions += columnNames[idx] + "='" + values[idx] + "'";
+                if(idx != columnNames.Count - 1)
+                {
+                    conditions += " AND ";
+                }
+            }
+
+            var sql = $"SELECT * FROM {tableName} WHERE {conditions}";
+
+            Console.WriteLine(sql);
+
+            using (var con = Connect())
+            {
+                return con.QueryAsync<T>(sql);
             }
         }
 

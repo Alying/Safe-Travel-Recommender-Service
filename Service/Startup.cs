@@ -30,6 +30,7 @@ namespace Service
 
             // Management
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IDecisionEngine, DecisionEngine>();
             services.AddScoped<ICovidDataClient, CovidDataClient>();
             services.AddScoped<IWheatherDataClient, WheatherDataClient>();
