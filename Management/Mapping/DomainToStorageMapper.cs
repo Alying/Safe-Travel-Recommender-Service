@@ -20,7 +20,7 @@ namespace Management.Mapping
             Country = domain.Location.Country.Value,
             State = domain.Location.State.Value,
             CreatedAt = domain.CreatedAt.ToString(),
-            UniqueId = domain.UserId.Value + domain.CreatedAt.ToString(),
+            UniqueId = System.Guid.NewGuid().ToString(),
         };
     }
 }

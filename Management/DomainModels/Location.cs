@@ -11,18 +11,19 @@ namespace Management.DomainModels
 
         public Location(Country country, State state)
         {
+            Country = country ?? throw new ArgumentNullException(nameof(country));
+            State = state ?? throw new ArgumentNullException(nameof(state));
+
             if(!isLocationValid(country, state))
             {
-                throw new ArgumentException("Invalid country state combination: " + country.Value + ", " + state.Value);
+                throw new ArgumentException($"Invalid country state combination: {country.Value}, {state.Value}");
             }
-            Country = country;
-            State = state;
         }
 
         private bool isLocationValid(Country country, State state)
         {
             // TODO: @mli: implement this to actually check country & state code.
-            Console.WriteLine("Country: {0}; State: {1}", country.Value, state.Value);
+            Console.WriteLine($"Country: {Country.Value}, State: {State.Value}");
             return true;
         }
     }

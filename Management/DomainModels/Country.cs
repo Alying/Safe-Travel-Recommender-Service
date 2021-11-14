@@ -9,16 +9,15 @@ namespace Management.DomainModels
     {
         private enum CountryCode
         {
-            UNKNOWN = 0,
-            US = 1,
-            CA = 2,
+            US,
+            CA,
         }
 
         private Country(string countryCode) : base(countryCode)
         {
             if(!System.Enum.TryParse<CountryCode>(countryCode, out var _))
             {
-                throw new ArgumentException("Invalid countryCode: " + countryCode);
+                throw new ArgumentException($"Invalid countryCode: {countryCode}");
             }
         }
 

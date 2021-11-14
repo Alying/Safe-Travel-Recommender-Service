@@ -7,6 +7,9 @@ using Management.Mapping;
 using Management.DomainModels;
 using Management.Interface;
 
+using ApiComment = Management.ApiModels.Comment;
+using DomainComment = Management.DomainModels.Comment;
+
 
 namespace Management.Ports
 {
@@ -19,7 +22,9 @@ namespace Management.Ports
             _commentRepository = commentRepository ?? throw new ArgumentNullException(nameof(commentRepository));
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentAsync(UserId userId, Location location) => await _commentRepository.GetAllCommentsAsync(userId, location);
-        public async Task AddCommentAsync(UserId userId, Location location, string commentStr) => await _commentRepository.AddCommentAsync(new Comment(location, userId, commentStr));
+        public async Task<IEnumerable<DomainComment>> GetCommentAsync(UserId userId, Location location)
+            => await _commentRepository.GetAllCommentsAsync(userId, location);
+        public async Task AddCommentAsync(Location location, ApiComment apiComment)
+            => await _commentRepository.AddCommentAsync(ApiToDomainMapper.toDomain(location, apiComment));
     }
 }

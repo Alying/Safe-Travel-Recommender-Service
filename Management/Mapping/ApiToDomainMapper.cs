@@ -3,6 +3,7 @@ using Management.Enum;
 using System;
 using ApiUser = Management.ApiModels.User;
 using DomainUser = Management.DomainModels.User;
+using ApiComment = Management.ApiModels.Comment;
 
 namespace Management.Mapping
 {
@@ -19,9 +20,11 @@ namespace Management.Mapping
 
         public static Country toDomain(string countryCode) => Country.Wrap(countryCode);
 
-        public static Location toDomain(string countryCode, string stateCode) => new Location(Country.Wrap(countryCode), State.Wrap(stateCode));
+        public static Location toDomain(string countryCode, string stateCode)
+            => new Location(Country.Wrap(countryCode), State.Wrap(stateCode));
 
-        public static Comment toDomain(string countryCode, string stateCode, string userId, string comment) => new Comment(toDomain(countryCode, stateCode), UserId.Wrap(userId), comment);
+        public static Comment toDomain(Location location, ApiComment apiComment)
+            => new Comment(location, UserId.Wrap(apiComment.UserIdStr), apiComment.CommentStr);
 
         private static CountryCode GetCountryCode(string value)
         {
