@@ -1,12 +1,10 @@
 ﻿using Management.DomainModels;
 using Management.Interface;
-using Optional;
 using Storage.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Common;
 using DomainComment = Management.DomainModels.Comment;
 using StorageComment = Management.StorageModels.Comment;
 

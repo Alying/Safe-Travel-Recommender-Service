@@ -1,6 +1,4 @@
-﻿using Management;
-using Management.ApiModels;
-using Management.Ports;
+﻿using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
