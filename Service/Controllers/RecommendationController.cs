@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Service.Controllers
 {
+    /// <summary>
+    /// Controller for the safe-travel recommendations and safe-travel information for this
+    /// safe-travel service.
+    /// </summary>
     [Route("api/recommendation")]
     [ApiController]
     public class RecommendationController : ControllerBase

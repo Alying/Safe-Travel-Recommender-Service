@@ -10,6 +10,9 @@ using DomainUserId = Management.DomainModels.UserId;
 
 namespace Service.Controllers
 {
+    /// <summary>
+    /// Controller for the user commenting system for this safe-travel service.
+    /// </summary>
     [Route("api/comment")]
     [ApiController]
     public class CommentController : ControllerBase
