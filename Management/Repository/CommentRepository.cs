@@ -1,10 +1,10 @@
-﻿using Management.DomainModels;
-using Management.Interface;
-using Storage.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Interface;
+using Storage.Interface;
 using DomainComment = Management.DomainModels.Comment;
 using StorageComment = Management.StorageModels.Comment;
 
@@ -15,7 +15,7 @@ namespace Management.Repository
         private const string _tableName = "comment";
 
         private const string _keyColumnName = "uniqueId";
-        
+
         private readonly IRepository _repository;
 
         public CommentRepository(IRepository repository)
@@ -23,6 +23,9 @@ namespace Management.Repository
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <summary>
+        /// Gets all comments stored in database for this location.
+        /// </summary>
         public async Task<IEnumerable<DomainComment>> GetAllCommentsAsync(UserId userId, Location location)
         {
             var result = await _repository.GetSomeAsync<StorageComment>(_tableName, new Dictionary<string, string>()
@@ -34,6 +37,9 @@ namespace Management.Repository
             return result.Select(Mapping.StorageToDomainMapper.ToDomain);
         }
 
+        /// <summary>
+        /// Posts a comment to the database.
+        /// </summary>
         public async Task AddCommentAsync(DomainComment comment)
         {
             var storageComment = Mapping.DomainToStorageMapper.ToStorage(comment);

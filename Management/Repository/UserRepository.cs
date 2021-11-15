@@ -1,21 +1,21 @@
-﻿using Management.DomainModels;
-using Management.Interface;
-using Optional;
-using Storage.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Interface;
+using Optional;
+using Storage.Interface;
 using StorageUser = Common.StorageModels.User;
 
 namespace Management.Repository
 {
-    public class UserRepository :  IUserRepository
+    public class UserRepository : IUserRepository
     {
         private const string _tableName = "user";
 
         private const string _keyColumnName = "UserId";
-        
+
         private readonly IRepository _repository;
 
         public UserRepository(IRepository repository)
@@ -23,10 +23,13 @@ namespace Management.Repository
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <summary>
+        /// Adds a user to the database.
+        /// </summary>
         public async Task<IEnumerable<User>> AddUsersAsync(IEnumerable<User> newUsers)
         {
             try
-            {    
+            {
                 var userToInsert = newUsers.Select(user
                 => new List<string>
                 {
@@ -46,6 +49,9 @@ namespace Management.Repository
             }
         }
 
+        /// <summary>
+        /// Gets all users from the database.
+        /// </summary>
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             try
