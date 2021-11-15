@@ -1,10 +1,10 @@
 ﻿using Management.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Management.Clients
 {
+    /// <summary>
+    /// Representation of the client for the COVID-19 data API.
+    /// </summary>
     public class CovidDataClient : ICovidDataClient
     {
     }
