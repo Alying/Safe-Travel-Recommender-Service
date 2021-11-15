@@ -7,5 +7,7 @@ namespace Management.Clients
 {
     public class CovidDataClient : ICovidDataClient
     {
+        public int CalculateScoreAsync()
+            => throw new NotImplementedException();
     }
 }

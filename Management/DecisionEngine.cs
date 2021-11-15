@@ -2,6 +2,7 @@
 using Management.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,11 @@ namespace Management
             _airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
         }
 
-        public Task<IReadOnlyList<Recommendation>> CalculateDesiredLocationAsync()
-        => throw new NotImplementedException();
+        public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
+        {
+            var result = 0.3 * _covidDataClient.CalculateScoreAsync() + 0.3 * _wheatherDataClient.CalculateScoreAsync() + 0.3 * _airQualityDataClient.CalculateScoreAsync();
+
+            return Task.FromResult(Enumerable.Empty<Recommendation>());
+        }
     }
 }
