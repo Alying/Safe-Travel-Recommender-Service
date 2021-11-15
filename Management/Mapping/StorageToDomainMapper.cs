@@ -1,5 +1,4 @@
 ﻿using Management.DomainModels;
-using Optional;
 using System;
 
 namespace Management.Mapping
@@ -15,5 +14,10 @@ namespace Management.Mapping
                 countryCode: System.Enum.TryParse<Enum.CountryCode>(storage.CountryCode, out var country)
                 ? country
                 : Enum.CountryCode.Unknown);
+        public static Comment ToDomain(Management.StorageModels.Comment comment) => new Comment(
+            location: new Location(Country.Wrap(comment.Country), State.Wrap(comment.State)),
+            userId: UserId.Wrap(comment.UserId),
+            commentStr: comment.CommentStr,
+            createdAt: DateTimeOffset.Parse(comment.CreatedAt));
     }
 }

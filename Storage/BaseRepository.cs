@@ -53,6 +53,26 @@ namespace Storage
             }
         }
 
+        public Task<IEnumerable<T>> GetSomeAsync<T>(
+            string tableName, 
+            IReadOnlyDictionary<string, string> colVals)
+        {
+            if (string.IsNullOrEmpty(tableName) || colVals == null || !colVals.Any()) 
+            {
+                throw new ArgumentException("Invalid tablename/columnname/value");
+            }
+
+            var conditions = string.Join(" AND ", colVals.Select(kvp => string.Format("{0}='{1}'", kvp.Key, kvp.Value)));
+            var sql = $"SELECT * FROM {tableName} WHERE {conditions}";
+
+            Console.WriteLine(sql);
+
+            using (var con = Connect())
+            {
+                return con.QueryAsync<T>(sql);
+            }
+        }
+
         public Task InsertAsync<T>(string tableName, IEnumerable<IReadOnlyList<string>> parameterList)
         {
             if (string.IsNullOrEmpty(tableName) || parameterList == null)

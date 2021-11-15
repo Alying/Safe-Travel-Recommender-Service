@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Storage.Interface
 {
     public interface IRepository
     {
-        Task<T> GetAsync<T>(string tableName, string columnName, string keyValue);
+        Task<T> GetAsync<T>(string tableName, string columnName, string value);
+
+        Task<IEnumerable<T>> GetSomeAsync<T>(string tableName, IReadOnlyDictionary<string, string> colVals);
 
         Task<IEnumerable<T>> GetAllAsync<T>(string tableName);
 
