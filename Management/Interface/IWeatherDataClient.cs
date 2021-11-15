@@ -1,6 +1,6 @@
 ﻿namespace Management.Interface
 {
-    public interface IWeatherDataClient
+    public interface IWeatherDataClient : IWeightedClient
     {
     }
 }
