@@ -1,13 +1,12 @@
-﻿using Management.Ports;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Management.DomainModels;
-using System.Text.Json;
-
+using Management.Ports;
+using Microsoft.AspNetCore.Mvc;
+using ApiComment = Management.ApiModels.Comment;
 using ApiUserId = Management.ApiModels.UserId;
 using DomainUserId = Management.DomainModels.UserId;
-using ApiComment = Management.ApiModels.Comment;
 
 namespace Service.Controllers
 {
@@ -22,6 +21,9 @@ namespace Service.Controllers
             _commentPort = commentPort ?? throw new ArgumentNullException(nameof(commentPort));
         }
 
+        /// <summary>
+        /// Intended to get the comments for the specified country and state for the user. 
+        /// </summary>
         // TODO: @mli: Get apiUserId from auth token instead of from body latter.
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
@@ -39,6 +41,9 @@ namespace Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Intended to post the user's comments for this specific country and state.
+        /// </summary>
         [HttpPost]
         [Route("country/{countryCode}/state/{stateCode}")]
         public async Task<IActionResult> CreateNewComment([FromBody] ApiComment apiComment, [FromRoute] string countryCode, [FromRoute] string stateCode)
@@ -48,7 +53,8 @@ namespace Service.Controllers
             {
                 await _commentPort.AddCommentAsync(new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), apiComment);
                 return Ok();
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine($"CreateNewComment caught exception: {e.Message}");
                 return NotFound(e.Message);

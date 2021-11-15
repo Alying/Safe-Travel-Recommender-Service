@@ -1,10 +1,7 @@
-﻿using Management;
+﻿using System;
+using System.Threading.Tasks;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Service.Controllers
 {
@@ -14,11 +11,14 @@ namespace Service.Controllers
     {
         private readonly RecommendationPort _recommendationPort;
 
-        public RecommendationController(RecommendationPort recommendationPort) 
+        public RecommendationController(RecommendationPort recommendationPort)
         {
             _recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
         }
 
+        /// <summary>
+        /// Intended to get the top-10 recommendations for safe travel for the user.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetTopRecommendations()
         {
@@ -32,6 +32,10 @@ namespace Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Intended to get the basic travel information about a specific country, 
+        /// which can include COVID-19, weather, and air quality information for the user.
+        /// </summary>
         [HttpGet]
         [Route("country/{countryCode}")]
         public async Task<IActionResult> GetRecommendationByCountryCode([FromRoute] string countryCode)
@@ -46,10 +50,14 @@ namespace Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Intended to get the basic travel information about a specific state in a country,
+        /// which can include COVID-19, weather, and air quality information for the user.
+        /// </summary>
         [HttpGet]
         [Route("country/{countryCode}/state/{state}")]
         public async Task<IActionResult> GetRecommendationByCountryCodeAndState(
-            [FromRoute] string countryCode, 
+            [FromRoute] string countryCode,
             [FromRoute] string state)
         {
             try
