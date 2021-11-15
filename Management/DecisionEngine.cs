@@ -10,22 +10,22 @@ namespace Management
     public class DecisionEngine : IDecisionEngine
     {
         private readonly ICovidDataClient _covidDataClient;
-        private readonly IWheatherDataClient _wheatherDataClient;
+        private readonly IWeatherDataClient _weatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
 
         public DecisionEngine(
             ICovidDataClient covidDataClient,
-            IWheatherDataClient wheatherDataClient,
+            IWeatherDataClient weatherDataClient,
             IAirQualityDataClient airQualityDataClient)
         {
             _covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
-            _wheatherDataClient = wheatherDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
+            _weatherDataClient = weatherDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
             _airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
         }
 
         public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
         {
-            var result = 0.3 * _covidDataClient.CalculateScoreAsync() + 0.3 * _wheatherDataClient.CalculateScoreAsync() + 0.3 * _airQualityDataClient.CalculateScoreAsync();
+            var result = 0.3 * _covidDataClient.CalculateScoreAsync() + 0.3 * _weatherDataClient.CalculateScoreAsync() + 0.3 * _airQualityDataClient.CalculateScoreAsync();
 
             return Task.FromResult(Enumerable.Empty<Recommendation>());
         }
