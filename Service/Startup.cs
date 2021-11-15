@@ -1,23 +1,23 @@
-using Management;
-using Management.Clients;
-using Management.Interface;
-using Management.Ports;
-using Management.Repository;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Storage;
-using Storage.Interface;
-
 namespace Service
 {
+    using Management;
+    using Management.Clients;
+    using Management.Interface;
+    using Management.Ports;
+    using Management.Repository;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Storage;
+    using Storage.Interface;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -33,7 +33,7 @@ namespace Service
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IDecisionEngine, DecisionEngine>();
             services.AddScoped<ICovidDataClient, CovidDataClient>();
-            services.AddScoped<IWheatherDataClient, WheatherDataClient>();
+            services.AddScoped<IWeatherDataClient, WeatherDataClient>();
             services.AddScoped<IAirQualityDataClient, AirQualityDataClient>();
 
             // Ports

@@ -1,16 +1,17 @@
-﻿using Management.Clients.Models;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Management.Clients.Models;
 using Management.Interface;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Management.Clients
 {
+    /// <summary>
+    /// Representation of the client for the Air Quality API.
+    /// </summary>
     public class AirQualityDataClient : IAirQualityDataClient
     {
         private IRestClient _restClient;
@@ -36,9 +37,9 @@ namespace Management.Clients
 
             var response = await _restClient.ExecuteAsync(request, cancellationToken);
 
-            if(response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return  JsonConvert.DeserializeObject<AirQualityCityResponse>(response.Content);
+                return JsonConvert.DeserializeObject<AirQualityCityResponse>(response.Content);
             }
 
             throw new Exception("Retrieve Data Failed");

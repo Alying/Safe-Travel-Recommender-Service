@@ -2,7 +2,10 @@
 
 namespace Management.DomainModels
 {
-    public class PassportId: TaggedString<FullName>
+    /// <summary>
+    /// Representation of passport information (for visa -- may not be fully implemented)
+    /// </summary>
+    public class PassportId : TaggedString<FullName>
     {
         private PassportId(string fullname)
         : base(fullname) { }

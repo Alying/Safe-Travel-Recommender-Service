@@ -18,7 +18,14 @@ The following instructions might be useful for getting `mysql` server to run on 
 Before running the service, the schema `asesharpdb`, and the following tables needs to be created:
 - `comment`: This table holds user's comments for a specific trip.
   - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
-- ...
+- `user`: This table holds user information.
+  - `CREATE TABLE IF NOT EXISTS user (UserName VARCHAR(500), UserId VARCHAR(100) PRIMARY KEY, UserRole VARCHAR(50), CreatedAt VARCHAR(50), CountryCode VARCHAR(50))`
+
+Before running the unit tests, the schema `asesharptestdb`, and the following tables needs to be created:
+- `comment`: This table holds user's comments data for integration test.
+  - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
+- `user`: This table holds user data for integration test.
+  - `CREATE TABLE IF NOT EXISTS user (UserName VARCHAR(500), UserId VARCHAR(100) PRIMARY KEY, UserRole VARCHAR(50), CreatedAt VARCHAR(50), CountryCode VARCHAR(50))`
 
 #### Running the service
 - Running from IDE (`Visual Studio`):
@@ -36,6 +43,12 @@ Before running the service, the schema `asesharpdb`, and the following tables ne
   - Instruction on how to run from command line will be provided latter.
 
 # Testing
+#### Running the test and generate report
+1. First make sure that `dotnet-reportgenerator-globaltool` is installed. (https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows)
+    - Note that this might require installation for `ASP.NET Core 6.0` to run: https://dotnet.microsoft.com/download/dotnet/6.0
+2. From the project root directory, run command `./gen_test_report.sh` __from bash__. This command will run all the unit tests, and generate the html coverage report.
+    - On Windows, this can be run from git shell.
+3. The generated reports are stored in `test_results/`.
 
 # Documentation
 https://app.swaggerhub.com/apis/test_org_comsw/comsw_4156_team_project/1.0.0
@@ -47,6 +60,8 @@ Style checker that is used to check C# code to conform StyleCop's recommended co
 Static analysis bug finder that enables software engineers and security teams to find and fix software defects.
 #### XUnit + Moq 
 Test runner for .NET Framework projects
+#### Coverlet + ReportGenerator
+Generate coverage html report for the project
 #### NCrunch 
 Coverage tracker that runs automated tests and provides code coverage
 #### ASP.NET 
@@ -77,4 +92,7 @@ Everyone is permitted to copy and distribute verbatim copies of this license doc
 # Acknowledgments
 We sincerely appreciate Prof. Gail Kaiser and Head TA Claire's helps on this project. They have been very helpful whenever we needed help.
 
-
+# Useful links:
+- [ReportGenerator](https://github.com/danielpalme/ReportGenerator)
+- [Code coverage tutorial from Microsoft](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows)
+- [Another code coverage tutorial that might be helpful](https://tonyranieri.com/blog/measuring-net-core-test-coverage-with-coverlet)

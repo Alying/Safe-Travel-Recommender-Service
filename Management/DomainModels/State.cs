@@ -1,9 +1,13 @@
-﻿using Common;
-using System;
+﻿using System;
+using Common;
 
 namespace Management.DomainModels
 {
-    public class State: TaggedString<State>
+    /// <summary>
+    /// Representation of a state for the location.
+    /// Currently, we only deal within the United States.
+    /// </summary>
+    public class State : TaggedString<State>
     {
         private enum StateCode
         {
@@ -13,7 +17,7 @@ namespace Management.DomainModels
 
         private State(string stateCode) : base(stateCode)
         {
-            if(!System.Enum.TryParse<StateCode>(stateCode, out var _))
+            if (!System.Enum.TryParse<StateCode>(stateCode, out var _))
             {
                 throw new ArgumentException($"Invalid stateCode: {stateCode}");
             }

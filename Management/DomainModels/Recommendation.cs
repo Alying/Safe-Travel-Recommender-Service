@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Management.DomainModels
+﻿namespace Management.DomainModels
 {
+    /// <summary>
+    /// Representation of a safe-travel recommendation.
+    /// </summary>
     public class Recommendation
     {
     }

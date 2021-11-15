@@ -2,6 +2,9 @@
 
 namespace Management.DomainModels
 {
+    /// <summary>
+    /// Representation of a location, including country and state.
+    /// </summary>
     public class Location
     {
         public Country Country { get; }
@@ -12,7 +15,7 @@ namespace Management.DomainModels
             Country = country ?? throw new ArgumentNullException(nameof(country));
             State = state ?? throw new ArgumentNullException(nameof(state));
 
-            if(!isLocationValid(country, state))
+            if (!isLocationValid(country, state))
             {
                 throw new ArgumentException($"Invalid country state combination: {country.Value}, {state.Value}");
             }

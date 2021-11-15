@@ -2,7 +2,10 @@
 
 namespace Management.DomainModels
 {
-    public class FullName: TaggedString<FullName>
+    /// <summary>
+    /// Representation of the full name of a user.
+    /// </summary>
+    public class FullName : TaggedString<FullName>
     {
         private FullName(string userName)
         : base(userName) { }
