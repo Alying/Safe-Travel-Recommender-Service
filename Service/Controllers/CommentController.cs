@@ -1,15 +1,15 @@
-﻿using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Management.DomainModels;
-using Management.Ports;
-using Microsoft.AspNetCore.Mvc;
-using ApiComment = Management.ApiModels.Comment;
-using ApiUserId = Management.ApiModels.UserId;
-using DomainUserId = Management.DomainModels.UserId;
-
-namespace Service.Controllers
+﻿namespace Service.Controllers
 {
+    using System;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+    using Management.DomainModels;
+    using Management.Ports;
+    using Microsoft.AspNetCore.Mvc;
+    using ApiComment = Management.ApiModels.Comment;
+    using ApiUserId = Management.ApiModels.UserId;
+    using DomainUserId = Management.DomainModels.UserId;
+
     /// <summary>
     /// Controller for the user commenting system for this safe-travel service.
     /// </summary>
@@ -19,14 +19,22 @@ namespace Service.Controllers
     {
         private readonly CommentPort _commentPort;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentController"/> class.
+        /// </summary>
+        /// <param name="commentPort">port for comment endpoints.</param>
         public CommentController(CommentPort commentPort)
         {
-            _commentPort = commentPort ?? throw new ArgumentNullException(nameof(commentPort));
+            this._commentPort = commentPort ?? throw new ArgumentNullException(nameof(commentPort));
         }
 
         /// <summary>
-        /// Intended to get the comments for the specified country and state for the user. 
+        /// Intended to get the comments for the specified country and state for the user.
         /// </summary>
+        /// <param name="apiUserId">unique user id for the user that made the commend.</param>
+        /// <param name="countryCode">country code eg. "US".</param>
+        /// <param name="stateCode">state code eg. "CA".</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation with the response status code.</returns>
         // TODO: @mli: Get apiUserId from auth token instead of from body latter.
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
@@ -35,7 +43,7 @@ namespace Service.Controllers
             Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, stateCode: {stateCode}");
             try
             {
-                return Ok(await _commentPort.GetCommentAsync(DomainUserId.Wrap(apiUserId.UserIdStr), new Location(Country.Wrap(countryCode), State.Wrap(stateCode))));
+                return Ok(await this._commentPort.GetCommentAsync(DomainUserId.Wrap(apiUserId.UserIdStr), new Location(Country.Wrap(countryCode), State.Wrap(stateCode))));
             }
             catch (Exception e)
             {
@@ -54,13 +62,13 @@ namespace Service.Controllers
             Console.WriteLine($"CreateNewComment: countryCode: {countryCode}, stateCode: {stateCode}, body: {JsonSerializer.Serialize(apiComment)}");
             try
             {
-                await _commentPort.AddCommentAsync(new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), apiComment);
-                return Ok();
+                await this._commentPort.AddCommentAsync(new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), apiComment);
+                return this.Ok();
             }
             catch (Exception e)
             {
                 Console.WriteLine($"CreateNewComment caught exception: {e.Message}");
-                return NotFound(e.Message);
+                return this.NotFound(e.Message);
             }
         }
     }

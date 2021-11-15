@@ -7,7 +7,10 @@ namespace Management.DomainModels
     /// </summary>
     public class UserId : TaggedString<UserId>
     {
-        private UserId(string id) : base(id) { }
+        private UserId(string id)
+            : base(id)
+        {
+        }
 
         public static UserId Wrap(string value) => new UserId(value);
     }

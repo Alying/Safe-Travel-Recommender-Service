@@ -1,9 +1,9 @@
-﻿using Management.DomainModels;
+﻿using System;
+using Management.DomainModels;
 using Management.Enum;
-using System;
+using ApiComment = Management.ApiModels.Comment;
 using ApiUser = Management.ApiModels.User;
 using DomainUser = Management.DomainModels.User;
-using ApiComment = Management.ApiModels.Comment;
 
 namespace Management.Mapping
 {
@@ -18,12 +18,12 @@ namespace Management.Mapping
             createAt: DateTime.UtcNow,
             countryCode: GetCountryCode(api.CountryCode));
 
-        public static Country toDomain(string countryCode) => Country.Wrap(countryCode);
+        public static Country ToDomain(string countryCode) => Country.Wrap(countryCode);
 
-        public static Location toDomain(string countryCode, string stateCode)
+        public static Location ToDomain(string countryCode, string stateCode)
             => new Location(Country.Wrap(countryCode), State.Wrap(stateCode));
 
-        public static Comment toDomain(Location location, ApiComment apiComment)
+        public static Comment ToDomain(Location location, ApiComment apiComment)
             => new Comment(location, UserId.Wrap(apiComment.UserIdStr), apiComment.CommentStr);
 
         private static CountryCode GetCountryCode(string value)

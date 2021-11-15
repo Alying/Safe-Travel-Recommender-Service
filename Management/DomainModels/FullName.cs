@@ -3,7 +3,7 @@
 namespace Management.DomainModels
 {
     /// <summary>
-    /// Representation of the full name of a user. 
+    /// Representation of the full name of a user.
     /// </summary>
     public class FullName : TaggedString<FullName>
     {

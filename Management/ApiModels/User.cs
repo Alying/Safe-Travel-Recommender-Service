@@ -18,7 +18,7 @@ namespace Management.ApiModels
         public string FullName { get; set; }
 
         /// <summary>
-        /// Information about this user's passport 
+        /// Information about this user's passport
         /// (for visa purposes -- may not be fully implemented).
         /// </summary>
         public string PassportId { get; set; }
