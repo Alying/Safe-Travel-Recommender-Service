@@ -16,5 +16,7 @@ namespace Storage.Interface
         Task UpdateAsync(string tableName, string columnName, string keyValue, IReadOnlyDictionary<string, string> updateLookup);
 
         Task DeleteAsync<T>(string tableName, string columnName, string keyValue);
+
+        Task DeleteAllAsync(string tableName);
     }
 }
