@@ -26,6 +26,8 @@ namespace Management.Repository
         /// <summary>
         /// Adds a user to the database.
         /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation with the User.</returns>
+        /// <param name="newUsers">new user.</param>
         public async Task<IEnumerable<User>> AddUsersAsync(IEnumerable<User> newUsers)
         {
             try
@@ -38,7 +40,7 @@ namespace Management.Repository
                     user.PassportId.Value,
                     user.CreatedAt.ToString(),
                     user.CountryCode.ToString(),
-                 });
+                });
 
                 await _repository.InsertAsync<StorageUser>(_tableName, userToInsert);
                 return newUsers;
@@ -52,6 +54,7 @@ namespace Management.Repository
         /// <summary>
         /// Gets all users from the database.
         /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation with a list of the users.</returns>
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             try
@@ -100,9 +103,9 @@ namespace Management.Repository
             {
                 var updateDictionary = new Dictionary<string, string>
                 {
-                    { "FullName", user.FullName.Value},
-                    { "PassportId", user.PassportId.Value},
-                    { "CountryCode", user.CountryCode.ToString()},
+                    { "FullName", user.FullName.Value },
+                    { "PassportId", user.PassportId.Value },
+                    { "CountryCode", user.CountryCode.ToString() },
                 };
 
                 await _repository.UpdateAsync(_tableName, _keyColumnName, userId.Value, updateDictionary);
