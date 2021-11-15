@@ -3,10 +3,7 @@ using Management.Interface;
 
 namespace Management.Clients
 {
-    /// <summary>
-    /// Representation of the client for the COVID-19 data API.
-    /// </summary>
-    public class CovidDataClient : ICovidDataClient
+    public class WheatherDataClient : IWheatherDataClient
     {
         public int CalculateScoreAsync()
             => throw new NotImplementedException();

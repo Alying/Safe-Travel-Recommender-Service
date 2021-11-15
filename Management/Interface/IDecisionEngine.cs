@@ -8,6 +8,6 @@ namespace Management.Interface
 {
     public interface IDecisionEngine
     {
-        Task<IReadOnlyList<Recommendation>> CalculateDesiredLocationAsync();
+        Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync();
     }
 }

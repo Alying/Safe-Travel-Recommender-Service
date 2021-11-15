@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Management.Interface
 {
-    public interface IAirQualityDataClient : IWeightedClient
+    public interface IWheatherDataClient : IWeightedClient
     {
     }
 }
