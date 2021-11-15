@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Test.Management.Integration
 {
-    public class WheatherDataClientTests
+    public class WeatherDataClientTests
     {
     }
 }

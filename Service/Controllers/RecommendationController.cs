@@ -30,7 +30,7 @@ namespace Service.Controllers
         /// <param name="recommendationPort">The port of the recommendation.</param>
         public RecommendationController(RecommendationPort recommendationPort) 
         {
-            recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
+            this.recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
         }
 
         [HttpGet]
@@ -66,7 +66,7 @@ namespace Service.Controllers
         /// </summary>
         /// <param name="countryCode">The code of country.</param>
         /// <param name="stateCode">The code of state.</param>
-        /// <returns>The state's information in JSON format.</returns>
+        /// <returns>The state's information.</returns>
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
         public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
@@ -75,14 +75,10 @@ namespace Service.Controllers
         {
             try
             {
-                Recommendation stateInfo = new Recommendation(
-                                           new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
-                                           UserId.Wrap("testUser"),
-                                           new CovidData(1681169, 39029),
-                                           new WeatherData("Expect showers today", 40, 48),
-                                           new AirQualityData(41, 62, 2));
-                string stateInfoJson = JsonConvert.SerializeObject(stateInfo);
-                return this.Ok(stateInfoJson);
+                Recommendation stateInfo = await this.recommendationPort.GetLocationInfoAsync(
+                                                                         new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
+                                                                         UserId.Wrap("testUser"));
+                return this.Ok(stateInfo);
             }
             catch (Exception e)
             {
