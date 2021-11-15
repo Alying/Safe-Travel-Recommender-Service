@@ -81,8 +81,11 @@ namespace Storage
             }
 
             var values = parameterList.Select(inner => inner.Select(p => $"'{p}'")).Select(list => $"({string.Join(", ", list)})");
-
+            
             var sql = $"INSERT INTO {tableName} VALUES {string.Join(", ", values)}";
+            
+            Console.WriteLine(sql);
+            
             using (var con = Connect())
             {
                 return con.ExecuteAsync(sql);
@@ -123,6 +126,16 @@ namespace Storage
 
             var sql = $"DELETE FROM {tableName} WHERE {columnName} = '{keyValue}'";
 
+            using (var con = Connect())
+            {
+                return con.ExecuteAsync(sql);
+            }
+        }
+
+        public Task DeleteAllAsync(string tableName)
+        {
+            var sql = $"TRUNCATE TABLE {tableName}";
+            
             using (var con = Connect())
             {
                 return con.ExecuteAsync(sql);
