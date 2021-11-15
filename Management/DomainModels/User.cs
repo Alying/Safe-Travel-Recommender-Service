@@ -1,8 +1,11 @@
-﻿using Management.Enum;
-using System;
+﻿using System;
+using Management.Enum;
 
 namespace Management.DomainModels
 {
+    /// <summary>
+    /// Representation of a user for the safe-travel service.
+    /// </summary>
     public class User
     {
         public UserId UserId { get; }

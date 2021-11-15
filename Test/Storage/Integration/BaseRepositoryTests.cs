@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xunit;
-using Moq;
-using Microsoft.Extensions.Configuration;
-using Storage;
 using Common.StorageModels;
-using System.Threading;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
+using Moq;
+using Storage;
+using Xunit;
 
 namespace Test.Storage.Integration
 {
@@ -17,7 +15,7 @@ namespace Test.Storage.Integration
         private readonly string _tableName = "user";
 
         [Fact]
-        public async Task GetAllAsync_ValidInput_Success ()
+        public async Task GetAllAsync_ValidInput_Success()
         {
             var mockRepo = new MockRepository(MockBehavior.Strict);
             var iConfigMock = mockRepo.Create<IConfiguration>();
@@ -47,12 +45,12 @@ namespace Test.Storage.Integration
         }
 
         [Fact]
-        public async Task InsertAsync_ValidInput_Success() 
+        public async Task InsertAsync_ValidInput_Success()
         {
             var mockRepo = new MockRepository(MockBehavior.Strict);
             var iConfigMock = mockRepo.Create<IConfiguration>();
             iConfigMock.Setup(config => config.GetSection(It.IsAny<string>())).Returns(new Section());
-            
+
             var baseRepo = new BaseRepository(iConfigMock.Object);
 
             await baseRepo.InsertAsync<User>(_tableName, new List<string>[]
@@ -98,13 +96,14 @@ namespace Test.Storage.Integration
 
     public class Section : IConfigurationSection
     {
-        public string this[string key] { get => "Server=127.0.0.1; database=demo; UID=root; password=Data123!#"; set => throw new NotImplementedException(); }
+        public string this[string key] { get => "Server=127.0.0.1; database=demo; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
         public string Key => "ConnectionStrings";
 
         public string Path => throw new NotImplementedException();
 
-        public string Value { get => "server=127.0.0.1; database=demo; uid=root; pwd=Data123!#"; set => throw new NotImplementedException(); }
+        public string Value { get => "server=127.0.0.1; database=demo; uid=root; pwd=asesharp"; set => throw new NotImplementedException(); }
+        // Data123!#
 
         public IEnumerable<IConfigurationSection> GetChildren()
         {

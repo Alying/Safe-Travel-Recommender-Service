@@ -1,16 +1,16 @@
-﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Management.DomainModels
 {
+    /// <summary>
+    /// Representation of a comment in the safe-travel service.
+    /// </summary>
     public class Comment
     {
         public Location Location { get; }
 
         public UserId UserId { get; }
-        
+
         public string CommentStr { get; }
 
         public DateTimeOffset CreatedAt { get; }

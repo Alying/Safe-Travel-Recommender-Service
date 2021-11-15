@@ -1,21 +1,20 @@
-﻿using Management.DomainModels;
-using Management.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Interface;
 
 namespace Management
 {
     public class DecisionEngine : IDecisionEngine
     {
         private readonly ICovidDataClient _covidDataClient;
-        private readonly IWheatherDataClient _wheatherDataClient;
+        private readonly IWeatherDataClient _wheatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
 
         public DecisionEngine(
             ICovidDataClient covidDataClient,
-            IWheatherDataClient wheatherDataClient,
+            IWeatherDataClient wheatherDataClient,
             IAirQualityDataClient airQualityDataClient)
         {
             _covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
