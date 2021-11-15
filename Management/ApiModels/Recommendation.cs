@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Management.ApiModels
+﻿namespace Management.ApiModels
 {
+    /// <summary>
+    /// A representation of the safe-travel recommendations.
+    /// </summary>
     public class Recommendation
     {
     }
