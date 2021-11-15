@@ -10,12 +10,12 @@ namespace Management
     public class DecisionEngine : IDecisionEngine
     {
         private readonly ICovidDataClient _covidDataClient;
-        private readonly IWheatherDataClient _wheatherDataClient;
+        private readonly IWeatherDataClient _wheatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
 
         public DecisionEngine(
             ICovidDataClient covidDataClient,
-            IWheatherDataClient wheatherDataClient,
+            IWeatherDataClient wheatherDataClient,
             IAirQualityDataClient airQualityDataClient)
         {
             _covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));

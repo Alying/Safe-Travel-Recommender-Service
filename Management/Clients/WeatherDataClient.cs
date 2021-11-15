@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Management.Clients
 {
-    public class WheatherDataClient : IWheatherDataClient
+    public class WeatherDataClient : IWeatherDataClient
     {
     }
 }

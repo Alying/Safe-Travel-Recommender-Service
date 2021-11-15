@@ -1,22 +1,36 @@
-﻿using Management;
-using Management.Ports;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// <copyright file="RecommendationController.cs" company="ASE#">
+//     Copyright (c) ASE#. All rights reserved.
+// </copyright>
 
 namespace Service.Controllers
 {
-    [Route("api/recommendation")]
+    using System;
+    using System.Threading.Tasks;
+    using Management.DomainModels;
+    using Management.Ports;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// class <c>RecommendationController</c> provides top 10 travel recommendations 
+    /// and provide specific state's travel information
+    /// </summary>
+    [Route("api/recommendations")]
     [ApiController]
     public class RecommendationController : ControllerBase
     {
-        private readonly RecommendationPort _recommendationPort;
+        /// <summary>
+        /// The port of the recommendation.
+        /// </summary>
+        private readonly RecommendationPort recommendationPort;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecommendationController"/> class.
+        /// </summary>
+        /// <param name="recommendationPort">The port of the recommendation.</param>
         public RecommendationController(RecommendationPort recommendationPort) 
         {
-            _recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
+            recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
         }
 
         [HttpGet]
@@ -24,11 +38,11 @@ namespace Service.Controllers
         {
             try
             {
-                return Ok();
+                return this.Ok();
             }
             catch (Exception)
             {
-                return NotFound();
+                return this.NotFound();
             }
         }
 
@@ -38,27 +52,41 @@ namespace Service.Controllers
         {
             try
             {
-                return Ok();
+                return this.Ok();
             }
             catch (Exception)
             {
-                return NotFound();
+                return this.NotFound();
             }
         }
 
+        /// <summary>
+        /// method <c>GetRecommendationByCountryCodeAndStateCode</c> provide basic travel 
+        /// information about a specific state.
+        /// </summary>
+        /// <param name="countryCode">The code of country.</param>
+        /// <param name="stateCode">The code of state.</param>
+        /// <returns>The state's information in JSON format.</returns>
         [HttpGet]
-        [Route("country/{countryCode}/state/{state}")]
-        public async Task<IActionResult> GetRecommendationByCountryCodeAndState(
+        [Route("country/{countryCode}/state/{stateCode}")]
+        public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
             [FromRoute] string countryCode, 
-            [FromRoute] string state)
+            [FromRoute] string stateCode)
         {
             try
             {
-                return Ok();
+                Recommendation stateInfo = new Recommendation(
+                                           new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
+                                           UserId.Wrap("testUser"),
+                                           new CovidData(1681169, 39029),
+                                           new WeatherData("Expect showers today", 40, 48),
+                                           new AirQualityData(41, 62, 2));
+                string stateInfoJson = JsonConvert.SerializeObject(stateInfo);
+                return this.Ok(stateInfoJson);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return NotFound();
+                return this.NotFound(e.Message);
             }
         }
     }

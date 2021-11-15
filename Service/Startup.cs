@@ -33,7 +33,7 @@ namespace Service
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IDecisionEngine, DecisionEngine>();
             services.AddScoped<ICovidDataClient, CovidDataClient>();
-            services.AddScoped<IWheatherDataClient, WheatherDataClient>();
+            services.AddScoped<IWeatherDataClient, WeatherDataClient>();
             services.AddScoped<IAirQualityDataClient, AirQualityDataClient>();
 
             // Ports
