@@ -56,7 +56,8 @@ In order to run the unit and integration tests, you must create the schema `ases
     - Now, if you run `reportgenerator` in the command line, it should run with no errors but with `No report files specified` and `No target directory specified` warnings.
 2. From the project root directory, run command `./gen_test_report.sh` __from bash__. This command will run all the unit tests, and generate the html coverage report.
     - On Windows, this can be run from git shell.
-3. The generated reports are stored in `test_results/`. There is an index.html that shows the coverage of the project.
+3. The generated reports are stored in `test_results/`. There is an index.html that shows the coverage of the project. Here is the link to the index.html: https://htmlpreview.github.io/?https://github.com/Alying/team_ase_sharp/blob/main/test_results/html/index.html
+ 
 
 # Swagger Documentation
 Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` (https://editor.swagger.io/) and the documentation will be automatically rendered. It provides more detail on example requests and responses for endpoints under different situations. 
@@ -71,6 +72,9 @@ We are using the following 3 APIs in order to make decisions for safe-travel loc
   - COVID-19 API:  https://covidtracking.com/data/api/version-2
   - Weather API: https://developer.accuweather.com/apis
   - Air Quality API: https://www2.purpleair.com/
+
+# Style documentation
+We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
 
 # Technology
 #### StyleCop
