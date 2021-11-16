@@ -22,7 +22,7 @@ namespace Service.Controllers
         /// <summary>
         /// The port of the recommendation.
         /// </summary>
-        private readonly RecommendationPort recommendationPort;
+        private readonly RecommendationPort _recommendationPort;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecommendationController"/> class.
@@ -85,7 +85,7 @@ namespace Service.Controllers
         {
             try
             {
-                Recommendation stateInfo = await this.recommendationPort.GetLocationInfoAsync(
+                Recommendation stateInfo = await this._recommendationPort.GetLocationInfoAsync(
                                                                          new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
                                                                          UserId.Wrap("testUser"));
                 return this.Ok(stateInfo);
