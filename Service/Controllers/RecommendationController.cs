@@ -1,23 +1,28 @@
-﻿// <copyright file="RecommendationController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// <copyright file="RecommendationController.cs" company="ASE#">
+//     Copyright (c) ASE#. All rights reserved.
 // </copyright>
 
 namespace Service.Controllers
 {
     using System;
     using System.Threading.Tasks;
+    using Management.DomainModels;
     using Management.Ports;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Controller for the safe-travel recommendations and safe-travel information for this
     /// safe-travel service.
     /// </summary>
-    [Route("api/recommendation")]
+    [Route("api/recommendations")]
     [ApiController]
     public class RecommendationController : ControllerBase
     {
-        private readonly RecommendationPort _recommendationPort;
+        /// <summary>
+        /// The port of the recommendation.
+        /// </summary>
+        private readonly RecommendationPort recommendationPort;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecommendationController"/> class.
@@ -66,25 +71,28 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Intended to get the basic travel information about a specific state in a country,
+        /// Intended to get the basic travel information about a specific state in a country, 
         /// which can include COVID-19, weather, and air quality information for the user.
         /// </summary>
         /// <param name="countryCode">country code eg. "US".</param>
-        /// <param name="state">state code eg. "NY".</param>
-        /// <returns>status code.</returns>
+        /// <param name="stateCode">state code eg. "NY".</param>
+        /// <returns>The state's information.</returns>
         [HttpGet]
-        [Route("country/{countryCode}/state/{state}")]
-        public IActionResult GetRecommendationByCountryCodeAndState(
-            [FromRoute] string countryCode,
-            [FromRoute] string state)
+        [Route("country/{countryCode}/state/{stateCode}")]
+        public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
+            [FromRoute] string countryCode, 
+            [FromRoute] string stateCode)
         {
             try
             {
-                return this.Ok();
+                Recommendation stateInfo = await this.recommendationPort.GetLocationInfoAsync(
+                                                                         new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
+                                                                         UserId.Wrap("testUser"));
+                return this.Ok(stateInfo);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return this.NotFound();
+                return this.NotFound(e.Message);
             }
         }
     }

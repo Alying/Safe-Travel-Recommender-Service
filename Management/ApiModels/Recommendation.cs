@@ -5,5 +5,6 @@
     /// </summary>
     public class Recommendation
     {
+        public string UserIdStr { get; set; }
     }
 }

@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />
     <PackageReference Include="Optional" Version="4.0.0" />
+    <PackageReference Include="StyleCop.MSBuild" Version="6.2.0">
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

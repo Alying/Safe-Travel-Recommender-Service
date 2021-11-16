@@ -1,4 +1,4 @@
-﻿namespace Test.Management.Integration
+namespace Test.Management.Integration
 {
     public class WeatherDataClientTests
     {

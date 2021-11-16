@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Management.Interface;
 
 namespace Management.Clients
