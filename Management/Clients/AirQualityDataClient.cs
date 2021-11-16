@@ -18,7 +18,7 @@ namespace Management.Clients
 
         private readonly IConfiguration _configuration;
 
-        private string _apiKey => _configuration.GetConnectionString("airApiKey");
+        private string ApiKey => _configuration.GetConnectionString("airApiKey");
 
         public AirQualityDataClient(IConfiguration configuration)
         {
@@ -33,7 +33,7 @@ namespace Management.Clients
                 .AddQueryParameter("city", city)
                 .AddQueryParameter("state", state)
                 .AddQueryParameter("country", countryCode)
-                .AddQueryParameter("key", _apiKey);
+                .AddQueryParameter("key", ApiKey);
 
             var response = await _restClient.ExecuteAsync(request, cancellationToken);
 

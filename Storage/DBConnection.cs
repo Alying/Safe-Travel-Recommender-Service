@@ -1,30 +1,35 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
+﻿// <copyright file="DBConnection.cs" company="ASE#">
+//     Copyright (c) ASE#. All rights reserved.
+// </copyright>
 
 namespace Storage
 {
+    using System;
+    using Microsoft.Extensions.Configuration;
+    using MySql.Data.MySqlClient;
+
     public class DBConnection
     {
-        private MySqlConnection Connection { get; set; }
-
         private readonly IConfiguration _configuration;
 
-        private string _connectionString => _configuration.GetConnectionString("mysql");
+        private string ConnectionString => this._configuration.GetConnectionString("mysql");
 
         public DBConnection(IConfiguration configuration)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this._configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
+
+        private MySqlConnection Connection { get; set; }
 
         public MySqlConnection Connect()
         {
-            if (Connection == null) 
+            if (this.Connection == null) 
             {
-                Connection = new MySqlConnection(_connectionString);
+                this.Connection = new MySqlConnection(ConnectionString);
             }
-            Connection.Open();
-            return Connection;
+
+            this.Connection.Open();
+            return this.Connection;
         }
     }
 }

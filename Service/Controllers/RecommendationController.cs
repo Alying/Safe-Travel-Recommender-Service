@@ -1,5 +1,5 @@
-// <copyright file="RecommendationController.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+// <copyright file="RecommendationController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace Service.Controllers
@@ -71,7 +71,7 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Intended to get the basic travel information about a specific state in a country, 
+        /// Intended to get the basic travel information about a specific state in a country,
         /// which can include COVID-19, weather, and air quality information for the user.
         /// </summary>
         /// <param name="countryCode">country code eg. "US".</param>
@@ -80,7 +80,7 @@ namespace Service.Controllers
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
         public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
-            [FromRoute] string countryCode, 
+            [FromRoute] string countryCode,
             [FromRoute] string stateCode)
         {
             try

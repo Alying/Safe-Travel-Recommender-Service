@@ -15,7 +15,8 @@ namespace Management.DomainModels
             NJ,
         }
 
-        private State(string stateCode) : base(stateCode)
+        private State(string stateCode)
+                : base(stateCode)
         {
             if (!System.Enum.TryParse<StateCode>(stateCode, out var _))
             {

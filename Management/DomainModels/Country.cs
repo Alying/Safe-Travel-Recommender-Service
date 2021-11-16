@@ -15,7 +15,8 @@ namespace Management.DomainModels
             CA,
         }
 
-        private Country(string countryCode) : base(countryCode)
+        private Country(string countryCode)
+                : base(countryCode)
         {
             if (!System.Enum.TryParse<CountryCode>(countryCode, out var _))
             {

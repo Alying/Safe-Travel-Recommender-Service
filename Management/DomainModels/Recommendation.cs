@@ -25,27 +25,27 @@ namespace Management.DomainModels
         }
 
         /// <summary>
-        /// Gets the location (country, state)
+        /// Gets the location (country, state).
         /// </summary>
         public Location Location { get; }
 
         /// <summary>
-        /// Gets the user id 
+        /// Gets the user id.
         /// </summary>
         public UserId UserId { get; }
 
         /// <summary>
-        /// Gets the COVID-19 data 
+        /// Gets the COVID-19 data.
         /// </summary>
         public CovidData CovidData { get; }
 
         /// <summary>
-        /// Gets the weather data
+        /// Gets the weather data.
         /// </summary>
         public WeatherData WeatherData { get; }
 
         /// <summary>
-        /// Gets the air quality data
+        /// Gets the air quality data.
         /// </summary>
         public AirQualityData AirQualityData { get; }
     }
