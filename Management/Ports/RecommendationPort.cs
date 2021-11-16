@@ -1,24 +1,23 @@
 ﻿// <copyright file="RecommendationPort.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
+using System;
+using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Interface;
 
 namespace Management.Ports
 {
-    using System;
-    using System.Threading.Tasks;
-    using Management.DomainModels;
-    using Management.Interface;
-
     /// <summary>
     /// Recommendation ports for async task.
     /// </summary>
     public class RecommendationPort
     {
-        private readonly IDecisionEngine decisionEngine;
+        private readonly IDecisionEngine _decisionEngine;
 
         public RecommendationPort(IDecisionEngine decisionEngine)
         {
-            this.decisionEngine = decisionEngine ?? throw new ArgumentNullException(nameof(decisionEngine));
+            _decisionEngine = decisionEngine ?? throw new ArgumentNullException(nameof(decisionEngine));
         }
 
         /// <summary>
@@ -29,6 +28,6 @@ namespace Management.Ports
         /// <returns>The state's information.</returns>
         public async Task<Recommendation> GetLocationInfoAsync(Location location, UserId userId)
 
-            => await this.decisionEngine.GetSpecificLocationInfoAsync(location, userId);
+            => await _decisionEngine.GetSpecificLocationInfoAsync(location, userId);
     }
 }

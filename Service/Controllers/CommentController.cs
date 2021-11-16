@@ -14,6 +14,8 @@ namespace Service.Controllers
     using ApiUserId = Management.ApiModels.UserId;
     using DomainUserId = Management.DomainModels.UserId;
 
+namespace Service.Controllers
+{
     /// <summary>
     /// Controller for the user commenting system for this safe-travel service.
     /// </summary>
@@ -29,7 +31,7 @@ namespace Service.Controllers
         /// <param name="commentPort">port for comment endpoints.</param>
         public CommentController(CommentPort commentPort)
         {
-            this._commentPort = commentPort ?? throw new ArgumentNullException(nameof(commentPort));
+            _commentPort = commentPort ?? throw new ArgumentNullException(nameof(commentPort));
         }
 
         /// <summary>
@@ -59,6 +61,10 @@ namespace Service.Controllers
         /// <summary>
         /// Intended to post the user's comments for this specific country and state.
         /// </summary>
+        /// <param name="apiComment">The comment that the user made.</param>
+        /// <param name="countryCode">The country that the comment was made on.</param>
+        /// <param name="stateCode">The state that the comment was made on.</param>
+        /// <returns>The state's information.</returns>
         [HttpPost]
         [Route("country/{countryCode}/state/{stateCode}")]
         public async Task<IActionResult> CreateNewComment([FromBody] ApiComment apiComment, [FromRoute] string countryCode, [FromRoute] string stateCode)
@@ -66,13 +72,13 @@ namespace Service.Controllers
             Console.WriteLine($"CreateNewComment: countryCode: {countryCode}, stateCode: {stateCode}, body: {JsonSerializer.Serialize(apiComment)}");
             try
             {
-                await this._commentPort.AddCommentAsync(new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), apiComment);
-                return this.Ok();
+                await _commentPort.AddCommentAsync(new Location(Country.Wrap(countryCode), State.Wrap(stateCode)), apiComment);
+                return Ok();
             }
             catch (Exception e)
             {
                 Console.WriteLine($"CreateNewComment caught exception: {e.Message}");
-                return this.NotFound(e.Message);
+                return NotFound(e.Message);
             }
         }
     }

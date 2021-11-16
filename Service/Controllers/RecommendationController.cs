@@ -11,6 +11,8 @@ namespace Service.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
 
+namespace Service.Controllers
+{
     /// <summary>
     /// Controller for the safe-travel recommendations and safe-travel information for this
     /// safe-travel service.
@@ -30,7 +32,7 @@ namespace Service.Controllers
         /// <param name="recommendationPort">port for the recommendation endpoints.</param>
         public RecommendationController(RecommendationPort recommendationPort)
         {
-            this._recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
+            _recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
         }
 
         /// <summary>
@@ -42,11 +44,11 @@ namespace Service.Controllers
         {
             try
             {
-                return this.Ok();
+                return Ok();
             }
             catch (Exception)
             {
-                return this.NotFound();
+                return NotFound();
             }
         }
 
@@ -62,11 +64,11 @@ namespace Service.Controllers
         {
             try
             {
-                return this.Ok();
+                return Ok();
             }
             catch (Exception)
             {
-                return this.NotFound();
+                return NotFound();
             }
         }
 
@@ -85,14 +87,14 @@ namespace Service.Controllers
         {
             try
             {
-                Recommendation stateInfo = await this._recommendationPort.GetLocationInfoAsync(
+                Recommendation stateInfo = await _recommendationPort.GetLocationInfoAsync(
                                                                          new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
                                                                          UserId.Wrap("testUser"));
-                return this.Ok(stateInfo);
+                return Ok(stateInfo);
             }
             catch (Exception e)
             {
-                return this.NotFound(e.Message);
+                return NotFound(e.Message);
             }
         }
     }

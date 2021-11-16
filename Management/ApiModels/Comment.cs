@@ -6,13 +6,13 @@
     public class Comment
     {
         /// <summary>
-        /// The unique ID of the user who created this comment.
+        /// Gets or sets the unique ID of the user who created this comment.
         /// </summary>
         // TODO: @mli: Remove UserId here when we can get userId from auth token.
         public string UserIdStr { get; set; }
 
         /// <summary>
-        /// The actual comment that the user left in the system.
+        /// Gets or sets the actual comment that the user left in the system.
         /// </summary>
         public string CommentStr { get; set; }
     }
