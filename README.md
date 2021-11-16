@@ -50,8 +50,8 @@ Before running the unit tests, the schema `asesharptestdb`, and the following ta
     - On Windows, this can be run from git shell.
 3. The generated reports are stored in `test_results/`.
 
-# Documentation
-https://app.swaggerhub.com/apis/test_org_comsw/comsw_4156_team_project/1.0.0
+# Swagger Documentation
+Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` (https://editor.swagger.io/) and the documentation will be automatically rendered. It provides more detail on example requests and responses for endpoints under different situations. 
 
 # Technology
 #### StyleCop
