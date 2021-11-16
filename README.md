@@ -72,6 +72,9 @@ We are using the following 3 APIs in order to make decisions for safe-travel loc
   - Weather API: https://developer.accuweather.com/apis
   - Air Quality API: https://www2.purpleair.com/
 
+# Style documentation
+We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
+
 # Technology
 #### StyleCop
 Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
