@@ -61,6 +61,52 @@ namespace Test.Management.Unit
             _mockRepository.VerifyAll();
         }
 
+        [Fact]
+        public async Task AddCommentAsync_Success()
+        {
+            var testComment = new DomainComment(new Location(Country.Wrap("US"), State.Wrap("NY")), UserId.Wrap("newUser"), "Hello World!", DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
+            var fields = new List<List<string>>()
+            {
+                new List<string>() {
+                    testComment.UserId.Value,
+                    testComment.Location.Country.Value,
+                    testComment.Location.State.Value,
+                    testComment.CreatedAt.ToString(),
+                    testComment.CommentStr
+                }
+            };
+            _mockRepository.Setup(t => t.InsertAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IEnumerable<IReadOnlyList<string>>>(arg => IsListContainElement(arg, fields))));
+
+            await _commentRepository.AddCommentAsync(testComment);
+
+            Assert.Equal(1, 1);
+
+            _mockRepository.VerifyAll();
+        }
+
+        private bool IsListContainElement(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
+        {
+            if(lhs.Count() != rhs.Count() || lhs.Count() != 1)
+            {
+                return false;
+            }
+            var lhsFirst = lhs.First();
+            var rhsFirst = rhs.First();
+            int count = 0;
+            foreach(var rhsItem in rhsFirst)
+            {
+                foreach(var lhsItem in lhsFirst)
+                {
+                    if(rhsItem == lhsItem)
+                    {
+                        count ++;
+                        break;
+                    }
+                }
+            }
+            return count == rhsFirst.Count();
+        }
+
         private bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
         {
             if(lhs.Count != rhs.Count)
