@@ -50,7 +50,7 @@ In order to run the unit and integration tests, you must create the schema `ases
   - Instruction on how to run from command line will be provided later.
 
 # Testing
-#### Running the test and generate report
+#### Running the tests and generating the test report
 1. First, make sure that `dotnet-reportgenerator-globaltool` is installed. If it is not installed, run `dotnet tool install -g dotnet-reportgenerator-globaltool` in the Windows command prompt. (More details: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows)
     - Note that this might require installation for `ASP.NET Core Runtime 6.0.0` to run: https://dotnet.microsoft.com/download/dotnet/6.0
     - Now, if you run `reportgenerator` in the command line, it should run with no errors but with `No report files specified` and `No target directory specified` warnings.
@@ -65,6 +65,12 @@ Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` 
 The Postman responses from our service test runs are included in the `FirstIterationDemo.postman_test_run.json` file. To log on and see the Postman request Collection `FirstIterationDemo`, please use the following username and password:
   - Username: ml4643@columbia.edu
   - Password: teamasesharp
+
+# API documentation
+We are using the following 3 APIs in order to make decisions for safe-travel locations in the Decision Engine (Not fully implemented yet).
+  - COVID-19 API:  https://covidtracking.com/data/api/version-2
+  - Weather API: https://developer.accuweather.com/apis
+  - Air Quality API: https://www2.purpleair.com/
 
 # Technology
 #### StyleCop
