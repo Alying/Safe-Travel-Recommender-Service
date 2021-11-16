@@ -11,90 +11,91 @@ namespace Service.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
 
-namespace Service.Controllers
-{
-    /// <summary>
-    /// Controller for the safe-travel recommendations and safe-travel information for this
-    /// safe-travel service.
-    /// </summary>
-    [Route("api/recommendations")]
-    [ApiController]
-    public class RecommendationController : ControllerBase
+    namespace Service.Controllers
     {
         /// <summary>
-        /// The port of the recommendation.
+        /// Controller for the safe-travel recommendations and safe-travel information for this
+        /// safe-travel service.
         /// </summary>
-        private readonly RecommendationPort _recommendationPort;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RecommendationController"/> class.
-        /// </summary>
-        /// <param name="recommendationPort">port for the recommendation endpoints.</param>
-        public RecommendationController(RecommendationPort recommendationPort)
+        [Route("api/recommendations")]
+        [ApiController]
+        public class RecommendationController : ControllerBase
         {
-            _recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
-        }
+            /// <summary>
+            /// The port of the recommendation.
+            /// </summary>
+            private readonly RecommendationPort _recommendationPort;
 
-        /// <summary>
-        /// Intended to get the top-10 recommendations for safe travel for the user.
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [HttpGet]
-        public IActionResult GetTopRecommendations()
-        {
-            try
+            /// <summary>
+            /// Initializes a new instance of the <see cref="RecommendationController"/> class.
+            /// </summary>
+            /// <param name="recommendationPort">port for the recommendation endpoints.</param>
+            public RecommendationController(RecommendationPort recommendationPort)
             {
-                return Ok();
+                _recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
             }
-            catch (Exception)
-            {
-                return NotFound();
-            }
-        }
 
-        /// <summary>
-        /// Intended to get the basic travel information about a specific country,
-        /// which can include COVID-19, weather, and air quality information for the user.
-        /// </summary>
-        /// <param name="countryCode">country code eg. "US".</param>
-        /// <returns>status code.</returns>
-        [HttpGet]
-        [Route("country/{countryCode}")]
-        public IActionResult GetRecommendationByCountryCode([FromRoute] string countryCode)
-        {
-            try
+            /// <summary>
+            /// Intended to get the top-10 recommendations for safe travel for the user.
+            /// </summary>
+            /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
+            [HttpGet]
+            public IActionResult GetTopRecommendations()
             {
-                return Ok();
+                try
+                {
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
             }
-            catch (Exception)
-            {
-                return NotFound();
-            }
-        }
 
-        /// <summary>
-        /// Intended to get the basic travel information about a specific state in a country,
-        /// which can include COVID-19, weather, and air quality information for the user.
-        /// </summary>
-        /// <param name="countryCode">country code eg. "US".</param>
-        /// <param name="stateCode">state code eg. "NY".</param>
-        /// <returns>The state's information.</returns>
-        [HttpGet]
-        [Route("country/{countryCode}/state/{stateCode}")]
-        public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
-            [FromRoute] string countryCode,
-            [FromRoute] string stateCode)
-        {
-            try
+            /// <summary>
+            /// Intended to get the basic travel information about a specific country,
+            /// which can include COVID-19, weather, and air quality information for the user.
+            /// </summary>
+            /// <param name="countryCode">country code eg. "US".</param>
+            /// <returns>status code.</returns>
+            [HttpGet]
+            [Route("country/{countryCode}")]
+            public IActionResult GetRecommendationByCountryCode([FromRoute] string countryCode)
             {
-                Recommendation stateInfo = await _recommendationPort.GetLocationInfoAsync(
-                                                                         new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
-                                                                         UserId.Wrap("testUser"));
-                return Ok(stateInfo);
+                try
+                {
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
             }
-            catch (Exception e)
+
+            /// <summary>
+            /// Intended to get the basic travel information about a specific state in a country,
+            /// which can include COVID-19, weather, and air quality information for the user.
+            /// </summary>
+            /// <param name="countryCode">country code eg. "US".</param>
+            /// <param name="stateCode">state code eg. "NY".</param>
+            /// <returns>The state's information.</returns>
+            [HttpGet]
+            [Route("country/{countryCode}/state/{stateCode}")]
+            public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
+                [FromRoute] string countryCode,
+                [FromRoute] string stateCode)
             {
-                return NotFound(e.Message);
+                try
+                {
+                    Recommendation stateInfo = await _recommendationPort.GetLocationInfoAsync(
+                                                                             new Location(Country.Wrap(countryCode), State.Wrap(stateCode)),
+                                                                             UserId.Wrap("testUser"));
+                    return Ok(stateInfo);
+                }
+                catch (Exception e)
+                {
+                    return NotFound(e.Message);
+                }
             }
         }
     }

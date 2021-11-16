@@ -18,8 +18,6 @@ namespace Management.Clients
 
         private IRestClient _restClient;
 
-        private readonly IConfiguration _configuration;
-
         private string ApiKey => _configuration.GetConnectionString("airApiKey");
 
         public AirQualityDataClient(IConfiguration configuration)
