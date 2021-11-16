@@ -1,8 +1,8 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+
 namespace Service
 {
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Hosting;
-
     /// <summary>
     /// Main program for safe-travel service.
     /// </summary>

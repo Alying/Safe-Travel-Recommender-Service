@@ -28,7 +28,7 @@ namespace Test.Storage.Integration
             _repository.DeleteAllAsync(_tableName).Wait();
             _repository.InsertAsync<User>(_tableName, new List<string>[]
             {
-                new List<string>{ "TestInsert1", "2", "Admin",  DateTime.UtcNow.ToString(), "123" },
+                new List<string> { "TestInsert1", "2", "Admin",  DateTime.UtcNow.ToString(), "123" },
             }).Wait();
         }
 
@@ -63,7 +63,7 @@ namespace Test.Storage.Integration
         {
             await _repository.InsertAsync<User>(_tableName, new List<string>[]
             {
-                new List<string>{ "TestInsert2", "3", "Admin",  DateTime.UtcNow.ToString(), "456" },
+                new List<string> { "TestInsert2", "3", "Admin",  DateTime.UtcNow.ToString(), "456" },
             });
 
             var insertedData = await _repository.GetAsync<User>(_tableName, "UserId", "3");

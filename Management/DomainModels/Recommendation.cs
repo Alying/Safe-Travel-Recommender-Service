@@ -17,11 +17,11 @@ namespace Management.DomainModels
         /// <param name="airQuality">The air quality data of a city.</param>
         public Recommendation(Location location, UserId userId, CovidData covid, WeatherData weather, AirQualityData airQuality)
         {
-            this.Location = location ?? throw new ArgumentNullException(nameof(location));
-            this.UserId = userId ?? throw new ArgumentNullException(nameof(userId));
-            this.CovidData = covid ?? throw new ArgumentNullException(nameof(covid));
-            this.WeatherData = weather ?? throw new ArgumentNullException(nameof(weather));
-            this.AirQualityData = airQuality ?? throw new ArgumentNullException(nameof(airQuality));
+            Location = location ?? throw new ArgumentNullException(nameof(location));
+            UserId = userId ?? throw new ArgumentNullException(nameof(userId));
+            CovidData = covid ?? throw new ArgumentNullException(nameof(covid));
+            WeatherData = weather ?? throw new ArgumentNullException(nameof(weather));
+            AirQualityData = airQuality ?? throw new ArgumentNullException(nameof(airQuality));
         }
 
         /// <summary>

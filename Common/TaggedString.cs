@@ -16,7 +16,7 @@ namespace Common
         /// <param name="value">value of tagged string.</param>
         public TaggedString(string value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         /// <summary>

@@ -1,11 +1,10 @@
 ﻿// <copyright file="CovidData.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
+using System;
 
 namespace Management.DomainModels
 {
-    using System;
-
     /// <summary>
     /// Provides the cumulated COVID-19 confirmed cases and cumulated COVID-19 death cases of a country/state.
     /// </summary>
@@ -18,8 +17,8 @@ namespace Management.DomainModels
         /// <param name="deathCases">The COVID-19 death cases of a country/state.</param>
         public CovidData(int? confirmedCases, int? deathCases)
         {
-            this.ConfirmedCases = confirmedCases ?? throw new ArgumentNullException(nameof(confirmedCases));
-            this.DeathCases = deathCases ?? throw new ArgumentNullException(nameof(deathCases));
+            ConfirmedCases = confirmedCases ?? throw new ArgumentNullException(nameof(confirmedCases));
+            DeathCases = deathCases ?? throw new ArgumentNullException(nameof(deathCases));
         }
 
         /// <summary>

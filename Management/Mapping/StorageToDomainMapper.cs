@@ -1,5 +1,5 @@
-﻿using Management.DomainModels;
-using System;
+﻿using System;
+using Management.DomainModels;
 
 namespace Management.Mapping
 {

@@ -1,11 +1,10 @@
 ﻿// <copyright file="WeatherData.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
+using System;
 
 namespace Management.DomainModels
 {
-    using System;
-
     /// <summary>
     /// Provides the summary of a city's weather, minimum temperature, and maximum temperature.
     /// </summary>
@@ -19,9 +18,9 @@ namespace Management.DomainModels
         /// <param name="maxTemp">The maximum temperature in Fahrenheit of a city.</param>
         public WeatherData(string weatherSummary, double? minTemp, double? maxTemp)
         {
-            this.WeatherSummary = weatherSummary ?? throw new ArgumentNullException(nameof(weatherSummary));
-            this.MinTemperature = minTemp ?? throw new ArgumentNullException(nameof(minTemp));
-            this.MaxTemperature = maxTemp ?? throw new ArgumentNullException(nameof(maxTemp));
+            WeatherSummary = weatherSummary ?? throw new ArgumentNullException(nameof(weatherSummary));
+            MinTemperature = minTemp ?? throw new ArgumentNullException(nameof(minTemp));
+            MaxTemperature = maxTemp ?? throw new ArgumentNullException(nameof(maxTemp));
         }
 
         /// <summary>

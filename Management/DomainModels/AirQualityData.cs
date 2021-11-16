@@ -1,11 +1,10 @@
 ﻿// <copyright file="AirQualityData.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
+using System;
 
 namespace Management.DomainModels
 {
-    using System;
-
     /// <summary>
     /// Provides the cumulated COVID-19 confirmed cases and cumulated COVID-19 death cases of a country/state.
     /// </summary>
@@ -19,9 +18,9 @@ namespace Management.DomainModels
         /// <param name="windSpeed">The wind speed of a city.</param>
         public AirQualityData(int? aqi, double? humidity, double? windSpeed)
         {
-            this.AirQualityIndex = aqi ?? throw new ArgumentNullException(nameof(aqi));
-            this.Humidity = humidity ?? throw new ArgumentNullException(nameof(humidity));
-            this.WindSpeed = windSpeed ?? throw new ArgumentNullException(nameof(windSpeed));
+            AirQualityIndex = aqi ?? throw new ArgumentNullException(nameof(aqi));
+            Humidity = humidity ?? throw new ArgumentNullException(nameof(humidity));
+            WindSpeed = windSpeed ?? throw new ArgumentNullException(nameof(windSpeed));
         }
 
         /// <summary>
