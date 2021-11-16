@@ -61,6 +61,11 @@ In order to run the unit and integration tests, you must create the schema `ases
 # Swagger Documentation
 Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` (https://editor.swagger.io/) and the documentation will be automatically rendered. It provides more detail on example requests and responses for endpoints under different situations. 
 
+# Postman Documentation
+The Postman responses from our service test runs are included in the `FirstIterationDemo.postman_test_run.json` file. To log on and see the Postman request Collection `FirstIterationDemo`, please use the following username and password:
+  - Username: ml4643@columbia.edu
+  - Password: teamasesharp
+
 # Technology
 #### StyleCop
 Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
