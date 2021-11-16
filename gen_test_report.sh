@@ -14,4 +14,5 @@ mysqld.exe &
 dotnet test -r "./test_results" --collect "xplat code coverage"
 latest_path=`ls -td ./test_results/* | head -1`
 echo $latest_path
+# dotnet reportgenerator "-reports:${latest_path}/coverage.cobertura.xml" "-targetdir:test_results/html" "-reporttypes:HTML"
 reportgenerator -reports:${latest_path}/coverage.cobertura.xml -targetdir:test_results/html -reporttypes:HTML
