@@ -56,13 +56,12 @@ Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` 
 # Technology
 #### StyleCop
 Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
-#### Coverity
-Static analysis bug finder that enables software engineers and security teams to find and fix software defects.
 #### XUnit + Moq 
 Test runner for .NET Framework projects
 #### Coverlet + ReportGenerator
 Generate coverage html report for the project
 #### NCrunch 
+Please install NCrunch, in accordance with your Visual Studio version, here: https://www.ncrunch.net/download
 Coverage tracker that runs automated tests and provides code coverage
 #### ASP.NET 
 Framework for server-side web-application
