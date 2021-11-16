@@ -1,27 +1,34 @@
 # Safe-Travel Recommender Service
-As COVID-19 is getting more and more contained, travel demand has correspondingly risen. The service we created is a safe-travel recommender service for traveling purposes in the United States. Our service suggests travel spots based on the state’s current COVID-19 cases, weather conditions, and air pollution levels. 
+As COVID-19 gets more and more contained, travel demand has correspondingly risen. The service we created is a safe-travel recommender service for traveling purposes in the United States. Our service suggests safe-travel locations based on the state's current COVID-19 cases, weather conditions, and air pollution levels. 
 
 # Getting started
-#### Setup database for the first time
+Note: these are the instructions to run our service on Windows operating systems, since our team is all running Windows. Instructions may differ if you run a different operating system (MacOS, Linux).
 
-The service requires a local instance of MySQL database server running. 
+#### Setting up the local database for the first time
 
-The following instructions might be useful for getting `mysql` server to run on Windows:
-- Fist make sure the `<path to mysql installation>/MySQL Server 8.0/bin/` is added to system path.
-- To start mysql server:
-  - `mysqld.exe &`
-  - If this is the first time starting the server:
-    - `mysqld.exe --initialize --console`, the temporary generated temporary password is needed when connecting to the database for the first time.
-- To connect to mysql server after password is updated to `asesharp`:
-  - `mysql.exe -uroot -pasesharp` (the username and password needed by the service to connect to the database can also be found in `Service/appsettings.Development.json`.)
+The service requires a local instance of a MySQL database server running. Please install MySQL Workbench (most of the times: x86, 32-bit, 470.2M version) here: https://dev.mysql.com/downloads/installer/  
 
-Before running the service, the schema `asesharpdb`, and the following tables needs to be created:
+To get the `mysql` server to run on Windows:
+- command-line version
+  - First make sure the `<path to mysql installation>/MySQL Server 8.0/bin/` is added to system path.
+  - To start mysql server:
+    - `mysqld.exe &`
+    - If this is your first time starting the server:
+      - `mysqld.exe --initialize --console`, the temporarily-generated temporary password is needed when connecting to the database for the first time.
+  - Then, please update your password to `asesharp` for the root user. To connect to mysql server after password is updated to `asesharp`:
+    - `mysql.exe -uroot -pasesharp` (the username and password needed by the service to connect to the database can also be found in `Service/appsettings.Development.json`.)
+- GUI version
+  - After installation of the MySQL Workbench, find it in your apps and open it.
+  - Click on the 'root' user and set your password to `asesharp`
+    - if you have set your password to something else, you may run this query in order to change it: `ALTER USER 'root'@'localhost' IDENTIFIED BY 'asesharp';` 
+
+In order to run the service, you must create the schema `asesharpdb`, and then the following tables (the queries to run are listed below):
 - `comment`: This table holds user's comments for a specific trip.
   - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
 - `user`: This table holds user information.
   - `CREATE TABLE IF NOT EXISTS user (UserName VARCHAR(500), UserId VARCHAR(100) PRIMARY KEY, UserRole VARCHAR(50), CreatedAt VARCHAR(50), CountryCode VARCHAR(50))`
 
-Before running the unit tests, the schema `asesharptestdb`, and the following tables needs to be created:
+In order to run the unit and integration tests, you must create the schema `asesharptestdb`, and then the following tables (the queries to run are listed below):
 - `comment`: This table holds user's comments data for integration test.
   - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
 - `user`: This table holds user data for integration test.
@@ -31,24 +38,25 @@ Before running the unit tests, the schema `asesharptestdb`, and the following ta
 - Running from IDE (`Visual Studio`):
   1. Install and setup `MySQL` as described in `Setup database for the first time`.
   
-  2. Install `Visual Studio`.
+  2. Install `Visual Studio 2019`.
   
   3. Install `.Net Core 3.1`.
   
-  4. Open `Service.sln` with `Visual Studio`.
+  4. Open `Service.sln` with `Visual Studio`. (You can just type `Service.sln` in the root directory on Windows command prompt.)
   
-  5. Select `Service` from the green arrow dropdown, and click the green arrow.
+  5. Locate the green play button (green arrow) at the top, and then select `Service` from the green arrow dropdown in order to run the service.
 
 - Running from command line:
-  - Instruction on how to run from command line will be provided latter.
+  - Instruction on how to run from command line will be provided later.
 
 # Testing
 #### Running the test and generate report
-1. First make sure that `dotnet-reportgenerator-globaltool` is installed. (https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows)
-    - Note that this might require installation for `ASP.NET Core 6.0` to run: https://dotnet.microsoft.com/download/dotnet/6.0
+1. First, make sure that `dotnet-reportgenerator-globaltool` is installed. If it is not installed, run `dotnet tool install -g dotnet-reportgenerator-globaltool` in the Windows command prompt. (More details: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows)
+    - Note that this might require installation for `ASP.NET Core Runtime 6.0.0` to run: https://dotnet.microsoft.com/download/dotnet/6.0
+    - Now, if you run `reportgenerator` in the command line, it should run with no errors but with `No report files specified` and `No target directory specified` warnings.
 2. From the project root directory, run command `./gen_test_report.sh` __from bash__. This command will run all the unit tests, and generate the html coverage report.
     - On Windows, this can be run from git shell.
-3. The generated reports are stored in `test_results/`.
+3. The generated reports are stored in `test_results/`. There is an index.html that shows the coverage of the project.
 
 # Swagger Documentation
 Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` (https://editor.swagger.io/) and the documentation will be automatically rendered. It provides more detail on example requests and responses for endpoints under different situations. 
@@ -56,14 +64,13 @@ Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` 
 # Technology
 #### StyleCop
 Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
-#### Coverity
-Static analysis bug finder that enables software engineers and security teams to find and fix software defects.
 #### XUnit + Moq 
 Test runner for .NET Framework projects
 #### Coverlet + ReportGenerator
-Generate coverage html report for the project
+Generates coverage html report for the project
 #### NCrunch 
 Coverage tracker that runs automated tests and provides code coverage
+Please install NCrunch, in accordance with your Visual Studio version, here: https://www.ncrunch.net/download
 #### ASP.NET 
 Framework for server-side web-application
 #### .Net Core 3.1
