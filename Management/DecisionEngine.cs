@@ -11,12 +11,22 @@ using Management.Interface;
 
 namespace Management
 {
+    /// <summary>
+    /// Calculate the top 10 travel recommendations using weighted score
+    /// and get specific state's travel information
+    /// </summary>
     public class DecisionEngine : IDecisionEngine
     {
         private readonly ICovidDataClient _covidDataClient;
         private readonly IWeatherDataClient _wheatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DecisionEngine"/> class.
+        /// </summary>
+        /// <param name="covidDataClient">The COVID-19 data client.</param>
+        /// <param name="weatherDataClient">The weather data client.</param>
+        /// <param name="airQualityDataClient">The air quality data client.</param>
         public DecisionEngine(
             ICovidDataClient covidDataClient,
             IWeatherDataClient wheatherDataClient,
@@ -27,6 +37,10 @@ namespace Management
             _airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
         }
 
+        /// <summary>
+        /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality
+        /// </summary>
+        /// <returns>The weighted score.</returns>
         public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
         {
             var result = (0.3 * _covidDataClient.CalculateScoreAsync()) + (0.3 * _wheatherDataClient.CalculateScoreAsync()) + (0.3 * _airQualityDataClient.CalculateScoreAsync());
