@@ -1,5 +1,5 @@
-﻿// <copyright file="CovidData.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+﻿// <copyright file="CovidData.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace Management.DomainModels
@@ -7,8 +7,7 @@ namespace Management.DomainModels
     using System;
 
     /// <summary>
-    /// class <c>CovidData</c> provide the cumulated COVID-19 confirmed cases and  
-    /// cumulated COVID-19 death cases of a country/state
+    /// Provides the cumulated COVID-19 confirmed cases and cumulated COVID-19 death cases of a country/state.
     /// </summary>
     public class CovidData
     {
@@ -24,12 +23,12 @@ namespace Management.DomainModels
         }
 
         /// <summary>
-        /// Gets the cumulated confirmed COVID-19 cases of a country/state
+        /// Gets the cumulated confirmed COVID-19 cases of a country/state.
         /// </summary>
         public int ConfirmedCases { get; }
 
         /// <summary>
-        /// Gets the cumulated COVID-19 death cases of a country/state
+        /// Gets the cumulated COVID-19 death cases of a country/state.
         /// </summary>
         public int DeathCases { get; }
     }

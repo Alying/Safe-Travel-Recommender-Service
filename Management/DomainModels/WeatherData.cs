@@ -1,5 +1,5 @@
-﻿// <copyright file="WeatherData.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+﻿// <copyright file="WeatherData.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace Management.DomainModels
@@ -7,8 +7,7 @@ namespace Management.DomainModels
     using System;
 
     /// <summary>
-    /// class <c>WeatherData</c> provides the summary of a city's weather,  
-    /// minimum temperature, and maximum temperature
+    /// Provides the summary of a city's weather, minimum temperature, and maximum temperature.
     /// </summary>
     public class WeatherData
     {
@@ -26,17 +25,17 @@ namespace Management.DomainModels
         }
 
         /// <summary>
-        /// Gets the summary of today's weather 
+        /// Gets the summary of today's weather.
         /// </summary>
         public string WeatherSummary { get; }
 
         /// <summary>
-        /// Gets the minimum temperature in Fahrenheit
+        /// Gets the minimum temperature in Fahrenheit.
         /// </summary>
         public double MinTemperature { get; }
 
         /// <summary>
-        /// Gets the maximum temperature in Fahrenheit
+        /// Gets the maximum temperature in Fahrenheit.
         /// </summary>
         public double MaxTemperature { get; }
     }

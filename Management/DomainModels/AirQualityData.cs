@@ -1,5 +1,5 @@
-﻿// <copyright file="AirQualityData.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+﻿// <copyright file="AirQualityData.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace Management.DomainModels
@@ -7,8 +7,7 @@ namespace Management.DomainModels
     using System;
 
     /// <summary>
-    /// class <c>AirQualityData</c> provide the cumulated COVID-19 confirmed cases and  
-    /// cumulated COVID-19 death cases of a country/state
+    /// Provides the cumulated COVID-19 confirmed cases and cumulated COVID-19 death cases of a country/state.
     /// </summary>
     public class AirQualityData
     {
@@ -26,17 +25,17 @@ namespace Management.DomainModels
         }
 
         /// <summary>
-        /// Gets the Air Quality Index(AQI) value based on US EPA standard
+        /// Gets the Air Quality Index(AQI) value based on US EPA standard.
         /// </summary>
-        public int AirQualityIndex { get; }     
+        public int AirQualityIndex { get; }
 
         /// <summary>
-        /// Gets the humidity percentage
+        /// Gets the humidity percentage.
         /// </summary>
         public double Humidity { get; }
 
         /// <summary>
-        /// Gets the wind speed in meters per second
+        /// Gets the wind speed in meters per second.
         /// </summary>
         public double WindSpeed { get; }
     }

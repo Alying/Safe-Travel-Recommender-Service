@@ -11,7 +11,7 @@ namespace Management.Clients.Models
         public string Status { get; set; }
 
         [JsonProperty("data")]
-        public Data Data{ get; set; }
+        public Data Data { get; set; }
     }
 
     public class Data
@@ -26,7 +26,7 @@ namespace Management.Clients.Models
         public string Country { get; set; }
 
         [JsonIgnore]
-        public Location Location{ get; set; }
+        public Location Location { get; set; }
 
         [JsonIgnore]
         public Forecasts Forecasts { get; set; }
@@ -35,9 +35,13 @@ namespace Management.Clients.Models
         public Current Current { get; set; }
     }
 
-    public class Location { }
+    public class Location
+    {
+    }
 
-    public class Forecasts { }
+    public class Forecasts
+    {
+    }
 
     public class Current
     {

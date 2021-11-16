@@ -1,4 +1,8 @@
-﻿namespace Service.Controllers
+﻿// <copyright file="CommentController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Service.Controllers
 {
     using System;
     using System.Text.Json;
@@ -43,12 +47,12 @@
             Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, stateCode: {stateCode}");
             try
             {
-                return Ok(await this._commentPort.GetCommentAsync(DomainUserId.Wrap(apiUserId.UserIdStr), new Location(Country.Wrap(countryCode), State.Wrap(stateCode))));
+                return this.Ok(await this._commentPort.GetCommentAsync(DomainUserId.Wrap(apiUserId.UserIdStr), new Location(Country.Wrap(countryCode), State.Wrap(stateCode))));
             }
             catch (Exception e)
             {
                 Console.WriteLine($"GetComment caught exception: {e.Message}");
-                return NotFound(e.Message);
+                return this.NotFound(e.Message);
             }
         }
 

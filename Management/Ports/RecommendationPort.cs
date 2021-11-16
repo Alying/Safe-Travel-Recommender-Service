@@ -1,5 +1,5 @@
-﻿// <copyright file="RecommendationPort.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+﻿// <copyright file="RecommendationPort.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace Management.Ports
@@ -10,7 +10,7 @@ namespace Management.Ports
     using Management.Interface;
 
     /// <summary>
-    /// Recommendation ports for async tasks
+    /// Recommendation ports for async task.
     /// </summary>
     public class RecommendationPort
     {
@@ -22,7 +22,7 @@ namespace Management.Ports
         }
 
         /// <summary>
-        /// Gets the specific location's information 
+        /// Gets the specific location's information. 
         /// </summary>
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>

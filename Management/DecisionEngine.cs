@@ -1,5 +1,5 @@
-// <copyright file="DecisionEngine.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
+// <copyright file="DecisionEngine.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 using System;
@@ -13,7 +13,7 @@ namespace Management
 {
     /// <summary>
     /// Calculate the top 10 travel recommendations using weighted score
-    /// and get specific state's travel information
+    /// and get specific state's travel information.
     /// </summary>
     public class DecisionEngine : IDecisionEngine
     {
@@ -38,7 +38,7 @@ namespace Management
         }
 
         /// <summary>
-        /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality
+        /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
         /// <returns>The weighted score.</returns>
         public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
@@ -49,7 +49,7 @@ namespace Management
         }
 
         /// <summary>
-        /// Gets the specific location's information 
+        /// Gets the specific location's information.
         /// </summary>
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>
