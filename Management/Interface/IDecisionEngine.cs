@@ -1,13 +1,12 @@
 ﻿// <copyright file="IDecisionEngine.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Management.DomainModels;
 
 namespace Management.Interface
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Management.DomainModels;
-
     /// <summary>
     /// Interface for recommendation's decision engine.
     /// </summary>

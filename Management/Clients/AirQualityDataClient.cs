@@ -14,9 +14,9 @@ namespace Management.Clients
     /// </summary>
     public class AirQualityDataClient : IAirQualityDataClient
     {
-        private IRestClient _restClient;
-
         private readonly IConfiguration _configuration;
+
+        private IRestClient _restClient;
 
         private string ApiKey => _configuration.GetConnectionString("airApiKey");
 

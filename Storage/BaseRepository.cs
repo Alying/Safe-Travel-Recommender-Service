@@ -1,10 +1,11 @@
-﻿using Storage.Interface;
-using System;
-using Dapper;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Storage.Interface;
+using Dapper;
 using MySql.Data.MySqlClient;
-using System.Linq;
+
 using Microsoft.Extensions.Configuration;
 
 namespace Storage
@@ -13,12 +14,12 @@ namespace Storage
     {
         private readonly IConfiguration _configuration;
 
-        private string _connectionString => _configuration.GetConnectionString("mysql");
-
         public BaseRepository(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
+
+        private string _connectionString => _configuration.GetConnectionString("mysql");
 
         public Task<IEnumerable<T>> GetAllAsync<T>(string tableName)
         {
@@ -103,7 +104,7 @@ namespace Storage
                 throw new ArgumentException("Missing tablename/columnname/keyvalue/updatelookup");
             }
 
-            if(updateLookup.Count == 0) 
+            if (updateLookup.Count == 0) 
             {
                 return Task.CompletedTask;
             }

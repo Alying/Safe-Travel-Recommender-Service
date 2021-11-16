@@ -6,7 +6,7 @@
     public class UserId
     {
         /// <summary>
-        /// The unique user id string.
+        /// Gets or sets the unique user id string.
         /// </summary>
         public string UserIdStr { get; set; }
     }
