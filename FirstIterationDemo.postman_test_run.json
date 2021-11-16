@@ -1,0 +1,301 @@
+{
+	"id": "09906d0b-dcb1-4f48-b70e-376d98e4e0f4",
+	"name": "FirstIterationDemo",
+	"timestamp": "2021-11-16T04:21:21.069Z",
+	"collection_id": "98e947e0-8f23-4ff6-b61b-1f1ccaa1257e",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 18,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "5adf40d3-980e-4aed-b327-307b15635349",
+			"name": "post_comment",
+			"url": "https://localhost:5001/api/comment/country/US/state/NY",
+			"time": 44,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "82fe539e-e5c0-4f0a-b46d-5ee120c0131c",
+			"name": "get_comment",
+			"url": "https://localhost:5001/api/comment/country/US/state/NY",
+			"time": 57,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response for getting comment includes US as its country": true,
+				"Response for getting comment includes NY as its state": true,
+				"Response for getting comment includes 'NewUser3' as the name of the user who made the comment": true,
+				"Response for getting comment 'New comment from user3...' as the comment the user made for this location": true,
+				"Response for getting comment includes correct time comment is made": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting comment includes US as its country": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting comment includes NY as its state": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting comment includes 'NewUser3' as the name of the user who made the comment": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting comment 'New comment from user3...' as the comment the user made for this location": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting comment includes correct time comment is made": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				57
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response for getting comment includes US as its country": true,
+					"Response for getting comment includes NY as its state": true,
+					"Response for getting comment includes 'NewUser3' as the name of the user who made the comment": true,
+					"Response for getting comment 'New comment from user3...' as the comment the user made for this location": true,
+					"Response for getting comment includes correct time comment is made": true
+				}
+			]
+		},
+		{
+			"id": "1dfc8262-dd7d-46c8-b9b7-0d12c3432e83",
+			"name": "get_comment_invalid_country",
+			"url": "https://localhost:5001/api/comment/country/AF/state/NY",
+			"time": 94,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				94
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "7d2826c3-bab2-4edc-8906-ec4b6c1b85c4",
+			"name": "get_comment_invalid_state",
+			"url": "https://localhost:5001/api/comment/country/US/state/ZZ",
+			"time": 81,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				81
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "c80f3423-47ca-4ac8-906b-dd46ada2b1c4",
+			"name": "get_recommendation_country_state",
+			"url": "https://localhost:5001/api/recommendations/country/US/state/NY",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response for getting recommendation includes US as its country": true,
+				"Response for getting recommendation includes NY as its state": true,
+				"Response for getting recommendation includes 'testUser' as the name of the user who requested recommendations": true,
+				"Response for getting recommendation includes correct COVID-19 data": true,
+				"Response for getting recommendation includes correct weather data": true,
+				"Response for getting recommendation includes correct air quality data": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes US as its country": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes NY as its state": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes 'testUser' as the name of the user who requested recommendations": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes correct COVID-19 data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes correct weather data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response for getting recommendation includes correct air quality data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response for getting recommendation includes US as its country": true,
+					"Response for getting recommendation includes NY as its state": true,
+					"Response for getting recommendation includes 'testUser' as the name of the user who requested recommendations": true,
+					"Response for getting recommendation includes correct COVID-19 data": true,
+					"Response for getting recommendation includes correct weather data": true,
+					"Response for getting recommendation includes correct air quality data": true
+				}
+			]
+		},
+		{
+			"id": "856d3043-9201-4f21-9a52-196a0bd0b149",
+			"name": "get_recommendation_invalid_country",
+			"url": "https://localhost:5001/api/recommendations/country/CAA/state/NY",
+			"time": 87,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "ac435a2f-21f0-49f6-b88d-0605600843e9",
+			"name": "get_recommendation_invalid_state",
+			"url": "https://localhost:5001/api/recommendations/country/US/state/XX",
+			"time": 97,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				97
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 495,
+	"collection": {
+		"requests": [
+			{
+				"id": "5adf40d3-980e-4aed-b327-307b15635349",
+				"method": "POST"
+			},
+			{
+				"id": "82fe539e-e5c0-4f0a-b46d-5ee120c0131c",
+				"method": "GET"
+			},
+			{
+				"id": "1dfc8262-dd7d-46c8-b9b7-0d12c3432e83",
+				"method": "GET"
+			},
+			{
+				"id": "7d2826c3-bab2-4edc-8906-ec4b6c1b85c4",
+				"method": "GET"
+			},
+			{
+				"id": "c80f3423-47ca-4ac8-906b-dd46ada2b1c4",
+				"method": "GET"
+			},
+			{
+				"id": "856d3043-9201-4f21-9a52-196a0bd0b149",
+				"method": "GET"
+			},
+			{
+				"id": "ac435a2f-21f0-49f6-b88d-0605600843e9",
+				"method": "GET"
+			}
+		]
+	}
+}
