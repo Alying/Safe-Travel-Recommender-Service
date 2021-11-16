@@ -1,9 +1,13 @@
-﻿using Common;
-using System;
+﻿using System;
+using Common;
 
 namespace Management.DomainModels
 {
-    public class Country: TaggedString<Country>
+    /// <summary>
+    /// Representation for a country in the safe-travel service.
+    /// Currently only dealing within the United States.
+    /// </summary>
+    public class Country : TaggedString<Country>
     {
         private enum CountryCode
         {
@@ -13,7 +17,7 @@ namespace Management.DomainModels
 
         private Country(string countryCode) : base(countryCode)
         {
-            if(!System.Enum.TryParse<CountryCode>(countryCode, out var _))
+            if (!System.Enum.TryParse<CountryCode>(countryCode, out var _))
             {
                 throw new ArgumentException($"Invalid countryCode: {countryCode}");
             }

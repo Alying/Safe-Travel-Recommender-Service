@@ -1,11 +1,11 @@
-﻿using Management.Interface;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Management.Interface;
 
 namespace Management.Clients
 {
     public class WeatherDataClient : IWeatherDataClient
     {
+        public int CalculateScoreAsync()
+            => throw new NotImplementedException();
     }
 }

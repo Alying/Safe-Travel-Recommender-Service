@@ -1,4 +1,4 @@
-﻿// <copyright file="DecisionEngine.cs" company="ASE#">
+// <copyright file="DecisionEngine.cs" company="ASE#">
 //     Copyright (c) ASE#. All rights reserved.
 // </copyright>
 
@@ -31,17 +31,15 @@ namespace Management
             IWeatherDataClient weatherDataClient,
             IAirQualityDataClient airQualityDataClient)
         {
-            this.covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
-            this.weatherDataClient = weatherDataClient ?? throw new ArgumentNullException(nameof(weatherDataClient));
-            this.airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
-        }
-
+        
         /// <summary>
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality
         /// </summary>
         /// <returns>The weighted score.</returns>
-        public Task<IReadOnlyList<Recommendation>> CalculateDesiredLocationAsync()
-        => throw new NotImplementedException();
+        public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
+        {
+            var result = 0.3 * _covidDataClient.CalculateScoreAsync() + 0.3 * _weatherDataClient.CalculateScoreAsync() + 0.3 * _airQualityDataClient.CalculateScoreAsync();
+            return Task.FromResult(Enumerable.Empty<Recommendation>());
 
         /// <summary>
         /// Gets the specific location's information 

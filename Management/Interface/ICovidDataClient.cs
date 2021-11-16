@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Management.Interface
 {
-    public interface ICovidDataClient
+    public interface ICovidDataClient : IWeightedClient
     {
     }
 }

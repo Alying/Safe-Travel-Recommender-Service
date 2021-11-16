@@ -17,7 +17,7 @@ namespace Management.Interface
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality
         /// </summary>
         /// <returns>The weighted score.</returns>
-        Task<IReadOnlyList<Recommendation>> CalculateDesiredLocationAsync();
+        Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync();
 
         /// <summary>
         /// Gets the specific location's information 

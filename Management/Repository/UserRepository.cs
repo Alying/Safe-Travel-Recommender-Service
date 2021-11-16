@@ -1,21 +1,21 @@
-﻿using Management.DomainModels;
-using Management.Interface;
-using Optional;
-using Storage.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Interface;
+using Optional;
+using Storage.Interface;
 using StorageUser = Common.StorageModels.User;
 
 namespace Management.Repository
 {
-    public class UserRepository :  IUserRepository
+    public class UserRepository : IUserRepository
     {
         private const string _tableName = "user";
 
         private const string _keyColumnName = "UserId";
-        
+
         private readonly IRepository _repository;
 
         public UserRepository(IRepository repository)
@@ -23,10 +23,15 @@ namespace Management.Repository
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <summary>
+        /// Adds a user to the database.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation with the User.</returns>
+        /// <param name="newUsers">new user.</param>
         public async Task<IEnumerable<User>> AddUsersAsync(IEnumerable<User> newUsers)
         {
             try
-            {    
+            {
                 var userToInsert = newUsers.Select(user
                 => new List<string>
                 {
@@ -35,7 +40,7 @@ namespace Management.Repository
                     user.PassportId.Value,
                     user.CreatedAt.ToString(),
                     user.CountryCode.ToString(),
-                 });
+                });
 
                 await _repository.InsertAsync<StorageUser>(_tableName, userToInsert);
                 return newUsers;
@@ -46,6 +51,10 @@ namespace Management.Repository
             }
         }
 
+        /// <summary>
+        /// Gets all users from the database.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation with a list of the users.</returns>
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             try
@@ -94,9 +103,9 @@ namespace Management.Repository
             {
                 var updateDictionary = new Dictionary<string, string>
                 {
-                    { "FullName", user.FullName.Value},
-                    { "PassportId", user.PassportId.Value},
-                    { "CountryCode", user.CountryCode.ToString()},
+                    { "FullName", user.FullName.Value },
+                    { "PassportId", user.PassportId.Value },
+                    { "CountryCode", user.CountryCode.ToString() },
                 };
 
                 await _repository.UpdateAsync(_tableName, _keyColumnName, userId.Value, updateDictionary);

@@ -1,14 +1,9 @@
-﻿// <copyright file="Recommendation.cs" company="ASE#">
-//     Copyright (c) ASE#. All rights reserved.
-// </copyright>
-
 namespace Management.DomainModels
 {
     using System;
 
     /// <summary>
-    /// class <c>Recommendation</c> provides the summary of a city's weather,  
-    /// minimum temperature, and maximum temperature
+    /// Representation of a safe-travel recommendation.
     /// </summary>
     public class Recommendation
     {

@@ -1,4 +1,4 @@
-﻿// <copyright file="RecommendationController.cs" company="ASE#">
+// <copyright file="RecommendationController.cs" company="ASE#">
 //     Copyright (c) ASE#. All rights reserved.
 // </copyright>
 
@@ -12,8 +12,8 @@ namespace Service.Controllers
     using Newtonsoft.Json;
 
     /// <summary>
-    /// class <c>RecommendationController</c> provides top 10 travel recommendations 
-    /// and provide specific state's travel information
+    /// Controller for the safe-travel recommendations and safe-travel information for this
+    /// safe-travel service.
     /// </summary>
     [Route("api/recommendations")]
     [ApiController]
@@ -27,28 +27,18 @@ namespace Service.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="RecommendationController"/> class.
         /// </summary>
-        /// <param name="recommendationPort">The port of the recommendation.</param>
-        public RecommendationController(RecommendationPort recommendationPort) 
+        /// <param name="recommendationPort">port for the recommendation endpoints.</param>
+        public RecommendationController(RecommendationPort recommendationPort)
         {
-            this.recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
+            this._recommendationPort = recommendationPort ?? throw new ArgumentNullException(nameof(recommendationPort));
         }
 
+        /// <summary>
+        /// Intended to get the top-10 recommendations for safe travel for the user.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetTopRecommendations()
-        {
-            try
-            {
-                return this.Ok();
-            }
-            catch (Exception)
-            {
-                return this.NotFound();
-            }
-        }
-
-        [HttpGet]
-        [Route("country/{countryCode}")]
-        public async Task<IActionResult> GetRecommendationByCountryCode([FromRoute] string countryCode)
+        public IActionResult GetTopRecommendations()
         {
             try
             {
@@ -61,11 +51,31 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// method <c>GetRecommendationByCountryCodeAndStateCode</c> provide basic travel 
-        /// information about a specific state.
+        /// Intended to get the basic travel information about a specific country,
+        /// which can include COVID-19, weather, and air quality information for the user.
         /// </summary>
-        /// <param name="countryCode">The code of country.</param>
-        /// <param name="stateCode">The code of state.</param>
+        /// <param name="countryCode">country code eg. "US".</param>
+        /// <returns>status code.</returns>
+        [HttpGet]
+        [Route("country/{countryCode}")]
+        public IActionResult GetRecommendationByCountryCode([FromRoute] string countryCode)
+        {
+            try
+            {
+                return this.Ok();
+            }
+            catch (Exception)
+            {
+                return this.NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Intended to get the basic travel information about a specific state in a country, 
+        /// which can include COVID-19, weather, and air quality information for the user.
+        /// </summary>
+        /// <param name="countryCode">country code eg. "US".</param>
+        /// <param name="stateCode">state code eg. "NY".</param>
         /// <returns>The state's information.</returns>
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
