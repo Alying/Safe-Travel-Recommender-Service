@@ -242,7 +242,7 @@ var assemblies = [
       { "name": "Management.Clients.Models.Pollution", "rp": "Management_Pollution.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 92, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.Weather", "rp": "Management_Weather.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 92, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.WeatherDataClient", "rp": "Management_WeatherDataClient.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 11, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
-      { "name": "Management.DecisionEngine", "rp": "Management_DecisionEngine.html", "cl": 0, "ucl": 22, "cal": 22, "tl": 54, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 6, "lch": [], "bch": [], "hc": [] },
+      { "name": "Management.DecisionEngine", "rp": "Management_DecisionEngine.html", "cl": 0, "ucl": 22, "cal": 22, "tl": 68, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 6, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.DomainModels.AirQualityData", "rp": "Management_AirQualityData.html", "cl": 0, "ucl": 9, "cal": 9, "tl": 43, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 6, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.DomainModels.Comment", "rp": "Management_Comment.2.html", "cl": 0, "ucl": 11, "cal": 11, "tl": 26, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 8, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.DomainModels.Country", "rp": "Management_Country.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 28, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 2, "lch": [], "bch": [], "hc": [] },
