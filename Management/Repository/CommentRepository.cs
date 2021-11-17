@@ -34,7 +34,7 @@ namespace Management.Repository
             var result = await _repository.GetSomeAsync<StorageComment>(_tableName, new Dictionary<string, string>()
             {
                 { "userId", userId.Value },
-                { "country", location.Country.Value },
+                { "country", location.CountryCode.ToString() },
                 { "state", location.State.Value },
             });
             return result.Select(Mapping.StorageToDomainMapper.ToDomain);

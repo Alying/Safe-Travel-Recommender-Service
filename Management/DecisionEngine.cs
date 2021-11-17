@@ -2,10 +2,13 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Management.DomainModels;
+using Management.Enum;
 using Management.Interface;
 
 namespace Management
@@ -16,9 +19,14 @@ namespace Management
     /// </summary>
     public class DecisionEngine : IDecisionEngine
     {
+        private const double AirQualityWeight = 0.3;
+        private const double CovidDataWeight = 0.4;
+        private const double WeatherDataWeight = 0.3;
+
         private readonly ICovidDataClient _covidDataClient;
         private readonly IWeatherDataClient _weatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
+        private readonly List<IWeightedClient> _clients;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DecisionEngine"/> class.
@@ -34,17 +42,56 @@ namespace Management
             _covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
             _weatherDataClient = weatherDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
             _airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
+            _clients = new List<IWeightedClient>
+            {
+                _covidDataClient,
+                _weatherDataClient,
+                _airQualityDataClient
+            };
         }
 
         /// <summary>
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
         /// <returns>The weighted score.</returns>
-        public Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync()
+        public async Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
+            State state,
+            CountryCode countryCode,
+            CancellationToken cancellationToken)
         {
-            var result = (0.3 * _covidDataClient.CalculateScoreAsync()) + (0.3 * _weatherDataClient.CalculateScoreAsync()) + (0.3 * _airQualityDataClient.CalculateScoreAsync());
+            var cityBag = new ConcurrentBag<IEnumerable<City>>();
 
-            return Task.FromResult(Enumerable.Empty<Recommendation>());
+            var cityTasks = _clients.Select(async client =>
+            {
+                var result = await client.GetDefaultCitiesAsync(state, countryCode, cancellationToken);
+                cityBag.Add(result);
+            });
+
+            await Task.WhenAll(cityTasks);
+
+            var commonCities = new HashSet<City>(cityBag.SelectMany(bag => bag.Select(city => city))).Take(10);
+
+            var airQualityDataClientResult = await _airQualityDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
+            var covidDataClientResult = await _covidDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
+            var weatherDataClientResult = await _weatherDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
+
+            //var resultDict = new Dictionary<City, double>();
+
+            //foreach (var kvp in airQualityDataClientResult)
+            //{
+            //    if (covidDataClientResult.ContainsKey(kvp.Key) && weatherDataClientResult.ContainsKey(kvp.Key))
+            //    {
+            //        var finalScore = AirQualityWeight * airQualityDataClientResult[kvp.Key]
+            //            + CovidDataWeight * covidDataClientResult[kvp.Key]
+            //            + WeatherDataWeight * weatherDataClientResult[kvp.Key];
+
+            //        resultDict.Add(kvp.Key, finalScore);
+            //    }
+            //}
+
+            //return resultDict;
+
+            return airQualityDataClientResult.ToDictionary(kvp => kvp.Key, kvp => (double)kvp.Value);
         }
 
         /// <summary>

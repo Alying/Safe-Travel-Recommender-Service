@@ -15,10 +15,14 @@ namespace Management.Mapping
                 ? country
                 : Enum.CountryCode.Unknown);
 
-        public static Comment ToDomain(Management.StorageModels.Comment comment) => new Comment(
-            location: new Location(Country.Wrap(comment.Country), State.Wrap(comment.State)),
-            userId: UserId.Wrap(comment.UserId),
-            commentStr: comment.CommentStr,
-            createdAt: DateTimeOffset.Parse(comment.CreatedAt));
+        public static Comment ToDomain(StorageModels.Comment comment)
+        {
+            var validatedResult = CountryStateValidator.ValidateCountryState(comment.Country, comment.State);
+
+            return new Comment(
+                location: new Location(validatedResult.validatedCountry, validatedResult.validatedState),
+                userId: UserId.Wrap(comment.UserId),
+                commentStr: comment.CommentStr);
+        }
     }
 }

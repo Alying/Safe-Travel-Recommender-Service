@@ -1,11 +1,22 @@
-﻿using System;
+﻿using Management.DomainModels;
+using Management.Enum;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Management.Interface
 {
     public interface IWeightedClient
     {
-        int CalculateScoreAsync();
+        Task<IEnumerable<City>> GetDefaultCitiesAsync(
+            State state,
+            CountryCode countryCode,
+            CancellationToken cancellationToken);
+
+        Task<Dictionary<City, int>> CalculateScoresAsync(
+            IEnumerable<City> city,
+            State state,
+            CountryCode countryCode,
+            CancellationToken cancellationToken);
     }
 }

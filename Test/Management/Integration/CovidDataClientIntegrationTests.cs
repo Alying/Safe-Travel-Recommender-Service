@@ -7,7 +7,7 @@ namespace Test.Management.Integration
     /// <summary>
     /// Tests for the COVID-19 API client.
     /// </summary>
-    public class CovidDataClientTests
+    public class CovidDataClientIntegrationTests
     {
     }
 }

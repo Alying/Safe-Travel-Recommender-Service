@@ -2,6 +2,8 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+
 namespace Common
 {
     /// <summary>
@@ -16,6 +18,11 @@ namespace Common
         /// <param name="value">value of tagged string.</param>
         public TaggedString(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Value cannot be null or empty");
+            }
+
             Value = value;
         }
 

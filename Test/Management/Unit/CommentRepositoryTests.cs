@@ -4,16 +4,13 @@ using System.Threading.Tasks;
 using Management.Repository;
 using Management.DomainModels;
 using Storage.Interface;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
 using Moq;
-using Storage;
 using Xunit;
 using Xunit.Abstractions;
 using System.Linq;
-
 using DomainComment = Management.DomainModels.Comment;
 using StorageComment = Management.StorageModels.Comment;
+using Management.Enum;
 
 namespace Test.Management.Unit
 {
@@ -49,14 +46,13 @@ namespace Test.Management.Unit
                     UniqueId = "somerandomuniquestuff"
                  }
                  });
-            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(Country.Wrap("US"), State.Wrap("NY")));
-            Assert.Equal(comments.Count(), 1);
-            var retrievedComment = comments.First();
-            Assert.Equal(retrievedComment.CommentStr, "Hello World!");
-            Assert.Equal(retrievedComment.UserId.Value, "newUser");
-            Assert.Equal(retrievedComment.Location.Country.Value, "US");
-            Assert.Equal(retrievedComment.Location.State.Value, "NY");
-            Assert.Equal(retrievedComment.CreatedAt.ToString(), "11/14/2021 7:47:41 PM +00:00");
+            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("NY")));
+
+            var retrievedComment = Assert.Single(comments);
+            Assert.Equal("Hello World!", retrievedComment.CommentStr);
+            Assert.Equal("newUser", retrievedComment.UserId.Value);
+            Assert.Equal("US", retrievedComment.Location.CountryCode.ToString());
+            Assert.Equal("NY", retrievedComment.Location.State.Value);
 
             _mockRepository.VerifyAll();
         }
@@ -64,12 +60,16 @@ namespace Test.Management.Unit
         [Fact]
         public async Task AddCommentAsync_Success()
         {
-            var testComment = new DomainComment(new Location(Country.Wrap("US"), State.Wrap("NY")), UserId.Wrap("newUser"), "Hello World!", DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
+            var testComment = new DomainComment(
+                new Location(CountryCode.US, State.Wrap("NY")), 
+                UserId.Wrap("newUser"), "Hello World!", 
+                DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
+
             var fields = new List<List<string>>()
             {
                 new List<string>() {
                     testComment.UserId.Value,
-                    testComment.Location.Country.Value,
+                    testComment.Location.CountryCode.ToString(),
                     testComment.Location.State.Value,
                     testComment.CreatedAt.ToString(),
                     testComment.CommentStr
