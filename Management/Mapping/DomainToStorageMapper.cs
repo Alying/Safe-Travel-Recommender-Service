@@ -14,11 +14,11 @@ namespace Management.Mapping
                 PassportId = domain.PassportId.Value,
             };
 
-        public static Management.StorageModels.Comment ToStorage(Comment domain) => new Management.StorageModels.Comment
+        public static StorageModels.Comment ToStorage(Comment domain) => new StorageModels.Comment
         {
             CommentStr = domain.CommentStr,
             UserId = domain.UserId.Value,
-            Country = domain.Location.Country.Value,
+            Country = domain.Location.CountryCode.ToString(),
             State = domain.Location.State.Value,
             CreatedAt = domain.CreatedAt.ToString(),
             UniqueId = System.Guid.NewGuid().ToString(),

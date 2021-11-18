@@ -2,8 +2,10 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Management.DomainModels;
+using Management.Enum;
 
 namespace Management.Interface
 {
@@ -16,7 +18,10 @@ namespace Management.Interface
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
         /// <returns>The weighted score.</returns>
-        Task<IEnumerable<Recommendation>> CalculateDesiredLocationAsync();
+        Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
+            State state,
+            CountryCode countryCode,
+            CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets the specific location's information.
@@ -25,7 +30,7 @@ namespace Management.Interface
         /// <param name="userId">The user's unique id.</param>
         /// <returns>The state's information.</returns>
         Task<Recommendation> GetSpecificLocationInfoAsync(
-                             Location location,
-                             UserId userId);
+            Location location,
+            UserId userId);
     }
 }

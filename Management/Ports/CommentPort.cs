@@ -18,10 +18,17 @@ namespace Management.Ports
             _commentRepository = commentRepository ?? throw new ArgumentNullException(nameof(commentRepository));
         }
 
-        public async Task<IEnumerable<DomainComment>> GetCommentAsync(UserId userId, Location location)
-            => await _commentRepository.GetAllCommentsAsync(userId, location);
+        public Task<IEnumerable<DomainComment>> GetCommentAsync(string userId, string countryCode, string state)
+            => _commentRepository.GetAllCommentsAsync(UserId.Wrap(userId), ConstructLocation(countryCode, state));
 
-        public async Task AddCommentAsync(Location location, ApiComment apiComment)
-            => await _commentRepository.AddCommentAsync(ApiToDomainMapper.ToDomain(location, apiComment));
+        public Task AddCommentAsync(string countryCode, string state, ApiComment apiComment)
+            => _commentRepository.AddCommentAsync(ApiToDomainMapper.ToDomain(ConstructLocation(countryCode, state), apiComment));
+
+        private Location ConstructLocation(string countryCode, string state)
+        {
+            var validatedResult = CountryStateValidator.ValidateCountryState(countryCode, state);
+
+            return new Location(validatedResult.validatedCountry, validatedResult.validatedState);
+        }
     }
 }

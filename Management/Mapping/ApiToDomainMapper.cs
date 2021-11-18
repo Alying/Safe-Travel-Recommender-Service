@@ -18,11 +18,6 @@ namespace Management.Mapping
             createAt: DateTime.UtcNow,
             countryCode: GetCountryCode(api.CountryCode));
 
-        public static Country ToDomain(string countryCode) => Country.Wrap(countryCode);
-
-        public static Location ToDomain(string countryCode, string stateCode)
-            => new Location(Country.Wrap(countryCode), State.Wrap(stateCode));
-
         public static Comment ToDomain(Location location, ApiComment apiComment)
             => new Comment(location, UserId.Wrap(apiComment.UserIdStr), apiComment.CommentStr);
 
