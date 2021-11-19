@@ -1,7 +1,7 @@
-﻿using Management.DomainModels;
-using Optional;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Optional;
 using DomainUser = Management.DomainModels.User;
 
 namespace Management.Interface

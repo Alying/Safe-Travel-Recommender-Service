@@ -1,11 +1,6 @@
-﻿// <copyright file="CommentController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using System;
+﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Management.DomainModels;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
 using ApiComment = Management.ApiModels.Comment;

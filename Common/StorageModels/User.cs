@@ -6,7 +6,7 @@
     public class User
     {
         /// <summary>
-        /// Gets or sets each user is given a unique user id.
+        /// Gets or sets each user's given a unique user id.
         /// </summary>
         public string UserId { get; set; }
 

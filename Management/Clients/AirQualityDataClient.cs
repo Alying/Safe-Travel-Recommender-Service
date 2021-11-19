@@ -114,32 +114,32 @@ namespace Management.Clients
                 throw new Exception("Received null response from vendor.");
             }
 
-            if (0 <= aqius && aqius <= 50)
+            if (aqius >= 0 && aqius <= 50)
             {
                 return (city, 100);
             }
 
-            if (50 <= aqius && aqius <= 100)
+            if (aqius >= 51 && aqius <= 100)
             {
                 return (city, 80);
             }
 
-            if (100 <= aqius && aqius <= 150)
+            if (aqius >= 101 && aqius <= 150)
             {
                 return (city, 60);
             }
 
-            if (150 <= aqius && aqius <= 200)
+            if (aqius >= 151 && aqius <= 200)
             {
                 return (city, 40);
             }
 
-            if (200 <= aqius && aqius <= 300)
+            if (aqius >= 201 && aqius <= 300)
             {
                 return (city, 20);
             }
 
-            if (300 <= aqius)
+            if (aqius >= 301)
             {
                 return (city, 0);
             }

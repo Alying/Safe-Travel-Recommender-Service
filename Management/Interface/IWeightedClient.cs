@@ -1,8 +1,8 @@
-﻿using Management.DomainModels;
-using Management.Enum;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Management.DomainModels;
+using Management.Enum;
 
 namespace Management.Interface
 {

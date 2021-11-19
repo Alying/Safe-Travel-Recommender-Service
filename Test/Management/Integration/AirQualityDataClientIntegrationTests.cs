@@ -2,16 +2,16 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Management.Clients;
 using Management.DomainModels;
 using Management.Enum;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Test.Management.Integration

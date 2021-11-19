@@ -1,6 +1,6 @@
-﻿using Management.DomainModels;
+﻿using System;
+using Management.DomainModels;
 using Management.Enum;
-using System;
 
 namespace Management.Mapping
 {

@@ -1,6 +1,6 @@
-﻿using Management.DomainModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Management.DomainModels;
 using DomainComment = Management.DomainModels.Comment;
 
 namespace Management.Interface

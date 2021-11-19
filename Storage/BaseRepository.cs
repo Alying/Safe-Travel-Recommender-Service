@@ -10,10 +10,17 @@ using Microsoft.Extensions.Configuration;
 
 namespace Storage
 {
+    /// <summary>
+    /// Base repository that handles service's database related requests
+    /// </summary>
     public class BaseRepository : IRepository
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseRepository"/> class.
+        /// </summary>
+        /// <param name="configuration">configuration for base repository.</param>
         public BaseRepository(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
@@ -21,6 +28,11 @@ namespace Storage
 
         private string _connectionString => _configuration.GetConnectionString("mysql");
 
+        /// <summary>
+        /// Get all data from service's database
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <returns>status code.</returns>
         public Task<IEnumerable<T>> GetAllAsync<T>(string tableName)
         {
             if (string.IsNullOrEmpty(tableName))
@@ -32,10 +44,18 @@ namespace Storage
 
             using (var con = Connect()) 
             {
+                Console.Write(con.QueryAsync<T>(sql));
                 return con.QueryAsync<T>(sql);
             }
         }
 
+        /// <summary>
+        /// Get requested data from service's database based on value.
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <param name="columnName">the database table's column name.</param>
+        /// <param name="value">value used for comparison with column name.</param>
+        /// <returns>status code.</returns>
         public async Task<T> GetAsync<T>(
             string tableName, 
             string columnName, 
@@ -54,6 +74,12 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Get requested data from service's database based on conditions.
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <param name="colVals">conditions for the requested data.</param>
+        /// <returns>status code.</returns>
         public Task<IEnumerable<T>> GetSomeAsync<T>(
             string tableName, 
             IReadOnlyDictionary<string, string> colVals)
@@ -74,6 +100,12 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Insert parameter values into the service's database
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <param name="parameterList">the parameter values that will be inserted.</param>
+        /// <returns>status code.</returns>
         public Task InsertAsync<T>(string tableName, IEnumerable<IReadOnlyList<string>> parameterList)
         {
             if (string.IsNullOrEmpty(tableName) || parameterList == null)
@@ -93,6 +125,14 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Update service's database with new data
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <param name="columnName">the database table's column name.</param>
+        /// <param name="keyValue">value used for comparison with column name.</param>
+        /// <param name="updateLookup">update lookup dictionary that has the new data.</param>
+        /// <returns>status code.</returns>
         public Task UpdateAsync(
             string tableName, 
             string columnName, 
@@ -118,6 +158,13 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Remove specified item from the table.
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <param name="columnName">the database table's column name.</param>
+        /// <param name="keyValue">value used for comparison with column name.</param>
+        /// <returns>status code.</returns>
         public Task DeleteAsync<T>(string tableName, string columnName, string keyValue) 
         {
             if (string.IsNullOrEmpty(tableName) || string.IsNullOrEmpty(columnName) || string.IsNullOrEmpty(keyValue))
@@ -133,6 +180,11 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Remove all items from the table.
+        /// </summary>
+        /// <param name="tableName">the service database's table name.</param>
+        /// <returns>status code.</returns>
         public Task DeleteAllAsync(string tableName)
         {
             var sql = $"TRUNCATE TABLE {tableName}";
@@ -143,6 +195,10 @@ namespace Storage
             }
         }
 
+        /// <summary>
+        /// Make connection to the service's database.
+        /// </summary>
+        /// <returns>connection.</returns>
         public MySqlConnection Connect()
         {
             var con = new MySqlConnection(_connectionString);

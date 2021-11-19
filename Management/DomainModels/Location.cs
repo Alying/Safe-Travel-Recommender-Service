@@ -1,5 +1,5 @@
-﻿using Management.Enum;
-using System;
+﻿using System;
+using Management.Enum;
 
 namespace Management.DomainModels
 {

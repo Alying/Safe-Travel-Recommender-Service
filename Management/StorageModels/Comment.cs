@@ -2,6 +2,9 @@
 
 namespace Management.StorageModels
 {
+    /// <summary>
+    /// Representation of a comment in the safe-travel service.
+    /// </summary>
     public class Comment
     {
         public string CommentStr { get; set; }

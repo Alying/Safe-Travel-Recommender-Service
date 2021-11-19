@@ -13,16 +13,29 @@ using Storage.Interface;
 
 namespace Service
 {
+    /// <summary>
+    /// Configure service and define http request pipeline.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">configuration for the service.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Gets configuration for service.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Services that will be added to the container.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             // Storage
@@ -43,7 +56,11 @@ namespace Service
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">the service app.</param>
+        /// <param name="env">the web host environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
