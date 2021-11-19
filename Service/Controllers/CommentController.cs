@@ -41,7 +41,7 @@ namespace Service.Controllers
         /// <returns>A <see cref="Task"/> representing the asynchronous operation with the response status code.</returns>
         // TODO: @mli: Get apiUserId from auth token instead of from body latter.
         [HttpGet]
-        [Route("country/{countryCode}/state/{stateCode}")]
+        [Route("country/{countryCode}/state/{state}")]
         public async Task<IActionResult> GetCommentByLocation([FromBody] ApiUserId apiUserId, [FromRoute] string countryCode, [FromRoute] string state)
         {
             Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, state: {state}");
