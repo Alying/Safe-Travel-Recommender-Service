@@ -62,20 +62,16 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var bag = new ConcurrentBag<(City city, int score)>();
+            var cityResult = new List<(City, int)>();
 
-            var tasks = cities.Select(async city =>
+            foreach (var city in cities)
             {
-                var response = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
-                bag.Add(response);
-            });
+                cityResult.Add(await GetSingleCityAsync(city, state, countryCode, cancellationToken));
+            }
 
-            await Task.WhenAll(tasks);
-            var count = bag.Count;
-
-            return bag
-                .ToLookup(b => b.city)
-                .ToDictionary(l => l.Key, l => l.First().score);
+            return cityResult
+                .ToLookup(b => b.Item1)
+                .ToDictionary(l => l.Key, l => l.First().Item2);
         }
 
         public async Task<IEnumerable<City>> GetDefaultCitiesAsync(

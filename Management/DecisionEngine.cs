@@ -19,6 +19,8 @@ namespace Management
     /// </summary>
     public class DecisionEngine : IDecisionEngine
     {
+        private readonly List<City> _defaultSupportedCities;
+
         private const double AirQualityWeight = 0.3;
         private const double CovidDataWeight = 0.4;
         private const double WeatherDataWeight = 0.3;
@@ -48,6 +50,15 @@ namespace Management
                 _weatherDataClient,
                 _airQualityDataClient
             };
+
+            // Temp solution for demo purpose
+            // TODO: Add static mapping for State - cities
+            // For now hardcode 2 cities for California
+            _defaultSupportedCities = new List<City>
+            {
+                City.Wrap("Acalanes Ridge"),
+                City.Wrap("Coachella"),
+            };
         }
 
         /// <summary>
@@ -59,17 +70,17 @@ namespace Management
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var cityBag = new ConcurrentBag<IEnumerable<City>>();
+            //var cityBag = new ConcurrentBag<IEnumerable<City>>();
 
-            var cityTasks = _clients.Select(async client =>
-            {
-                var result = await client.GetDefaultCitiesAsync(state, countryCode, cancellationToken);
-                cityBag.Add(result);
-            });
+            //var cityTasks = _clients.Select(async client =>
+            //{
+            //    var result = await client.GetDefaultCitiesAsync(state, countryCode, cancellationToken);
+            //    cityBag.Add(result);
+            //});
 
-            await Task.WhenAll(cityTasks);
+            //await Task.WhenAll(cityTasks);
 
-            var commonCities = new HashSet<City>(cityBag.SelectMany(bag => bag.Select(city => city))).Take(10);
+            var commonCities = _defaultSupportedCities;
 
             var airQualityDataClientResult = await _airQualityDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
             var covidDataClientResult = await _covidDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
