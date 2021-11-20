@@ -19,11 +19,22 @@ namespace Management.Ports
     {
         private readonly IDecisionEngine _decisionEngine;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecommendationPort"/> class.
+        /// </summary>
+        /// <param name="decisionEngine">decision engine for recommendation port.</param>
         public RecommendationPort(IDecisionEngine decisionEngine)
         {
             _decisionEngine = decisionEngine ?? throw new ArgumentNullException(nameof(decisionEngine));
         }
 
+        /// <summary>
+        /// Get cities with their covid, weather, and air quality scores.
+        /// </summary>
+        /// <param name="country">country of interest eg. US.</param>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<Dictionary<string, double>> GetRecommendationsCitiesWithScoreAsync(
             string country,
             string state,

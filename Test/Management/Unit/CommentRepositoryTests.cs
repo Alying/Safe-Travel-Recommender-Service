@@ -14,12 +14,19 @@ using StorageComment = Management.StorageModels.Comment;
 
 namespace Test.Management.Unit
 {
+    /// <summary>
+    /// Unit test for comment repository
+    /// </summary>
     public class CommentRepositoryTests
     {
         private Mock<IRepository> _mockRepository;
         private CommentRepository _commentRepository;
         private readonly ITestOutputHelper _output;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentRepositoryTests"/> class.
+        /// </summary>
+        /// <param name="output">test output helper.</param>
         public CommentRepositoryTests(ITestOutputHelper output)
         {
             _output = output;
@@ -27,6 +34,10 @@ namespace Test.Management.Unit
             _commentRepository = new CommentRepository(_mockRepository.Object);
         }
 
+        /// <summary>
+        /// Test to see if successfully get all comments
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task GetAllCommentsAsync_Success()
         {
@@ -59,6 +70,10 @@ namespace Test.Management.Unit
             _mockRepository.VerifyAll();
         }
 
+        /// <summary>
+        /// Test to see if successfully post comment
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task AddCommentAsync_Success()
         {

@@ -11,6 +11,9 @@ using Xunit.Abstractions;
 
 namespace Test.Storage.Integration
 {
+    /// <summary>
+    /// Tests for comment repository class
+    /// </summary>
     internal class CommentRepositoryTests
     {
         //private readonly ITestOutputHelper _output;

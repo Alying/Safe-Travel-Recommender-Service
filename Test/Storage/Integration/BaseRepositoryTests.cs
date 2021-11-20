@@ -11,6 +11,9 @@ using Xunit.Abstractions;
 
 namespace Test.Storage.Integration
 {
+    /// <summary>
+    /// Integration test for base repository
+    /// </summary>
     public class BaseRepositoryTests : IDisposable
     {
         private readonly string _tableName = "user";
@@ -18,6 +21,10 @@ namespace Test.Storage.Integration
         private readonly MockRepository _mockRepo;
         private readonly BaseRepository _repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseRepositoryTests"/> class.
+        /// </summary>
+        /// <param name="output">test output helper.</param>
         public BaseRepositoryTests(ITestOutputHelper output)
         {
             this._output = output;
@@ -32,11 +39,18 @@ namespace Test.Storage.Integration
             }).Wait();
         }
 
+        /// <summary>
+        /// Remove all items from the table.
+        /// </summary>
         public void Dispose()
         {
             _repository.DeleteAllAsync(_tableName).Wait();
         }
 
+        /// <summary>
+        /// Test to see if successfully get all table items
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task GetAllAsync_ValidInput_Success()
         {
@@ -45,6 +59,10 @@ namespace Test.Storage.Integration
             _mockRepo.VerifyAll();
         }
 
+        /// <summary>
+        /// Test to see if successfully get specific table item
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task GetAsync_ValidInput_Success()
         {
@@ -58,6 +76,10 @@ namespace Test.Storage.Integration
             _mockRepo.VerifyAll();
         }
 
+        /// <summary>
+        /// Test to see if successfully insert new table item
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task InsertAsync_ValidInput_Success()
         {
@@ -72,6 +94,10 @@ namespace Test.Storage.Integration
             _mockRepo.VerifyAll();
         }
 
+        /// <summary>
+        /// Test to see if successfully update table item
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task UpdateAsync_ValidInput_Success()
         {
@@ -94,10 +120,19 @@ namespace Test.Storage.Integration
     {
         public string this[string key] { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
+        /// <summary>
+        /// Gets connection string 
+        /// </summary>
         public string Key => "ConnectionStrings";
 
+        /// <summary>
+        /// Gets connection path
+        /// </summary>
         public string Path => throw new NotImplementedException();
 
+        /// <summary>
+        /// Gets or sets server config
+        /// </summary>
         public string Value { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
         public IEnumerable<IConfigurationSection> GetChildren()

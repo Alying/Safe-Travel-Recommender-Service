@@ -3,8 +3,16 @@ using Management.DomainModels;
 
 namespace Management.Mapping
 {
+    /// <summary>
+    /// Mapper class that maps storage user and comment to domain user and comment
+    /// </summary>
     public class StorageToDomainMapper
     {
+        /// <summary>
+        /// Maps storage user to domain user
+        /// </summary>
+        /// <param name="storage">storage user.</param>
+        /// <returns>domain user.</returns>
         public static User ToDomain(Common.StorageModels.User storage)
             => new User(
                 userId: UserId.Wrap(storage.UserId),
@@ -15,6 +23,11 @@ namespace Management.Mapping
                 ? country
                 : Enum.CountryCode.Unknown);
 
+        /// <summary>
+        /// Maps storage comment to domain comment
+        /// </summary>
+        /// <param name="comment">storage comment.</param>
+        /// <returns>domain comment.</returns>
         public static Comment ToDomain(StorageModels.Comment comment)
         {
             var validatedResult = CountryStateValidator.ValidateCountryState(comment.Country, comment.State);

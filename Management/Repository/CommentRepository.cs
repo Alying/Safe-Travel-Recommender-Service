@@ -10,6 +10,9 @@ using StorageComment = Management.StorageModels.Comment;
 
 namespace Management.Repository
 {
+    /// <summary>
+    /// Comment repository that handles post and get comments of the service
+    /// </summary>
     public class CommentRepository : ICommentRepository
     {
         private const string _tableName = "comment";
@@ -18,6 +21,10 @@ namespace Management.Repository
 
         private readonly IRepository _repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentRepository"/> class.
+        /// </summary>
+        /// <param name="repository">repository for comments</param>
         public CommentRepository(IRepository repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -26,9 +33,9 @@ namespace Management.Repository
         /// <summary>
         /// Gets all comments stored in database for this location.
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
         /// <param name="userId">user who wrote the comment.</param>
         /// <param name="location">location the comment is for.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
         public async Task<IEnumerable<DomainComment>> GetAllCommentsAsync(UserId userId, Location location)
         {
             var result = await _repository.GetSomeAsync<StorageComment>(_tableName, new Dictionary<string, string>()
@@ -43,8 +50,8 @@ namespace Management.Repository
         /// <summary>
         /// Posts a comment to the database.
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         /// <param name="comment">comment.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task AddCommentAsync(DomainComment comment)
         {
             var storageComment = Mapping.DomainToStorageMapper.ToStorage(comment);

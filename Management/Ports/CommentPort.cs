@@ -9,18 +9,39 @@ using DomainComment = Management.DomainModels.Comment;
 
 namespace Management.Ports
 {
+    /// <summary>
+    /// Port that calls functions that handle comments (get and post)
+    /// </summary>
     public class CommentPort
     {
         private readonly ICommentRepository _commentRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentPort"/> class.
+        /// </summary>
+        /// <param name="commentRepository">repository for comments.</param>
         public CommentPort(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository ?? throw new ArgumentNullException(nameof(commentRepository));
         }
 
+        /// <summary>
+        /// Gets all comments stored in database for this location.
+        /// </summary>
+        /// <param name="userId">user who wrote the comment.</param>
+        /// <param name="countryCode">country code eg. US.</param>
+        /// <param name="state">state code eg. NY.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
         public Task<IEnumerable<DomainComment>> GetCommentAsync(string userId, string countryCode, string state)
             => _commentRepository.GetAllCommentsAsync(UserId.Wrap(userId), ConstructLocation(countryCode, state));
 
+        /// <summary>
+        /// Posts a comment to the database.
+        /// </summary>
+        /// <param name="countryCode">country code eg. US.</param>
+        /// <param name="state">state code eg. NY.</param>
+        /// <param name="apiComment">comment.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public Task AddCommentAsync(string countryCode, string state, ApiComment apiComment)
             => _commentRepository.AddCommentAsync(ApiToDomainMapper.ToDomain(ConstructLocation(countryCode, state), apiComment));
 

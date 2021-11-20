@@ -25,12 +25,24 @@ namespace Management.Clients
 
         private string ApiKey => _configuration.GetConnectionString("airApiKey");
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AirQualityDataClient"/> class.
+        /// </summary>
+        /// <param name="configuration">configuration for air quality data client.</param>
         public AirQualityDataClient(IConfiguration configuration)
         {
             _restClient = new RestClient("http://api.airvisual.com");
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
+        /// <summary>
+        /// Retrieve city data from air quality api
+        /// </summary>
+        /// <param name="city">city of interest eg. NYC.</param>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <param name="countryCode">country of interest eg. US.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<AirQualityCityResponse> GetAirQualityAsync(
             City city,
             State state,
@@ -54,8 +66,14 @@ namespace Management.Clients
             throw new Exception("Retrieve Data Failed");
         }
 
-        // Use Air Quality Index
-        // https://www.airnow.gov/aqi/aqi-basics/
+        /// <summary>
+        /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of cities
+        /// </summary>
+        /// <param name="cities">city of interest eg. NYC.</param>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <param name="countryCode">country of interest eg. US.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<Dictionary<City, int>> CalculateScoresAsync(
             IEnumerable<City> cities,
             State state,
@@ -74,6 +92,13 @@ namespace Management.Clients
                 .ToDictionary(l => l.Key, l => l.First().Item2);
         }
 
+        /// <summary>
+        /// Get supported cities from a state according to air quality api
+        /// </summary>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <param name="countryCode">country of interest eg. US.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<IEnumerable<City>> GetDefaultCitiesAsync(
             State state,
             CountryCode countryCode,

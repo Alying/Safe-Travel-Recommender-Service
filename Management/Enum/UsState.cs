@@ -1,5 +1,8 @@
 ﻿namespace Management.Enum
 {
+    /// <summary>
+    /// Enumeration for all U.S. states
+    /// </summary>
     public enum UsState
     {
         Unknown,
