@@ -3,8 +3,16 @@ using DomainUser = Management.DomainModels.User;
 
 namespace Management.Mapping
 {
+    /// <summary>
+    /// Mapper class that maps domain user to api user
+    /// </summary>
     public class DomainToApiMapper
     {
+        /// <summary>
+        /// Maps domain user to api user
+        /// </summary>
+        /// <param name="domain">domain user.</param>
+        /// <returns>api user.</returns>
         public static ApiUser ToApi(DomainUser domain)
             => new ApiUser
             {

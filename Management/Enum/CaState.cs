@@ -1,5 +1,8 @@
 ﻿namespace Management.Enum
 {
+    /// <summary>
+    /// Enumeration for all Canada states
+    /// </summary>
     public enum CaState
     {
         Unknown,

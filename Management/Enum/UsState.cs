@@ -1,5 +1,8 @@
 ﻿namespace Management.Enum
 {
+    /// <summary>
+    /// Enumeration for all U.S. states
+    /// </summary>
     public enum UsState
     {
         Unknown,
@@ -15,7 +18,8 @@
         Georgia,
         Hawaii,
         Idaho,
-        IllinoisIndiana,
+        Illinois,
+        Indiana,
         Iowa,
         Kansas,
         Kentucky,
@@ -27,7 +31,8 @@
         Minnesota,
         Mississippi,
         Missouri,
-        MontanaNebraska,
+        Montana,
+        Nebraska,
         Nevada,
         NewHampshire,
         NewJersey,
@@ -38,7 +43,8 @@
         Ohio,
         Oklahoma,
         Oregon,
-        PennsylvaniaRhodeIsland,
+        Pennsylvania,
+        RhodeIsland,
         SouthCarolina,
         SouthDakota,
         Tennessee,

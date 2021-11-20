@@ -19,12 +19,11 @@ namespace Management
     /// </summary>
     public class DecisionEngine : IDecisionEngine
     {
-        private readonly List<City> _defaultSupportedCities;
-
         private const double AirQualityWeight = 0.3;
         private const double CovidDataWeight = 0.4;
         private const double WeatherDataWeight = 0.3;
 
+        private readonly List<City> _defaultSupportedCities;
         private readonly ICovidDataClient _covidDataClient;
         private readonly IWeatherDataClient _weatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
@@ -48,7 +47,7 @@ namespace Management
             {
                 _covidDataClient,
                 _weatherDataClient,
-                _airQualityDataClient
+                _airQualityDataClient,
             };
 
             // Temp solution for demo purpose
@@ -64,9 +63,12 @@ namespace Management
         /// <summary>
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
+        /// <param name="stateCode">state code eg. "NY".</param>
+        /// <param name="countryCode">country code eg. "US".</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The weighted score.</returns>
         public async Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
-            State state,
+            State stateCode,
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
@@ -74,7 +76,7 @@ namespace Management
 
             //var cityTasks = _clients.Select(async client =>
             //{
-            //    var result = await client.GetDefaultCitiesAsync(state, countryCode, cancellationToken);
+            //    var result = await client.GetDefaultCitiesAsync(stateCode, countryCode, cancellationToken);
             //    cityBag.Add(result);
             //});
 
@@ -82,9 +84,9 @@ namespace Management
 
             var commonCities = _defaultSupportedCities;
 
-            var airQualityDataClientResult = await _airQualityDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
-            var covidDataClientResult = await _covidDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
-            var weatherDataClientResult = await _weatherDataClient.CalculateScoresAsync(commonCities, state, countryCode, cancellationToken);
+            var airQualityDataClientResult = await _airQualityDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
+            var covidDataClientResult = await _covidDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
+            var weatherDataClientResult = await _weatherDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
 
             //var resultDict = new Dictionary<City, double>();
 

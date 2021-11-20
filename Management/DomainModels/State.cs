@@ -14,6 +14,11 @@ namespace Management.DomainModels
         {
         }
 
+        /// <summary>
+        /// Wrap state data.
+        /// </summary>
+        /// <param name="stateCode">state code eg. NY.</param>
+        /// <returns>Wrapped state data.</returns>
         public static State Wrap(string stateCode) => new State(stateCode);
     }
 }

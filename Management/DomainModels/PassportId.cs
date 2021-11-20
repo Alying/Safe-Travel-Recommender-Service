@@ -12,6 +12,11 @@ namespace Management.DomainModels
         {
         }
 
+        /// <summary>
+        /// Wrap passport id data.
+        /// </summary>
+        /// <param name="value">user's passport id.</param>
+        /// <returns>Wrapped passport id data.</returns>
         public static PassportId Wrap(string value)
         => new PassportId(value);
     }

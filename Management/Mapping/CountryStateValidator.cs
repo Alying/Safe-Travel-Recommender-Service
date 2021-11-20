@@ -1,11 +1,20 @@
-﻿using Management.DomainModels;
+﻿using System;
+using Management.DomainModels;
 using Management.Enum;
-using System;
 
 namespace Management.Mapping
 {
+    /// <summary>
+    /// Validate country and state
+    /// </summary>
     public static class CountryStateValidator
     {
+        /// <summary>
+        /// Enumeration for all U.S. states
+        /// </summary>
+        /// <param name="countryCode">country code eg. US.</param>
+        /// <param name="state">state code eg. NY.</param>
+        /// <returns>The parsed country code and state code.</returns>
         public static (CountryCode validatedCountry, State validatedState) ValidateCountryState(string countryCode, string state)
         {
             if (string.IsNullOrEmpty(countryCode) || string.IsNullOrEmpty(state))

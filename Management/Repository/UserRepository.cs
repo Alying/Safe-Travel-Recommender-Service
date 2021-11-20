@@ -10,6 +10,9 @@ using StorageUser = Common.StorageModels.User;
 
 namespace Management.Repository
 {
+    /// <summary>
+    /// Handles user related operations in service's database
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         private const string _tableName = "user";
@@ -18,6 +21,10 @@ namespace Management.Repository
 
         private readonly IRepository _repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserRepository"/> class.
+        /// </summary>
+        /// <param name="repository">repository for user.</param>
         public UserRepository(IRepository repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -69,6 +76,11 @@ namespace Management.Repository
             }
         }
 
+        /// <summary>
+        /// Gets a user from the database using unique user id.
+        /// </summary>
+        /// <param name="userId">unique user id.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<Option<User>> GetUserAsync(UserId userId)
         {
             try
@@ -82,6 +94,11 @@ namespace Management.Repository
             }
         }
 
+        /// <summary>
+        /// Remove user from the database.
+        /// </summary>
+        /// <param name="userId">unique user id.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<Option<User>> RemoveUserAsync(UserId userId)
         {
             try
@@ -97,6 +114,12 @@ namespace Management.Repository
             }
         }
 
+        /// <summary>
+        /// Update user info in the database.
+        /// </summary>
+        /// <param name="userId">unique user id.</param>
+        /// <param name="user">user.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<Option<User>> UpdateUserAsync(UserId userId, User user)
         {
             try

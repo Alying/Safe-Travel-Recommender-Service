@@ -14,12 +14,19 @@ using StorageComment = Management.StorageModels.Comment;
 
 namespace Test.Management.Unit
 {
+    /// <summary>
+    /// Unit test for comment repository
+    /// </summary>
     public class CommentRepositoryTests
     {
         private Mock<IRepository> _mockRepository;
         private CommentRepository _commentRepository;
         private readonly ITestOutputHelper _output;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommentRepositoryTests"/> class.
+        /// </summary>
+        /// <param name="output">test output helper.</param>
         public CommentRepositoryTests(ITestOutputHelper output)
         {
             _output = output;
@@ -27,6 +34,10 @@ namespace Test.Management.Unit
             _commentRepository = new CommentRepository(_mockRepository.Object);
         }
 
+        /// <summary>
+        /// Test to see if successfully get all comments
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task GetAllCommentsAsync_Success()
         {
@@ -34,18 +45,20 @@ namespace Test.Management.Unit
             {
                 { "userId", "newUser" },
                 { "country", "US" },
-                { "state", "California" }
+                { "state", "California" },
             };
-            _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>() {
-                new StorageComment() {
+            _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>()
+            {
+                new StorageComment()
+                {
                     CommentStr = "Hello World!",
                     UserId = "newUser",
                     Country = "US",
                     State = "California",
                     CreatedAt = "11/14/2021 7:47:41 PM +00:00",
-                    UniqueId = "somerandomuniquestuff"
-                 }
-                 });
+                    UniqueId = "somerandomuniquestuff",
+                },
+            });
             var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("California")));
 
             var retrievedComment = Assert.Single(comments);
@@ -57,23 +70,29 @@ namespace Test.Management.Unit
             _mockRepository.VerifyAll();
         }
 
+        /// <summary>
+        /// Test to see if successfully post comment
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [Fact]
         public async Task AddCommentAsync_Success()
         {
             var testComment = new DomainComment(
-                new Location(CountryCode.US, State.Wrap("NY")),
-                UserId.Wrap("newUser"), "Hello World!",
-                DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
+                                  new Location(CountryCode.US, State.Wrap("NY")),
+                                  UserId.Wrap("newUser"),
+                                  "Hello World!",
+                                  DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
 
             var fields = new List<List<string>>()
             {
-                new List<string>() {
+                new List<string>()
+                {
                     testComment.UserId.Value,
                     testComment.Location.CountryCode.ToString(),
                     testComment.Location.State.Value,
                     testComment.CreatedAt.ToString(),
-                    testComment.CommentStr
-                }
+                    testComment.CommentStr,
+                },
             };
             _mockRepository.Setup(t => t.InsertAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IEnumerable<IReadOnlyList<string>>>(arg => IsListContainElement(arg, fields))));
 
@@ -90,6 +109,7 @@ namespace Test.Management.Unit
             {
                 return false;
             }
+
             var lhsFirst = lhs.First();
             var rhsFirst = rhs.First();
             int count = 0;
@@ -104,6 +124,7 @@ namespace Test.Management.Unit
                     }
                 }
             }
+
             return count == rhsFirst.Count();
         }
 
@@ -113,6 +134,7 @@ namespace Test.Management.Unit
             {
                 return false;
             }
+
             foreach (var key in lhs.Keys)
             {
                 if (!rhs.ContainsKey(key) || (lhs[key] != rhs[key]))
@@ -120,6 +142,7 @@ namespace Test.Management.Unit
                     return false;
                 }
             }
+
             return true;
         }
     }

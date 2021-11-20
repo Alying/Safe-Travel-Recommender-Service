@@ -2,8 +2,16 @@
 
 namespace Management.Mapping
 {
+    /// <summary>
+    /// Mapper class that maps domain user and comment to storage user and comment
+   /// </summary>
     public class DomainToStorageMapper
     {
+        /// <summary>
+        /// Maps domain user to storage user
+        /// </summary>
+        /// <param name="domain">domain user.</param>
+        /// <returns>storage user.</returns>
         public static Common.StorageModels.User ToStorage(User domain)
             => new Common.StorageModels.User
             {
@@ -14,6 +22,11 @@ namespace Management.Mapping
                 PassportId = domain.PassportId.Value,
             };
 
+        /// <summary>
+        /// Maps domain comment to storage comment
+        /// </summary>
+        /// <param name="domain">domain comment.</param>
+        /// <returns>storage comment.</returns>
         public static StorageModels.Comment ToStorage(Comment domain) => new StorageModels.Comment
         {
             CommentStr = domain.CommentStr,

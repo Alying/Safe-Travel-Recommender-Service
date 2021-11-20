@@ -17,9 +17,12 @@ namespace Management.Interface
         /// <summary>
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
+        /// <param name="stateCode">state code eg. "NY".</param>
+        /// <param name="countryCode">country code eg. "US".</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The weighted score.</returns>
         Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
-            State state,
+            State stateCode,
             CountryCode countryCode,
             CancellationToken cancellationToken);
 

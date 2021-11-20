@@ -12,6 +12,11 @@ namespace Management.DomainModels
         {
         }
 
+        /// <summary>
+        /// Wrap user id data.
+        /// </summary>
+        /// <param name="value">user id.</param>
+        /// <returns>Wrapped user id data.</returns>
         public static UserId Wrap(string value) => new UserId(value);
     }
 }
