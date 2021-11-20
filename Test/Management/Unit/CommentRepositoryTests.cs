@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Management.Repository;
 using Management.DomainModels;
-using Storage.Interface;
+using Management.Enum;
+using Management.Repository;
 using Moq;
+using Storage.Interface;
 using Xunit;
 using Xunit.Abstractions;
-using System.Linq;
 using DomainComment = Management.DomainModels.Comment;
 using StorageComment = Management.StorageModels.Comment;
-using Management.Enum;
 
 namespace Test.Management.Unit
 {
@@ -34,25 +34,25 @@ namespace Test.Management.Unit
             {
                 { "userId", "newUser" },
                 { "country", "US" },
-                { "state", "NY" }
+                { "state", "California" }
             };
             _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>() {
-                new StorageComment() { 
+                new StorageComment() {
                     CommentStr = "Hello World!",
                     UserId = "newUser",
                     Country = "US",
-                    State = "NY",
+                    State = "California",
                     CreatedAt = "11/14/2021 7:47:41 PM +00:00",
                     UniqueId = "somerandomuniquestuff"
                  }
                  });
-            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("NY")));
+            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("California")));
 
             var retrievedComment = Assert.Single(comments);
             Assert.Equal("Hello World!", retrievedComment.CommentStr);
             Assert.Equal("newUser", retrievedComment.UserId.Value);
             Assert.Equal("US", retrievedComment.Location.CountryCode.ToString());
-            Assert.Equal("NY", retrievedComment.Location.State.Value);
+            Assert.Equal("California", retrievedComment.Location.State.Value);
 
             _mockRepository.VerifyAll();
         }
@@ -61,8 +61,8 @@ namespace Test.Management.Unit
         public async Task AddCommentAsync_Success()
         {
             var testComment = new DomainComment(
-                new Location(CountryCode.US, State.Wrap("NY")), 
-                UserId.Wrap("newUser"), "Hello World!", 
+                new Location(CountryCode.US, State.Wrap("NY")),
+                UserId.Wrap("newUser"), "Hello World!",
                 DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
 
             var fields = new List<List<string>>()
@@ -86,20 +86,20 @@ namespace Test.Management.Unit
 
         private bool IsListContainElement(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
         {
-            if(lhs.Count() != rhs.Count() || lhs.Count() != 1)
+            if (lhs.Count() != rhs.Count() || lhs.Count() != 1)
             {
                 return false;
             }
             var lhsFirst = lhs.First();
             var rhsFirst = rhs.First();
             int count = 0;
-            foreach(var rhsItem in rhsFirst)
+            foreach (var rhsItem in rhsFirst)
             {
-                foreach(var lhsItem in lhsFirst)
+                foreach (var lhsItem in lhsFirst)
                 {
-                    if(rhsItem == lhsItem)
+                    if (rhsItem == lhsItem)
                     {
-                        count ++;
+                        count++;
                         break;
                     }
                 }
@@ -109,13 +109,13 @@ namespace Test.Management.Unit
 
         private bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
         {
-            if(lhs.Count != rhs.Count)
+            if (lhs.Count != rhs.Count)
             {
                 return false;
             }
-            foreach(var key in lhs.Keys)
+            foreach (var key in lhs.Keys)
             {
-                if(!rhs.ContainsKey(key) || (lhs[key] != rhs[key]))
+                if (!rhs.ContainsKey(key) || (lhs[key] != rhs[key]))
                 {
                     return false;
                 }
