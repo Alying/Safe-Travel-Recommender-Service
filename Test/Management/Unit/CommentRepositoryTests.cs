@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Management.Repository;
 using Management.DomainModels;
 using Management.Enum;
+using Management.Repository;
 using Moq;
 using Storage.Interface;
 using Xunit;
@@ -45,27 +45,27 @@ namespace Test.Management.Unit
             {
                 { "userId", "newUser" },
                 { "country", "US" },
-                { "state", "NY" },
+                { "state", "California" },
             };
-            _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>() 
+            _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>()
             {
-                new StorageComment() 
-                { 
+                new StorageComment()
+                {
                     CommentStr = "Hello World!",
                     UserId = "newUser",
                     Country = "US",
-                    State = "NY",
+                    State = "California",
                     CreatedAt = "11/14/2021 7:47:41 PM +00:00",
                     UniqueId = "somerandomuniquestuff",
                 },
             });
-            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("NY")));
+            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("California")));
 
             var retrievedComment = Assert.Single(comments);
             Assert.Equal("Hello World!", retrievedComment.CommentStr);
             Assert.Equal("newUser", retrievedComment.UserId.Value);
             Assert.Equal("US", retrievedComment.Location.CountryCode.ToString());
-            Assert.Equal("NY", retrievedComment.Location.State.Value);
+            Assert.Equal("California", retrievedComment.Location.State.Value);
 
             _mockRepository.VerifyAll();
         }
@@ -78,14 +78,14 @@ namespace Test.Management.Unit
         public async Task AddCommentAsync_Success()
         {
             var testComment = new DomainComment(
-                                  new Location(CountryCode.US, State.Wrap("NY")), 
-                                  UserId.Wrap("newUser"), 
-                                  "Hello World!", 
+                                  new Location(CountryCode.US, State.Wrap("NY")),
+                                  UserId.Wrap("newUser"),
+                                  "Hello World!",
                                   DateTimeOffset.Parse("11/14/2021 7:47:41 PM +00:00"));
 
             var fields = new List<List<string>>()
             {
-                new List<string>() 
+                new List<string>()
                 {
                     testComment.UserId.Value,
                     testComment.Location.CountryCode.ToString(),
