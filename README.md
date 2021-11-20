@@ -63,9 +63,8 @@ In order to run the unit and integration tests, you must create the schema `ases
 Please copy and paste `swagger.yaml`(under team_ase_sharp/) to `Swagger Editor` (https://editor.swagger.io/) and the documentation will be automatically rendered. It provides more detail on example requests and responses for endpoints under different situations. 
 
 # Postman Documentation
-The Postman responses from our service test runs are included in the `FirstIterationDemo.postman_test_run.json` file. To log on and see the Postman request Collection `FirstIterationDemo`, please use the following username and password:
-  - Username: ml4643@columbia.edu
-  - Password: teamasesharp
+The Postman responses from our service test runs are included in the `FirstIterationDemo.postman_test_run.json` file. To log on and see the Postman request Collection `FirstIterationDemo`, please use the following link (ASE# Team Workspace):
+https://columbia-university-student-plan-team-187884.postman.co/workspace/ASE%2523~2a87fd55-26fd-42f0-9442-97ff3f88363b/collection/18347595-9703f8bc-acad-4ab9-9c83-777c2f66dbb9?ctx=documentation
 
 # API documentation
 We are using the following 3 APIs in order to make decisions for safe-travel locations in the Decision Engine (Not fully implemented yet).
