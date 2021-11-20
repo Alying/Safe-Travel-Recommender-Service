@@ -15,8 +15,6 @@ namespace Service.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
 
-namespace Service.Controllers
-{
     /// <summary>
     /// Controller for the safe-travel recommendations and safe-travel information for this
     /// safe-travel service.
@@ -93,7 +91,7 @@ namespace Service.Controllers
         {
             try
             {
-                _ = CountryStateValidator.ValidateCountryState(countryCode, state);
+                _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
                 return Ok(new LocationDetail());
             }
             catch (Exception e)
