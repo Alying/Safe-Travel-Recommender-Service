@@ -1,8 +1,19 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Management.Ports;
-using Microsoft.AspNetCore.Mvc;
+// <copyright file="RecommendationController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace Service.Controllers
+{
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Management.ApiModels;
+    using Management.DomainModels;
+    using Management.Enum;
+    using Management.Mapping;
+    using Management.Ports;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
 
 namespace Service.Controllers
 {
@@ -33,11 +44,11 @@ namespace Service.Controllers
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         [HttpGet]
-        public IActionResult GetTopRecommendations()
+        public async Task<IActionResult> GetTopRecommendations(CancellationToken cancellationToken)
         {
             try
             {
-                return Ok();
+                return Ok(await _recommendationPort.GetRecommendationsCitiesWithScoreAsync("US", "California", cancellationToken));
             }
             catch (Exception)
             {
@@ -57,7 +68,7 @@ namespace Service.Controllers
         {
             try
             {
-                return Ok();
+                return Ok(string.Join(",", Enum.GetNames(typeof(UsState))));
             }
             catch (Exception)
             {
@@ -82,7 +93,8 @@ namespace Service.Controllers
         {
             try
             {
-                return Ok(await _recommendationPort.GetRecommendationsCitiesWithScoreAsync(countryCode, stateCode, cancellationToken));
+                _ = CountryStateValidator.ValidateCountryState(countryCode, state);
+                return Ok(new LocationDetail());
             }
             catch (Exception e)
             {
