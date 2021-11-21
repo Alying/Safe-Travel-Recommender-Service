@@ -23,15 +23,5 @@ namespace Management.Clients
         /// <returns>A <see cref="Task"/> with a status code.</returns>
         public Task<(State, double)> CalculateScoreForStateAsync(State state, CountryCode countryCode, CancellationToken cancellationToken)
             => Task.FromResult((State.Wrap("Unknown"), 0.1));
-
-        /// <summary>
-        /// Get supported cities of a state
-        /// </summary>
-        /// <param name="state">state of interest eg. NY.</param>
-        /// <param name="countryCode">country of interest eg. US.</param>
-        /// <param name="cancellationToken">used to signal that the task should cancel itself.</param>
-        /// <returns>A <see cref="Task"/> with a status code.</returns>
-        public Task<IEnumerable<City>> GetDefaultCitiesAsync(State state, CountryCode countryCode, CancellationToken cancellationToken)
-            => Task.FromResult(Enumerable.Empty<City>());
     }
 }
