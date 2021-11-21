@@ -44,5 +44,15 @@ namespace Management.Mapping
 
             throw new Exception($"Country: {countryCode} not supported");
         }
+
+        public static CountryCode ValidateCountry(string countryCode)
+        {
+            if (System.Enum.TryParse<CountryCode>(countryCode, out var enumCode))
+            {
+                return enumCode;
+            }
+
+            throw new Exception($"Country : {countryCode} not supported");
+        }
     }
 }

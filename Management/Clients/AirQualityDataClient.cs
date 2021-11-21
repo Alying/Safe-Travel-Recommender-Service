@@ -74,22 +74,22 @@ namespace Management.Clients
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<Dictionary<City, int>> CalculateScoresAsync(
-            IEnumerable<City> cities,
+        public async Task<(State, double)> CalculateScoreForStateAsync(
             State state,
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var cityResult = new List<(City, int)>();
+            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
 
-            foreach (var city in cities)
+            var cityBag = new ConcurrentBag<(City, int)>();
+            var cityTasks = sampledCities.Select(async city =>
             {
-                cityResult.Add(await GetSingleCityAsync(city, state, countryCode, cancellationToken));
-            }
+                var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
+                cityBag.Add(result);
+            });
+            await Task.WhenAll(cityTasks);
 
-            return cityResult
-                .ToLookup(b => b.Item1)
-                .ToDictionary(l => l.Key, l => l.First().Item2);
+            return (state, cityBag.Select(res => res.Item2).Sum() / cityBag.Count());
         }
 
         /// <summary>
@@ -118,7 +118,8 @@ namespace Management.Clients
                     .DeserializeObject<AirQualityQueryCityResponse>(response.Content)
                     .Data
                     .Select(cityData => City.Wrap(cityData.CityName))
-                    .Take(10);
+                    .OrderBy(x => new Random().Next())
+                    .Take(5);
             }
 
             throw new Exception("Retrieve Data Failed");

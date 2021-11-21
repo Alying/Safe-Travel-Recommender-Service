@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -22,8 +21,8 @@ namespace Management.Clients
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> with a status code.</returns>
-        public Task<Dictionary<City, int>> CalculateScoresAsync(IEnumerable<City> city, State state, CountryCode countryCode, CancellationToken cancellationToken)
-            => Task.FromResult(new Dictionary<City, int>());
+        public Task<(State, double)> CalculateScoreForStateAsync(State state, CountryCode countryCode, CancellationToken cancellationToken)
+            => Task.FromResult((State.Wrap("Unknown"), 0.1));
 
         /// <summary>
         /// Get supported cities of a state

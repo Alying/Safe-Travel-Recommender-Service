@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common
 {
@@ -10,7 +11,7 @@ namespace Common
     /// Tagged string.
     /// </summary>
     /// <typeparam name="TTag">tag.</typeparam>
-    public class TaggedString<TTag>
+    public class TaggedString<TTag> : IEquatable<TaggedString<TTag>>, IComparable<TaggedString<TTag>>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TaggedString{TTag}"/> class.
@@ -38,5 +39,13 @@ namespace Common
         /// <returns>tagged string value.</returns>
         public static string UnWrap(TaggedString<TTag> tStr)
             => tStr.Value;
+
+        public int CompareTo([AllowNull] TaggedString<TTag> other)
+            => Value.CompareTo(other.Value);
+
+        public bool Equals([AllowNull] TaggedString<TTag> other)
+        {
+            return Value.Equals(other.Value);
+        }
     }
 }

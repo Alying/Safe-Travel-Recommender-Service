@@ -23,7 +23,9 @@ namespace Management
         private const double CovidDataWeight = 0.4;
         private const double WeatherDataWeight = 0.3;
 
-        private readonly List<City> _defaultSupportedCities;
+        private readonly List<State> _defaultUsStates;
+        private readonly List<State> _defaultCaStates;
+
         private readonly ICovidDataClient _covidDataClient;
         private readonly IWeatherDataClient _weatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
@@ -53,58 +55,69 @@ namespace Management
             // Temp solution for demo purpose
             // TODO: Add static mapping for State - cities
             // For now hardcode 2 cities for California
-            _defaultSupportedCities = new List<City>
+            _defaultUsStates = new List<State>
             {
-                City.Wrap("Acalanes Ridge"),
-                City.Wrap("Coachella"),
+                State.Wrap("Massachusetts"),
+                State.Wrap("Georgia"),
+                State.Wrap("California"),
+                State.Wrap("Illinois"),
+                State.Wrap("Washington"),
+            };
+
+            _defaultCaStates = new List<State>
+            {
+                State.Wrap("Manitoba"),
+                State.Wrap("Alberta"),
+                State.Wrap("Ontario"),
+                State.Wrap("Quebec"),
+                State.Wrap("Saskatchewan"),
             };
         }
 
         /// <summary>
         /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
         /// </summary>
-        /// <param name="stateCode">state code eg. "NY".</param>
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The weighted score.</returns>
-        public async Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
-            State stateCode,
+        public async Task<Dictionary<State, double>> GetDefaultCountryRecommendationAsync(
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            //var cityBag = new ConcurrentBag<IEnumerable<City>>();
+            var airBag = new ConcurrentBag<(State state, double score)>();
+            var weatherBag = new ConcurrentBag<(State state, double score)>();
+            var covidBag = new ConcurrentBag<(State state, double score)>();
 
-            //var cityTasks = _clients.Select(async client =>
-            //{
-            //    var result = await client.GetDefaultCitiesAsync(stateCode, countryCode, cancellationToken);
-            //    cityBag.Add(result);
-            //});
+            var states = countryCode == CountryCode.US ? _defaultUsStates : _defaultCaStates;
 
-            //await Task.WhenAll(cityTasks);
+            var stateTasks = states.Select(async state =>
+            {
+                airBag.Add(await _airQualityDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
 
-            var commonCities = _defaultSupportedCities;
+                weatherBag.Add(await _weatherDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
 
-            var airQualityDataClientResult = await _airQualityDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
-            var covidDataClientResult = await _covidDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
-            var weatherDataClientResult = await _weatherDataClient.CalculateScoresAsync(commonCities, stateCode, countryCode, cancellationToken);
+                covidBag.Add(await _covidDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
+            });
 
-            //var resultDict = new Dictionary<City, double>();
+            await Task.WhenAll(stateTasks);
 
-            //foreach (var kvp in airQualityDataClientResult)
-            //{
-            //    if (covidDataClientResult.ContainsKey(kvp.Key) && weatherDataClientResult.ContainsKey(kvp.Key))
-            //    {
-            //        var finalScore = AirQualityWeight * airQualityDataClientResult[kvp.Key]
-            //            + CovidDataWeight * covidDataClientResult[kvp.Key]
-            //            + WeatherDataWeight * weatherDataClientResult[kvp.Key];
+            var airResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
+            var weatherResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
+            var covidResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
 
-            //        resultDict.Add(kvp.Key, finalScore);
-            //    }
-            //}
+            var resultDictionary = new Dictionary<State, double>();
 
-            //return resultDict;
+            foreach (var res in airResultLookup)
+            {
+                var finalScore
+                    = (AirQualityWeight * res.Value)
+                    + (WeatherDataWeight * weatherResultLookup[res.Key])
+                    + (CovidDataWeight * covidResultLookup[res.Key]);
 
-            return airQualityDataClientResult.ToDictionary(kvp => kvp.Key, kvp => (double)kvp.Value);
+                resultDictionary.Add(res.Key, finalScore);
+            }
+
+            return resultDictionary;
         }
 
         /// <summary>

@@ -46,7 +46,9 @@ namespace Service.Controllers
         {
             try
             {
-                return Ok(await _recommendationPort.GetRecommendationsCitiesWithScoreAsync("US", "California", cancellationToken));
+                // By default we recommend state from US
+                // For specific country request, use country/{countryCode} route instead
+                return Ok(await _recommendationPort.GetDefaultRecommendationAsync("US", cancellationToken));
             }
             catch (Exception)
             {
@@ -62,11 +64,11 @@ namespace Service.Controllers
         /// <returns>status code.</returns>
         [HttpGet]
         [Route("country/{countryCode}")]
-        public IActionResult GetRecommendationByCountryCode([FromRoute] string countryCode)
+        public async Task<IActionResult> GetRecommendationByCountryCode([FromRoute] string countryCode, CancellationToken cancellationToken)
         {
             try
             {
-                return Ok(string.Join(",", Enum.GetNames(typeof(UsState))));
+                return Ok(await _recommendationPort.GetDefaultRecommendationAsync(countryCode, cancellationToken));
             }
             catch (Exception)
             {

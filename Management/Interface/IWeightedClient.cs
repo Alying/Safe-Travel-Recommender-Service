@@ -31,8 +31,7 @@ namespace Management.Interface
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> with a status code.</returns>
-        Task<Dictionary<City, int>> CalculateScoresAsync(
-            IEnumerable<City> city,
+        Task<(State, double)> CalculateScoreForStateAsync(
             State state,
             CountryCode countryCode,
             CancellationToken cancellationToken);

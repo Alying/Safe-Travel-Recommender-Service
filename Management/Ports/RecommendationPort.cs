@@ -35,14 +35,13 @@ namespace Management.Ports
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<Dictionary<string, double>> GetRecommendationsCitiesWithScoreAsync(
+        public async Task<Dictionary<string, double>> GetDefaultRecommendationAsync(
             string country,
-            string state,
             CancellationToken cancellationToken)
         {
-            var (validatedCountry, validatedState) = CountryStateValidator.ValidateCountryState(country, state);
+            var validatedCountry = CountryStateValidator.ValidateCountry(country);
 
-            var result = await _decisionEngine.CalculateDesiredLocationAsync(validatedState, validatedCountry, cancellationToken);
+            var result = await _decisionEngine.GetDefaultCountryRecommendationAsync(validatedCountry, cancellationToken);
 
             return result.ToDictionary(kvp => kvp.Key.Value, kvp => kvp.Value);
         }
