@@ -52,8 +52,13 @@ namespace Management.Ports
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>
         /// <returns>The state's information.</returns>
-        public async Task<Recommendation> GetLocationInfoAsync(Location location, UserId userId)
+        public async Task<(string, double)> GetStateInfoAsync(string countryCode, string state, CancellationToken cancellationToken)
+        {
+            var (validatedCountry, validatedState) = CountryStateValidator.ValidateCountryState(countryCode, state);
 
-            => await _decisionEngine.GetSpecificLocationInfoAsync(location, userId);
+            var result = await _decisionEngine.GetStateInfoAsync(validatedCountry, validatedState, cancellationToken);
+
+            return (result.Item1.Value, result.Item2);
+        }
     }
 }

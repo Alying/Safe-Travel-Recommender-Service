@@ -126,15 +126,18 @@ namespace Management
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>
         /// <returns>The state's information.</returns>
-        public async Task<Recommendation> GetSpecificLocationInfoAsync(Location location, UserId userId)
+        public async Task<(State, double)> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken)
         {
-            var stateInfo = new Recommendation(
-                                location,
-                                userId,
-                                new CovidData(1681169, 39029),
-                                new WeatherData("Expect showers today", 40, 48),
-                                new AirQualityData(41, 62, 2));
-            return stateInfo;
+            var stateBag = new ConcurrentBag<(State, double)>();
+
+            var stateTasks = _clients.Select(async client =>
+            {
+                stateBag.Add(await client.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
+            });
+
+            await Task.WhenAll(stateTasks);
+
+            return (state, stateBag.Select(b => b.Item2).Sum() / stateBag.Count());
         }
     }
 }

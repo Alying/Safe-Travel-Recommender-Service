@@ -31,8 +31,6 @@ namespace Management.Interface
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>
         /// <returns>The state's information.</returns>
-        Task<Recommendation> GetSpecificLocationInfoAsync(
-            Location location,
-            UserId userId);
+        Task<(State, double)> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken);
     }
 }
