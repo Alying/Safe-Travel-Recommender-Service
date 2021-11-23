@@ -32,10 +32,9 @@ namespace Management.Ports
         /// Get cities with their covid, weather, and air quality scores.
         /// </summary>
         /// <param name="country">country of interest eg. US.</param>
-        /// <param name="state">state of interest eg. NY.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<Dictionary<string, double>> GetDefaultRecommendationAsync(
+        public async Task<IEnumerable<ApiModels.Recommendation>> GetDefaultRecommendationAsync(
             string country,
             CancellationToken cancellationToken)
         {
@@ -43,22 +42,23 @@ namespace Management.Ports
 
             var result = await _decisionEngine.GetDefaultCountryRecommendationAsync(validatedCountry, cancellationToken);
 
-            return result.ToDictionary(kvp => kvp.Key.Value, kvp => kvp.Value);
+            return result.Select(res => DomainToApiMapper.ToApi(res));
         }
 
         /// <summary>
         /// Gets the specific location's information. 
         /// </summary>
-        /// <param name="location">The country and state the user inquired.</param>
-        /// <param name="userId">The user's unique id.</param>
+        /// <param name="countryCode">The country code.</param>
+        /// <param name="state">The state in country.</param>
+        /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The state's information.</returns>
-        public async Task<(string, double)> GetStateInfoAsync(string countryCode, string state, CancellationToken cancellationToken)
+        public async Task<ApiModels.Recommendation> GetStateInfoAsync(string countryCode, string state, CancellationToken cancellationToken)
         {
             var (validatedCountry, validatedState) = CountryStateValidator.ValidateCountryState(countryCode, state);
 
             var result = await _decisionEngine.GetStateInfoAsync(validatedCountry, validatedState, cancellationToken);
 
-            return (result.Item1.Value, result.Item2);
+            return DomainToApiMapper.ToApi(result);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Test.Management.Integration
 
             var airClient = new AirQualityDataClient(configMock.Object);
 
-            var result = await airClient.GetAirQualityAsync(City.Wrap("Los Angeles"), State.Wrap("California"), CountryCode.US, CancellationToken.None);
+            var result = await airClient.GetCityAirQualityDataAsync(City.Wrap("Los Angeles"), State.Wrap("California"), CountryCode.US, CancellationToken.None);
 
             Assert.Equal("success", result.Status);
         }

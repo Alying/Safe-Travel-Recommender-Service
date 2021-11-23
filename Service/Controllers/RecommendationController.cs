@@ -41,6 +41,7 @@ namespace Service.Controllers
         /// Intended to get the top-10 recommendations for safe travel for the user.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
+        /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         [HttpGet]
         public async Task<IActionResult> GetTopRecommendations(CancellationToken cancellationToken)
         {
@@ -61,6 +62,7 @@ namespace Service.Controllers
         /// which can include COVID-19, weather, and air quality information for the user.
         /// </summary>
         /// <param name="countryCode">country code eg. "US".</param>
+        /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>status code.</returns>
         [HttpGet]
         [Route("country/{countryCode}")]
@@ -94,7 +96,7 @@ namespace Service.Controllers
             try
             {
                 _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
-                return Ok(new LocationDetail());
+                return Ok(await _recommendationPort.GetStateInfoAsync(stateCode, countryCode, cancellationToken));
             }
             catch (Exception e)
             {
