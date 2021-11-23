@@ -4,11 +4,11 @@ namespace Management.ApiModels
 {
     public class Recommendation
     {
-        public CountryCode CountryCode { get; set; }
+        public string CountryCode { get; set; }
 
         public string State { get; set; }
 
-        public RecommendationState RecommendationState { get; set; }
+        public string RecommendationState { get; set; }
 
         public double OverallScore { get; set; }
 

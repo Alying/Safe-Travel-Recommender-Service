@@ -26,9 +26,9 @@ namespace Management.Mapping
         public static ApiModels.Recommendation ToApi(DomainModels.Recommendation recommendation)
             => new ApiModels.Recommendation
                 {
-                    CountryCode = recommendation.CountryCode,
+                    CountryCode = recommendation.CountryCode.ToString(),
                     State = recommendation.State.Value,
-                    RecommendationState = recommendation.RecommendationState,
+                    RecommendationState = recommendation.RecommendationState.ToString(),
                     OverallScore = recommendation.OverallScore,
                     AirQualityScore = recommendation.AirQualityScore,
                     CovidIndexScore = recommendation.CovidIndexScore,
