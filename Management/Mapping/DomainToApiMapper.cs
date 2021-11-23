@@ -22,5 +22,17 @@ namespace Management.Mapping
                 CreatedAt = domain.CreatedAt,
                 CountryCode = domain.CountryCode.ToString(),
             };
+
+        public static ApiModels.Recommendation ToApi(DomainModels.Recommendation recommendation)
+            => new ApiModels.Recommendation
+                {
+                    CountryCode = recommendation.CountryCode.ToString(),
+                    State = recommendation.State.Value,
+                    RecommendationState = recommendation.RecommendationState.ToString(),
+                    OverallScore = recommendation.OverallScore,
+                    AirQualityScore = recommendation.AirQualityScore,
+                    CovidIndexScore = recommendation.CovidIndexScore,
+                    WeatherScore = recommendation.WeatherScore,
+                };
     }
 }

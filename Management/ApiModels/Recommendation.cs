@@ -1,13 +1,21 @@
-﻿namespace Management.ApiModels
+﻿using Management.Enum;
+
+namespace Management.ApiModels
 {
-    /// <summary>
-    /// A representation of the safe-travel recommendations.
-    /// </summary>
     public class Recommendation
     {
-        /// <summary>
-        /// Gets or sets user id string
-        /// </summary>
-        public string UserIdStr { get; set; }
+        public string CountryCode { get; set; }
+
+        public string State { get; set; }
+
+        public string RecommendationState { get; set; }
+
+        public double OverallScore { get; set; }
+
+        public double AirQualityScore { get; set; }
+
+        public double CovidIndexScore { get; set; }
+
+        public double WeatherScore { get; set; }
     }
 }

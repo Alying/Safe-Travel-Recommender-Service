@@ -80,64 +80,62 @@ namespace Management
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The weighted score.</returns>
-        public async Task<Dictionary<State, double>> GetDefaultCountryRecommendationAsync(
+        public async Task<IEnumerable<Recommendation>> GetDefaultCountryRecommendationAsync(
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var airBag = new ConcurrentBag<(State state, double score)>();
-            var weatherBag = new ConcurrentBag<(State state, double score)>();
-            var covidBag = new ConcurrentBag<(State state, double score)>();
+            var recommendationBag = new ConcurrentBag<Recommendation>();
 
             var states = countryCode == CountryCode.US ? _defaultUsStates : _defaultCaStates;
 
             var stateTasks = states.Select(async state =>
             {
-                airBag.Add(await _airQualityDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
-
-                weatherBag.Add(await _weatherDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
-
-                covidBag.Add(await _covidDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
+                recommendationBag.Add(await GetStateInfoAsync(countryCode, state, cancellationToken));
             });
 
             await Task.WhenAll(stateTasks);
 
-            var airResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
-            var weatherResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
-            var covidResultLookup = airBag.ToDictionary(b => b.state, b => b.score);
-
-            var resultDictionary = new Dictionary<State, double>();
-
-            foreach (var res in airResultLookup)
-            {
-                var finalScore
-                    = (AirQualityWeight * res.Value)
-                    + (WeatherDataWeight * weatherResultLookup[res.Key])
-                    + (CovidDataWeight * covidResultLookup[res.Key]);
-
-                resultDictionary.Add(res.Key, finalScore);
-            }
-
-            return resultDictionary;
+            return recommendationBag.OrderByDescending(r => r.OverallScore).ToList();
         }
 
         /// <summary>
         /// Gets the specific location's information.
         /// </summary>
-        /// <param name="location">The country and state the user inquired.</param>
-        /// <param name="userId">The user's unique id.</param>
+        /// <param name="countryCode">The country code.</param>
+        /// <param name="state">The state for specific country</param>
+        /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The state's information.</returns>
-        public async Task<(State, double)> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken)
+        public async Task<Recommendation> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken)
         {
-            var stateBag = new ConcurrentBag<(State, double)>();
+            var airScore = await _airQualityDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken);
+            var covidScore = await _covidDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken);
+            var weatherScore = await _weatherDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken);
 
-            var stateTasks = _clients.Select(async client =>
+            var finalScore = (airScore.score + covidScore.score + weatherScore.score) / 3;
+
+            return new Recommendation(
+                countryCode: countryCode,
+                state: state,
+                recommendationState: GetRecommendationState(finalScore),
+                overallScore: finalScore,
+                airQualityScore: airScore.score,
+                covidIndexScore: covidScore.score,
+                weatherScore: weatherScore.score);
+        }
+
+        private static RecommendationState GetRecommendationState(double finalScore)
+        {
+            if ( finalScore >= 80 && finalScore <= 100)
             {
-                stateBag.Add(await client.CalculateScoreForStateAsync(state, countryCode, cancellationToken));
-            });
+                return RecommendationState.Highly_Recommended;
+            }
 
-            await Task.WhenAll(stateTasks);
+            if (finalScore >= 40 && finalScore < 70)
+            {
+                return RecommendationState.Recommended;
+            }
 
-            return (state, stateBag.Select(b => b.Item2).Sum() / stateBag.Count());
+            return RecommendationState.Not_Recommended;
         }
     }
 }

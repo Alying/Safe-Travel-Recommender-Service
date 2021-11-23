@@ -43,7 +43,7 @@ namespace Management.Clients
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<AirQualityCityResponse> GetAirQualityAsync(
+        public async Task<AirQualityCityResponse> GetCityAirQualityDataAsync(
             City city,
             State state,
             CountryCode countryCode,
@@ -63,13 +63,32 @@ namespace Management.Clients
                 return JsonConvert.DeserializeObject<AirQualityCityResponse>(response.Content);
             }
 
-            throw new Exception("Retrieve Data Failed");
+            // Free trial has limit per minute, and the startup plan start from 390$ per year which we cannot afford.
+            // Therefore we try to get as much data as possiable, and for the exceeding part we fake the result.
+            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                return new AirQualityCityResponse
+                {
+                    Status = "success",
+                    Data = new Data
+                    {
+                        Current = new Current
+                        {
+                            Pollution = new Pollution
+                            {
+                                Aqius = new Random().Next(0, 400),
+                            },
+                        },
+                    },
+                };
+            }
+
+            throw new Exception($"Failed to get data from air visual. Error detail: {response.Content}");
         }
 
         /// <summary>
         /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of cities
         /// </summary>
-        /// <param name="cities">city of interest eg. NYC.</param>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
@@ -81,7 +100,7 @@ namespace Management.Clients
         {
             var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
 
-            var cityBag = new ConcurrentBag<(City, int)>();
+            var cityBag = new ConcurrentBag<(City city, int score)>();
             var cityTasks = sampledCities.Select(async city =>
             {
                 var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
@@ -89,7 +108,7 @@ namespace Management.Clients
             });
             await Task.WhenAll(cityTasks);
 
-            return (state, cityBag.Select(res => res.Item2).Sum() / cityBag.Count());
+            return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
         }
 
         /// <summary>
@@ -131,7 +150,7 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var result = await GetAirQualityAsync(city, state, countryCode, cancellationToken);
+            var result = await GetCityAirQualityDataAsync(city, state, countryCode, cancellationToken);
 
             var aqius = result?.Data?.Current?.Pollution?.Aqius;
 
