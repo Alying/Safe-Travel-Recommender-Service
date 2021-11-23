@@ -5,7 +5,6 @@
     /// </summary>
     public enum CaState
     {
-        Unknown,
         Alberta,
         British_Columbia,
         Manitoba,

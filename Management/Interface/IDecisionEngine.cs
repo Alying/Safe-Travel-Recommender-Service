@@ -21,8 +21,7 @@ namespace Management.Interface
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The weighted score.</returns>
-        Task<Dictionary<City, double>> CalculateDesiredLocationAsync(
-            State stateCode,
+        Task<Dictionary<State, double>> GetDefaultCountryRecommendationAsync(
             CountryCode countryCode,
             CancellationToken cancellationToken);
 
@@ -32,8 +31,6 @@ namespace Management.Interface
         /// <param name="location">The country and state the user inquired.</param>
         /// <param name="userId">The user's unique id.</param>
         /// <returns>The state's information.</returns>
-        Task<Recommendation> GetSpecificLocationInfoAsync(
-            Location location,
-            UserId userId);
+        Task<(State, double)> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken);
     }
 }
