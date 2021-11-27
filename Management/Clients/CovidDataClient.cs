@@ -39,35 +39,23 @@ namespace Management.Clients
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<CovidResponse> GetStateCovidDataAsync(
+        public async Task<CovidStateResponse> GetStateCovidDataAsync(
             State state,
             CancellationToken cancellationToken)
         {
-            var request = new RestRequest("v2/states/" + state.Value + "/daily.json", Method.GET);
+            var request = new RestRequest("v1/states/" + state.Value.ToLower() + "/current.json", Method.GET);
 
             var response = await _restClient.ExecuteAsync(request, cancellationToken);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<CovidResponse>(response.Content);
+                return JsonConvert.DeserializeObject<CovidStateResponse>(response.Content);
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
-                return new CovidResponse
+                return new CovidStateResponse
                 {
-                    CovidDataList = new List<CovidData>
-                    {
-                        new CovidData
-                        {
-                            Cases = new Cases
-                            {
-                                Confirmed = new Confirmed
-                                {
-                                    Value = new Random().Next(0, 99999999),
-                                },
-                            },
-                        },
-                    },
+                   Positive = new Random().Next(0, 99999999),
                 };
             }
 
@@ -88,7 +76,7 @@ namespace Management.Clients
         {
             var stateBag = new ConcurrentBag<(State city, int score)>();
 
-            var result = await GetSingleStateAsync(State.Wrap("me"), cancellationToken);
+            var result = await GetSingleStateAsync(State.Wrap(state.Value.ToLower()), cancellationToken);
             stateBag.Add(result);
 
             return (state, stateBag.Select(res => res.score).Sum() / stateBag.Count());
@@ -100,13 +88,13 @@ namespace Management.Clients
         {
             var result = await GetStateCovidDataAsync(state, cancellationToken);
 
-            var confirmedCases = result?.CovidDataList[0]?.Cases?.Confirmed?.Value;
+            var confirmedCases = result?.Positive;
 
             if (confirmedCases == null)
             {
                 throw new Exception("Received null response from vendor.");
             }
-            Console.WriteLine(confirmedCases);
+
             if (confirmedCases >= 0 && confirmedCases <= 200000)
             {
                 return (state, 100);

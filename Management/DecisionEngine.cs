@@ -52,16 +52,19 @@ namespace Management
                 _airQualityDataClient,
             };
 
-            // Temp solution for demo purpose
-            // TODO: Add static mapping for State - cities
-            // For now hardcode 2 cities for California
+            // Currently only implemented US
             _defaultUsStates = new List<State>
             {
-                State.Wrap("Massachusetts"),
-                State.Wrap("Georgia"),
-                State.Wrap("California"),
-                State.Wrap("Illinois"),
-                State.Wrap("Washington"),
+                //State.Wrap("Massachusetts"),
+                //State.Wrap("Georgia"),
+                //State.Wrap("California"),
+                //State.Wrap("Illinois"),
+                //State.Wrap("Washington"),
+                State.Wrap("MA"),
+                State.Wrap("GA"),
+                State.Wrap("CA"),
+                State.Wrap("IL"),
+                State.Wrap("WA"),
             };
 
             _defaultCaStates = new List<State>

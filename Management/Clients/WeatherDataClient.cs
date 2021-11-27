@@ -87,10 +87,16 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
+            var stateCityDict = new StateToCityDict();
             var cityBag = new ConcurrentBag<(City city, int score)>();
 
-            var result = await GetSingleCityAsync(City.Wrap("Portland"), State.Wrap("ME"), countryCode, cancellationToken);
-            cityBag.Add(result);
+            var supportedCities = stateCityDict.stateToCityDict[state.Value];
+            var cityTasks = supportedCities.Select(async city =>
+            {
+                var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
+                cityBag.Add(result);
+            });
+            await Task.WhenAll(cityTasks);
 
             return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
         }
@@ -104,7 +110,7 @@ namespace Management.Clients
             var result = await GetCityWeatherDataAsync(city, state, countryCode, cancellationToken);
 
             var tempInK = result?.WeatherData?.Temp;
-
+            
             if (tempInK == null)
             {
                 throw new Exception("Received null response from vendor.");

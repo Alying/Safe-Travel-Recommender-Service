@@ -98,12 +98,14 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
+            var abbrStateDict = new AbbrToStateDict();
+            var stateCityDict = new StateToCityDict();
+            var supportedCities = stateCityDict.stateToCityDict[state.Value];
 
             var cityBag = new ConcurrentBag<(City city, int score)>();
-            var cityTasks = sampledCities.Select(async city =>
+            var cityTasks = supportedCities.Select(async city =>
             {
-                var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
+                var result = await GetSingleCityAsync(city, abbrStateDict.abbrToStateDict[state.Value], countryCode, cancellationToken);
                 cityBag.Add(result);
             });
             await Task.WhenAll(cityTasks);
@@ -151,7 +153,7 @@ namespace Management.Clients
             CancellationToken cancellationToken)
         {
             var result = await GetCityAirQualityDataAsync(city, state, countryCode, cancellationToken);
-
+            
             var aqius = result?.Data?.Current?.Pollution?.Aqius;
 
             if (aqius == null)
