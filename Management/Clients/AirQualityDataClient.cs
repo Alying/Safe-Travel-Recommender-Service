@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,9 +61,6 @@ namespace Management.Clients
             {
                 return JsonConvert.DeserializeObject<AirQualityCityResponse>(response.Content);
             }
-
-            // Free trial has limit per minute, and the startup plan start from 390$ per year which we cannot afford.
-            // Therefore we try to get as much data as possiable, and for the exceeding part we fake the result.
             else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
                 return new AirQualityCityResponse
@@ -114,38 +110,13 @@ namespace Management.Clients
         }
 
         /// <summary>
-        /// Get supported cities from a state according to air quality api
+        /// Get single city's air quality score
         /// </summary>
+        /// <param name="city">city of interest eg. NYC.</param>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        public async Task<IEnumerable<City>> GetDefaultCitiesAsync(
-            State state,
-            CountryCode countryCode,
-            CancellationToken cancellationToken)
-        {
-            var request = new RestRequest("v2/cities", Method.GET);
-            request
-                .AddQueryParameter("state", state.Value)
-                .AddQueryParameter("country", countryCode == CountryCode.US ? "USA" : "CANADA")
-                .AddQueryParameter("key", ApiKey);
-
-            var response = await _restClient.ExecuteAsync(request, cancellationToken);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                return JsonConvert
-                    .DeserializeObject<AirQualityQueryCityResponse>(response.Content)
-                    .Data
-                    .Select(cityData => City.Wrap(cityData.CityName))
-                    .OrderBy(x => new Random().Next())
-                    .Take(5);
-            }
-
-            throw new Exception("Retrieve Data Failed");
-        }
-
         private async Task<(City city, int score)> GetSingleCityAsync(
             City city,
             State state,

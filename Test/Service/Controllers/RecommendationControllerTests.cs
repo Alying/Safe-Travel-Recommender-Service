@@ -1,21 +1,24 @@
-﻿using Management.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Service.Controllers;
+using Newtonsoft.Json;
+using Management.DomainModels;
 using Management.Enum;
 using Management.Interface;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Newtonsoft.Json;
 using RestSharp;
-using Service.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Test.Service.Controllers
 {
+    /// <summary>
+    /// Tests for recommendation controller.
+    /// </summary>
     public class RecommendationControllerTests
     {
         //[Fact]

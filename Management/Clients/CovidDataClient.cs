@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,7 +42,8 @@ namespace Management.Clients
             State state,
             CancellationToken cancellationToken)
         {
-            var request = new RestRequest("v1/states/" + state.Value.ToLower() + "/current.json", Method.GET);
+            // Covid Tracking Project stop collecting new COVID data since 2021-03-07
+            var request = new RestRequest("v2/states/" + state.Value.ToLower() + "/2021-03-07.json", Method.GET);
 
             var response = await _restClient.ExecuteAsync(request, cancellationToken);
 
@@ -55,7 +55,16 @@ namespace Management.Clients
             {
                 return new CovidStateResponse
                 {
-                   Positive = new Random().Next(0, 99999999),
+                    CovidData = new CovidData
+                    {
+                        Cases = new Cases
+                        {
+                            Total = new Total
+                            {
+                                Value = new Random().Next(0, 99999999),
+                            },
+                        },
+                    },
                 };
             }
 
@@ -82,13 +91,18 @@ namespace Management.Clients
             return (state, stateBag.Select(res => res.score).Sum() / stateBag.Count());
         }
 
+        /// <summary>
+        /// Get single state's covid score
+        /// </summary>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         private async Task<(State state, int score)> GetSingleStateAsync(
             State state,
             CancellationToken cancellationToken)
         {
             var result = await GetStateCovidDataAsync(state, cancellationToken);
 
-            var confirmedCases = result?.Positive;
+            var confirmedCases = result?.CovidData?.Cases?.Total?.Value;
 
             if (confirmedCases == null)
             {

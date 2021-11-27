@@ -1,20 +1,12 @@
-// <copyright file="RecommendationController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Management.Mapping;
+using Management.Ports;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service.Controllers
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Management.ApiModels;
-    using Management.DomainModels;
-    using Management.Enum;
-    using Management.Mapping;
-    using Management.Ports;
-    using Microsoft.AspNetCore.Mvc;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Controller for the safe-travel recommendations and safe-travel information for this
     /// safe-travel service.

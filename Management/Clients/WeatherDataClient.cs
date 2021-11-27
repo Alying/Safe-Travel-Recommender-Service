@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -101,6 +100,13 @@ namespace Management.Clients
             return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
         }
 
+        /// <summary>
+        /// Get single city's weather score
+        /// </summary>
+        /// <param name="state">state of interest eg. NY.</param>
+        /// <param name="countryCode">country of interest eg. US.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         private async Task<(City city, int score)> GetSingleCityAsync(
             City city,
             State state,
@@ -116,11 +122,11 @@ namespace Management.Clients
                 throw new Exception("Received null response from vendor.");
             }
 
-            // convert temperature in Kelvin to temperature in Fahrenheit
+            // Convert temperature in Kelvin to temperature in Fahrenheit
             var tempInF = (((tempInK - 273.15) * 9) / 5) + 32;
 
-            // human's ideal temperature is around 70 Fahrenheit
-            // deduct 2 points for each temperature point that's off from the ideal temperature (based on 100 score)
+            // Human's ideal temperature is around 70 Fahrenheit
+            // Deduct 2 points from score 100 for each temperature point that's off from the ideal temperature
             return (city, (int)(100 - (2 * Math.Abs((decimal)tempInF - 70))));
         }
     }
