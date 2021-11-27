@@ -96,7 +96,7 @@ namespace Service.Controllers
             try
             {
                 _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
-                return Ok(await _recommendationPort.GetStateInfoAsync(stateCode, countryCode, cancellationToken));
+                return Ok(await _recommendationPort.GetStateInfoAsync(countryCode, stateCode, cancellationToken));
             }
             catch (Exception e)
             {

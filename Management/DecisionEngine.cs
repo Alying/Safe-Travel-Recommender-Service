@@ -125,12 +125,12 @@ namespace Management
 
         private static RecommendationState GetRecommendationState(double finalScore)
         {
-            if ( finalScore >= 80 && finalScore <= 100)
+            if (finalScore >= 80 && finalScore <= 100)
             {
                 return RecommendationState.Highly_Recommended;
             }
 
-            if (finalScore >= 40 && finalScore < 70)
+            if (finalScore >= 60 && finalScore < 80)
             {
                 return RecommendationState.Recommended;
             }

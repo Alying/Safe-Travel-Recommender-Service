@@ -87,7 +87,7 @@ namespace Management.Clients
         }
 
         /// <summary>
-        /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of cities
+        /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of a state
         /// </summary>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="countryCode">country of interest eg. US.</param>
@@ -164,27 +164,27 @@ namespace Management.Clients
                 return (city, 100);
             }
 
-            if (aqius >= 51 && aqius <= 100)
+            if (aqius >= 50 && aqius <= 100)
             {
                 return (city, 80);
             }
 
-            if (aqius >= 101 && aqius <= 150)
+            if (aqius >= 100 && aqius <= 150)
             {
                 return (city, 60);
             }
 
-            if (aqius >= 151 && aqius <= 200)
+            if (aqius >= 150 && aqius <= 200)
             {
                 return (city, 40);
             }
 
-            if (aqius >= 201 && aqius <= 300)
+            if (aqius >= 200 && aqius <= 300)
             {
                 return (city, 20);
             }
 
-            if (aqius >= 301)
+            if (aqius >= 300)
             {
                 return (city, 0);
             }
