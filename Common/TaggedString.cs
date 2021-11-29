@@ -1,8 +1,4 @@
-﻿// <copyright file="TaggedString.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Common
@@ -40,9 +36,19 @@ namespace Common
         public static string UnWrap(TaggedString<TTag> tStr)
             => tStr.Value;
 
+        /// <summary>
+        /// Compare two tagged strings
+        /// </summary>
+        /// <param name="other">tagged string.</param>
+        /// <returns>comparison.</returns>
         public int CompareTo([AllowNull] TaggedString<TTag> other)
             => Value.CompareTo(other.Value);
 
+        /// <summary>
+        /// Check if two tagged strings are equal to each other
+        /// </summary>
+        /// <param name="other">tagged string.</param>
+        /// <returns>whether two tagged strings are equal.</returns>
         public bool Equals([AllowNull] TaggedString<TTag> other)
         {
             return Value.Equals(other.Value);

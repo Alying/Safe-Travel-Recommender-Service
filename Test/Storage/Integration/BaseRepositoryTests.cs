@@ -116,8 +116,15 @@ namespace Test.Storage.Integration
         }
     }
 
+    /// <summary>
+    /// Representation of configuration section
+    /// </summary>
     public class Section : IConfigurationSection
     {
+        /// <summary>
+        /// Gets database server config
+        /// </summary>
+        /// <param name="key">database server string.</param>
         public string this[string key] { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
         /// <summary>
@@ -131,20 +138,33 @@ namespace Test.Storage.Integration
         public string Path => throw new NotImplementedException();
 
         /// <summary>
-        /// Gets or sets server config
+        /// Gets or sets api key
         /// </summary>
         public string Value { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
+        /// <summary>
+        /// Gets the immediate descendant configuration sub-sections.
+        /// </summary>
+        /// <returns>configuration section.</returns>
         public IEnumerable<IConfigurationSection> GetChildren()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns a IChangeToken that can be used to observe when this configuration is reloaded.
+        /// </summary>
+        /// <returns>IChangeToken.</returns>
         public IChangeToken GetReloadToken()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns the specified ConfigurationSection object.
+        /// </summary>
+        /// <param name="key">key string.</param>
+        /// <returns>IConfigurationSection.</returns>
         public IConfigurationSection GetSection(string key)
         {
             throw new NotImplementedException();

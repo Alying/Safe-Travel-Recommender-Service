@@ -23,6 +23,11 @@ namespace Management.Mapping
                 CountryCode = domain.CountryCode.ToString(),
             };
 
+        /// <summary>
+        /// Maps domain recommendation to api recommendation
+        /// </summary>
+        /// <param name="recommendation">domain recommendation.</param>
+        /// <returns>api recommendation.</returns>
         public static ApiModels.Recommendation ToApi(DomainModels.Recommendation recommendation)
             => new ApiModels.Recommendation
                 {

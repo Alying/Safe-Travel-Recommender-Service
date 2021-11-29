@@ -70,7 +70,7 @@ namespace Management.Clients
                 return new AirQualityCityResponse
                 {
                     Status = "success",
-                    Data = new Data
+                    AirQualityData = new AirQualityData
                     {
                         Current = new Current
                         {
@@ -98,8 +98,9 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
+            state = AbbreviationToState.GetStateFullName(state.Value);
 
+            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
             var cityBag = new ConcurrentBag<(City city, int score)>();
             var cityTasks = sampledCities.Select(async city =>
             {
@@ -152,7 +153,7 @@ namespace Management.Clients
         {
             var result = await GetCityAirQualityDataAsync(city, state, countryCode, cancellationToken);
 
-            var aqius = result?.Data?.Current?.Pollution?.Aqius;
+            var aqius = result?.AirQualityData?.Current?.Pollution?.Aqius;
 
             if (aqius == null)
             {

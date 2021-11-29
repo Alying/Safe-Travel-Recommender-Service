@@ -1,7 +1,4 @@
-﻿// <copyright file="IDecisionEngine.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Management.DomainModels;
@@ -29,6 +26,7 @@ namespace Management.Interface
         /// </summary>
         /// <param name="countryCode">The country and state the user inquired.</param>
         /// <param name="state">The user's unique id.</param>
+        /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>The state's information.</returns>
         Task<Recommendation> GetStateInfoAsync(CountryCode countryCode, State state, CancellationToken cancellationToken);
     }
