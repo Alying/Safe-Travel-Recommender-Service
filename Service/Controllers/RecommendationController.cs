@@ -7,13 +7,9 @@ namespace Service.Controllers
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Management.ApiModels;
-    using Management.DomainModels;
-    using Management.Enum;
     using Management.Mapping;
     using Management.Ports;
     using Microsoft.AspNetCore.Mvc;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Controller for the safe-travel recommendations and safe-travel information for this
@@ -96,7 +92,7 @@ namespace Service.Controllers
             try
             {
                 _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
-                return Ok(await _recommendationPort.GetStateInfoAsync(stateCode, countryCode, cancellationToken));
+                return Ok(await _recommendationPort.GetStateInfoAsync(countryCode, stateCode, cancellationToken));
             }
             catch (Exception e)
             {
