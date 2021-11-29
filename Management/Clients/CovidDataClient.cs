@@ -33,7 +33,7 @@ namespace Management.Clients
         }
 
         /// <summary>
-        /// Retrieve city data from covid api
+        /// Retrieve state data from covid api
         /// </summary>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
