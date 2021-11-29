@@ -69,8 +69,8 @@ https://columbia-university-student-plan-team-187884.postman.co/workspace/ASE%25
 # API documentation
 We are using the following 3 APIs in order to make decisions for safe-travel locations in the Decision Engine (Not fully implemented yet).
   - COVID-19 API:  https://covidtracking.com/data/api/version-2
-  - Weather API: https://developer.accuweather.com/apis
-  - Air Quality API: https://www2.purpleair.com/
+  - Weather API: https://openweathermap.org/current#call
+  - Air Quality API: https://api-docs.iqair.com/?version=latest
 
 # Style documentation
 We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
