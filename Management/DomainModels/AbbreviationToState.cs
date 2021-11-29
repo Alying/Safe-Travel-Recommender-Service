@@ -1,5 +1,5 @@
-﻿using Management.DomainModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Management.DomainModels;
 
 namespace Management
 {
@@ -118,10 +118,20 @@ namespace Management
             { "WY", new List<City>() { City.Wrap("South Greeley"), City.Wrap("Kaycee"), City.Wrap("Moose Wilson Road"), City.Wrap("Wilson"), City.Wrap("Saratoga") } },
         };
 
+        /// <summary>
+        /// Get the state's full name
+        /// </summary>
+        /// <param name="abbreviation">the abbreviated name of the state.</param>
+        /// <returns>the state's full name</returns>
         public static State GetStateFullName(string abbreviation)
             => _stateLookUp[abbreviation];
 
-        public static IEnumerable<City> GetSupportedCities(string countryCode)
-            => _cityLookUp[countryCode];
+        /// <summary>
+        /// Get supported cities of a state
+        /// </summary>
+        /// <param name="state">the name of the state.</param>
+        /// <returns>the supported cities of the state.</returns>
+        public static IEnumerable<City> GetSupportedCities(string state)
+            => _cityLookUp[state];
     }
 }

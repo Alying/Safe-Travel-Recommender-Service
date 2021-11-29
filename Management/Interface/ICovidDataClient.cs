@@ -5,6 +5,9 @@ using Management.DomainModels;
 
 namespace Management.Interface
 {
+    /// <summary>
+    /// Interface for covid data client
+    /// </summary>
     public interface ICovidDataClient : IWeightedClient
     {
         /// <summary>

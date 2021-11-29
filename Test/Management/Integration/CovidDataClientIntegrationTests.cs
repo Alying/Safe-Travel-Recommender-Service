@@ -52,9 +52,16 @@ namespace Test.Management.Integration
             var exception = await Assert.ThrowsAsync<Exception>(() => covidClient.GetStateCovidDataAsync(State.Wrap("abc"), CancellationToken.None));
         }
 
+        /// <summary>
+        /// Representation of configuration section
+        /// </summary>
         public class Section : IConfigurationSection
         {
-            public string this[string key] { get => ""; set => throw new NotImplementedException(); }
+            /// <summary>
+            /// Gets api key
+            /// </summary>
+            /// <param name="key">api key string.</param>
+            public string this[string key] { get => string.Empty; set => throw new NotImplementedException(); }
 
             /// <summary>
             /// Gets connection string 
@@ -67,20 +74,33 @@ namespace Test.Management.Integration
             public string Path => throw new NotImplementedException();
 
             /// <summary>
-            /// Gets or sets server config
+            /// Gets or sets api key
             /// </summary>
-            public string Value { get => ""; set => throw new NotImplementedException(); }
+            public string Value { get => string.Empty; set => throw new NotImplementedException(); }
 
+            /// <summary>
+            /// Gets the immediate descendant configuration sub-sections.
+            /// </summary>
+            /// <returns>IConfigurationSection.</returns>
             public IEnumerable<IConfigurationSection> GetChildren()
             {
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Returns a IChangeToken that can be used to observe when this configuration is reloaded.
+            /// </summary>
+            /// <returns>IChangeToken.</returns>
             public IChangeToken GetReloadToken()
             {
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Returns the specified ConfigurationSection object.
+            /// </summary>
+            /// <param name="key">key string.</param>
+            /// <returns>IConfigurationSection.</returns>
             public IConfigurationSection GetSection(string key)
             {
                 throw new NotImplementedException();

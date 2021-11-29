@@ -45,6 +45,11 @@ namespace Management.Mapping
             throw new Exception($"Country: {countryCode} not supported");
         }
 
+        /// <summary>
+        /// Validate if the given country is supported by our service
+        /// </summary>
+        /// <param name="countryCode">country eg. US.</param>
+        /// <returns>the enum country code.</returns>
         public static CountryCode ValidateCountry(string countryCode)
         {
             if (System.Enum.TryParse<CountryCode>(countryCode, out var enumCode))
