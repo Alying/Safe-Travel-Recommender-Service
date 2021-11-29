@@ -27,7 +27,7 @@ namespace Client
         public float WeatherScore { get; set; }
     }
 
-    class Program
+    public class Program
     {
         private static async Task<List<ClientResponse>> RecommendationClient(string endpoint)
         {
@@ -48,7 +48,7 @@ namespace Client
             return response;
         }
 
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             Console.WriteLine("Starting client...");
 
