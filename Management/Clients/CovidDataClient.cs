@@ -43,29 +43,13 @@ namespace Management.Clients
             CancellationToken cancellationToken)
         {
             // Covid Tracking Project stop collecting new COVID data since 2021-03-07
-            var request = new RestRequest("v2/states/" + state.Value.ToLower() + "/2021-03-07.json", Method.GET);
+            var request = new RestRequest($"v2/states/{state.Value.ToLower()}/2021-03-07.json", Method.GET);
 
             var response = await _restClient.ExecuteAsync(request, cancellationToken);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return JsonConvert.DeserializeObject<CovidStateResponse>(response.Content);
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-            {
-                return new CovidStateResponse
-                {
-                    CovidData = new CovidData
-                    {
-                        Cases = new Cases
-                        {
-                            Total = new Total
-                            {
-                                Value = new Random().Next(0, 99999999),
-                            },
-                        },
-                    },
-                };
             }
 
             throw new Exception($"Failed to get data from covid tracking project. Error detail: {response.Content}");
@@ -81,23 +65,6 @@ namespace Management.Clients
         public async Task<(State, double)> CalculateScoreForStateAsync(
             State state,
             CountryCode countryCode,
-            CancellationToken cancellationToken)
-        {
-            var stateBag = new ConcurrentBag<(State city, int score)>();
-
-            var result = await GetSingleStateAsync(State.Wrap(state.Value.ToLower()), cancellationToken);
-            stateBag.Add(result);
-
-            return (state, stateBag.Select(res => res.score).Sum() / stateBag.Count());
-        }
-
-        /// <summary>
-        /// Get single state's covid score
-        /// </summary>
-        /// <param name="state">state of interest eg. NY.</param>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        private async Task<(State state, int score)> GetSingleStateAsync(
-            State state,
             CancellationToken cancellationToken)
         {
             var result = await GetStateCovidDataAsync(state, cancellationToken);
@@ -132,11 +99,6 @@ namespace Management.Clients
             if (confirmedCases >= 1000001 && confirmedCases <= 2000000)
             {
                 return (state, 20);
-            }
-
-            if (confirmedCases >= 2000001)
-            {
-                return (state, 0);
             }
 
             return (state, 0);

@@ -1,8 +1,4 @@
-﻿// <copyright file="AirQualityDataClientTests.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,15 +31,32 @@ namespace Test.Management.Integration
 
             var airClient = new AirQualityDataClient(configMock.Object);
 
-            var result = await airClient.GetCityAirQualityDataAsync(City.Wrap("Los Angeles"), State.Wrap("California"), CountryCode.US, CancellationToken.None);
+            var exception = await Assert.ThrowsAsync<Exception>(() => airClient.GetCityAirQualityDataAsync(City.Wrap("ase"), State.Wrap("California"), CountryCode.US, CancellationToken.None));
 
-            Assert.Equal("success", result.Status);
+            var resultME = await airClient.CalculateScoreForStateAsync(State.Wrap("ME"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("ME", resultME.Item1.Value);
+
+            var resultWA = await airClient.CalculateScoreForStateAsync(State.Wrap("WA"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("WA", resultWA.Item1.Value);
+
+            var resultVA = await airClient.CalculateScoreForStateAsync(State.Wrap("VA"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("VA", resultVA.Item1.Value);
+
+            var resultNC = await airClient.CalculateScoreForStateAsync(State.Wrap("NC"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("NC", resultNC.Item1.Value);
+
+            var resultNY = await airClient.CalculateScoreForStateAsync(State.Wrap("NY"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("NY", resultNY.Item1.Value);
+
+            var resultCA = await airClient.CalculateScoreForStateAsync(State.Wrap("CA"), CountryCode.US, CancellationToken.None);
+            Assert.Equal("CA", resultCA.Item1.Value);
         }
 
         public class Section : IConfigurationSection
         {
-            public string this[string key] { get => "ecc93ce2-d18c-44a3-a414-adc270da84bd"; set => throw new NotImplementedException(); }
-
+            //public string this[string key] { get => "ecc93ce2-d18c-44a3-a414-adc270da84bd"; set => throw new NotImplementedException(); }
+            public string this[string key] { get => "9ac310f1-7fb7-4ced-8808-478fdbe6ed13"; set => throw new NotImplementedException(); }
+            
             /// <summary>
             /// Gets connection string 
             /// </summary>
@@ -57,7 +70,8 @@ namespace Test.Management.Integration
             /// <summary>
             /// Gets or sets server config
             /// </summary>
-            public string Value { get => "ecc93ce2-d18c-44a3-a414-adc270da84bd"; set => throw new NotImplementedException(); }
+            //public string Value { get => "ecc93ce2-d18c-44a3-a414-adc270da84bd"; set => throw new NotImplementedException(); }
+            public string Value { get => "9ac310f1-7fb7-4ced-8808-478fdbe6ed13"; set => throw new NotImplementedException(); }
 
             public IEnumerable<IConfigurationSection> GetChildren()
             {

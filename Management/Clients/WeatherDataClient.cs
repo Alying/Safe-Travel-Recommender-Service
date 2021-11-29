@@ -59,17 +59,23 @@ namespace Management.Clients
             {
                 return JsonConvert.DeserializeObject<WeatherCityResponse>(response.Content);
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-            {
-                return new WeatherCityResponse
-                {
-                    WeatherData = new WeatherData
-                    {
-                        // usually temperature will fall in between 0 - 40 Celsius or 273 - 313 Kelvin
-                        Temp = new Random().Next(273, 313),
-                    },
-                };
-            }
+
+            // According to air visual api's free package, we can only make 60 calls per minute. However, I tested
+            // several times with hundreds of calls but never hit too many request(429 error code according to their website).
+            // I will comment this part out for now, and we can reuse it if we need to.
+
+            //else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            //{
+            //    return new WeatherCityResponse
+            //    {
+            //        Status = "success",
+            //        WeatherData = new WeatherData
+            //        {
+            //            // usually temperature will fall in between 0 - 40 Celsius or 273 - 313 Kelvin
+            //            Temp = new Random().Next(273, 313),
+            //        },
+            //    };
+            //}
 
             throw new Exception($"Failed to get data from open weather. Error detail: {response.Content}");
         }
@@ -86,16 +92,16 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var stateCityDict = new StateToCityDict();
             var cityBag = new ConcurrentBag<(City city, int score)>();
 
-            var supportedCities = stateCityDict.stateToCityDict[state.Value];
+            var supportedCities = AbbreviationToState.GetSupportedCities(state.Value);
             var cityTasks = supportedCities.Select(async city =>
             {
                 var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
                 cityBag.Add(result);
             });
             await Task.WhenAll(cityTasks);
+
 
             return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
         }
@@ -127,7 +133,7 @@ namespace Management.Clients
 
             // Human's ideal temperature is around 70 Fahrenheit
             // Deduct 2 points from score 100 for each temperature point that's off from the ideal temperature
-            return (city, (int)(100 - (2 * Math.Abs((decimal)tempInF - 70))));
+            return (city, Math.Max(0, (int)(100 - (2 * Math.Abs((decimal)tempInF - 70)))));
         }
     }
 }

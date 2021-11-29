@@ -8,6 +8,12 @@ namespace Management.Clients.Models
     public class WeatherCityResponse
     {
         /// <summary>
+        /// Gets or sets status from weather api call
+        /// </summary>
+        [JsonProperty("cod")]
+        public string Status { get; set; }
+
+        /// <summary>
         /// Gets or sets data grabbed from weather api call
         /// </summary>
         [JsonProperty("main")]

@@ -66,7 +66,7 @@ namespace Management.Clients
                 return new AirQualityCityResponse
                 {
                     Status = "success",
-                    Data = new Data
+                    AirQualityData = new AirQualityData
                     {
                         Current = new Current
                         {
@@ -94,14 +94,12 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var abbrStateDict = new AbbrToStateDict();
-            var stateCityDict = new StateToCityDict();
-            var supportedCities = stateCityDict.stateToCityDict[state.Value];
+            var supportedCities = AbbreviationToState.GetSupportedCities(state.Value);
 
             var cityBag = new ConcurrentBag<(City city, int score)>();
             var cityTasks = supportedCities.Select(async city =>
             {
-                var result = await GetSingleCityAsync(city, abbrStateDict.abbrToStateDict[state.Value], countryCode, cancellationToken);
+                var result = await GetSingleCityAsync(city, AbbreviationToState.GetStateFullName(state.Value), countryCode, cancellationToken);
                 cityBag.Add(result);
             });
             await Task.WhenAll(cityTasks);
@@ -125,7 +123,7 @@ namespace Management.Clients
         {
             var result = await GetCityAirQualityDataAsync(city, state, countryCode, cancellationToken);
             
-            var aqius = result?.Data?.Current?.Pollution?.Aqius;
+            var aqius = result?.AirQualityData?.Current?.Pollution?.Aqius;
 
             if (aqius == null)
             {
@@ -137,29 +135,24 @@ namespace Management.Clients
                 return (city, 100);
             }
 
-            if (aqius >= 50 && aqius <= 100)
+            if (aqius >= 51 && aqius <= 100)
             {
                 return (city, 80);
             }
 
-            if (aqius >= 100 && aqius <= 150)
+            if (aqius >= 101 && aqius <= 150)
             {
                 return (city, 60);
             }
 
-            if (aqius >= 150 && aqius <= 200)
+            if (aqius >= 151 && aqius <= 200)
             {
                 return (city, 40);
             }
 
-            if (aqius >= 200 && aqius <= 300)
+            if (aqius >= 201 && aqius <= 300)
             {
                 return (city, 20);
-            }
-
-            if (aqius >= 300)
-            {
-                return (city, 0);
             }
 
             return (city, 0);
