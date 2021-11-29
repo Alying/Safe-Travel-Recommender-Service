@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,6 +62,9 @@ namespace Management.Clients
             {
                 return JsonConvert.DeserializeObject<AirQualityCityResponse>(response.Content);
             }
+
+            // Free trial has limit per minute, and the startup plan start from 390$ per year which we cannot afford.
+            // Therefore we try to get as much data as possiable, and for the exceeding part we fake the result.
             else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
                 return new AirQualityCityResponse
@@ -83,7 +87,7 @@ namespace Management.Clients
         }
 
         /// <summary>
-        /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of a state
+        /// Use Air Quality Index (https://www.airnow.gov/aqi/aqi-basics/) to calculate score of cities
         /// </summary>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="countryCode">country of interest eg. US.</param>
@@ -94,12 +98,13 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var supportedCities = AbbreviationToState.GetSupportedCities(state.Value);
+            state = AbbreviationToState.GetStateFullName(state.Value);
 
+            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
             var cityBag = new ConcurrentBag<(City city, int score)>();
-            var cityTasks = supportedCities.Select(async city =>
+            var cityTasks = sampledCities.Select(async city =>
             {
-                var result = await GetSingleCityAsync(city, AbbreviationToState.GetStateFullName(state.Value), countryCode, cancellationToken);
+                var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
                 cityBag.Add(result);
             });
             await Task.WhenAll(cityTasks);
@@ -108,13 +113,38 @@ namespace Management.Clients
         }
 
         /// <summary>
-        /// Get single city's air quality score
+        /// Get supported cities from a state according to air quality api
         /// </summary>
-        /// <param name="city">city of interest eg. NYC.</param>
         /// <param name="state">state of interest eg. NY.</param>
         /// <param name="countryCode">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
+        public async Task<IEnumerable<City>> GetDefaultCitiesAsync(
+            State state,
+            CountryCode countryCode,
+            CancellationToken cancellationToken)
+        {
+            var request = new RestRequest("v2/cities", Method.GET);
+            request
+                .AddQueryParameter("state", state.Value)
+                .AddQueryParameter("country", countryCode == CountryCode.US ? "USA" : "CANADA")
+                .AddQueryParameter("key", ApiKey);
+
+            var response = await _restClient.ExecuteAsync(request, cancellationToken);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert
+                    .DeserializeObject<AirQualityQueryCityResponse>(response.Content)
+                    .Data
+                    .Select(cityData => City.Wrap(cityData.CityName))
+                    .OrderBy(x => new Random().Next())
+                    .Take(5);
+            }
+
+            throw new Exception("Retrieve Data Failed");
+        }
+
         private async Task<(City city, int score)> GetSingleCityAsync(
             City city,
             State state,
@@ -122,7 +152,7 @@ namespace Management.Clients
             CancellationToken cancellationToken)
         {
             var result = await GetCityAirQualityDataAsync(city, state, countryCode, cancellationToken);
-            
+
             var aqius = result?.AirQualityData?.Current?.Pollution?.Aqius;
 
             if (aqius == null)
@@ -153,6 +183,11 @@ namespace Management.Clients
             if (aqius >= 201 && aqius <= 300)
             {
                 return (city, 20);
+            }
+
+            if (aqius >= 301)
+            {
+                return (city, 0);
             }
 
             return (city, 0);

@@ -34,22 +34,7 @@ namespace Test.Management.Integration
             var exception = await Assert.ThrowsAsync<Exception>(() => airClient.GetCityAirQualityDataAsync(City.Wrap("ase"), State.Wrap("California"), CountryCode.US, CancellationToken.None));
 
             var resultME = await airClient.CalculateScoreForStateAsync(State.Wrap("ME"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("ME", resultME.Item1.Value);
-
-            var resultWA = await airClient.CalculateScoreForStateAsync(State.Wrap("WA"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("WA", resultWA.Item1.Value);
-
-            var resultVA = await airClient.CalculateScoreForStateAsync(State.Wrap("VA"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("VA", resultVA.Item1.Value);
-
-            var resultNC = await airClient.CalculateScoreForStateAsync(State.Wrap("NC"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("NC", resultNC.Item1.Value);
-
-            var resultNY = await airClient.CalculateScoreForStateAsync(State.Wrap("NY"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("NY", resultNY.Item1.Value);
-
-            var resultCA = await airClient.CalculateScoreForStateAsync(State.Wrap("CA"), CountryCode.US, CancellationToken.None);
-            Assert.Equal("CA", resultCA.Item1.Value);
+            Assert.Equal("Maine", resultME.Item1.Value);
         }
 
         public class Section : IConfigurationSection

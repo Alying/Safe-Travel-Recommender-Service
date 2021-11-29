@@ -236,11 +236,13 @@ var assemblies = [
       { "name": "Management.ApiModels.Recommendation", "rp": "Management_Recommendation.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 21, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.ApiModels.User", "rp": "Management_User.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 36, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.ApiModels.UserId", "rp": "Management_UserId.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 13, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
-      { "name": "Management.Clients.AirQualityDataClient", "rp": "Management_AirQualityDataClient.html", "cl": 67, "ucl": 2, "cal": 69, "tl": 167, "ct": "LineCoverage", "mc": "-", "cb": 26, "tb": 38, "lch": [], "bch": [], "hc": [] },
+      { "name": "Management.Clients.AirQualityDataClient", "rp": "Management_AirQualityDataClient.html", "cl": 56, "ucl": 34, "cal": 90, "tl": 196, "ct": "LineCoverage", "mc": "-", "cb": 14, "tb": 44, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.CovidDataClient", "rp": "Management_CovidDataClient.html", "cl": 34, "ucl": 2, "cal": 36, "tl": 107, "ct": "LineCoverage", "mc": "-", "cb": 23, "tb": 34, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.AirQualityCityResponse", "rp": "Management_AirQualityCityResponse.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 70, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.AirQualityData", "rp": "Management_AirQualityData.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 70, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
+      { "name": "Management.Clients.Models.AirQualityQueryCityResponse", "rp": "Management_AirQualityQueryCityResponse.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 35, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.Cases", "rp": "Management_Cases.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 53, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
+      { "name": "Management.Clients.Models.CityData", "rp": "Management_CityData.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 35, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.CovidData", "rp": "Management_CovidData.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 53, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.CovidStateResponse", "rp": "Management_CovidStateResponse.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 53, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
       { "name": "Management.Clients.Models.Current", "rp": "Management_Current.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 70, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
@@ -290,9 +292,15 @@ var assemblies = [
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
+      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
+  {
+    "assembly": "Management", "class": "Management.Clients.AirQualityDataClient", "reportPath": "Management_AirQualityDataClient.html", "methodName": "GetSingleCityAsync()", "methodShortName": "GetSingleCityAsync()", "fileIndex": 0, "line": 153,
+    "metrics": [
+      { "value": 32, "exceeded": true },
+    ]},
 ];
 
 var branchCoverageAvailable = true;
