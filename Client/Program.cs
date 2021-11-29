@@ -15,13 +15,13 @@ namespace Client
         public string RecommendationState { get; set; }
 
         [JsonPropertyName("overallScore")]
-        public float OverAllScore { get; set; }
+        public float OverallScore { get; set; }
 
         [JsonPropertyName("airQualityScore")]
         public float AirQualityScore { get; set; }
 
         [JsonPropertyName("covidIndexScore")]
-        public float CovideIndexScore { get; set; }
+        public float CovidIndexScore { get; set; }
 
         [JsonPropertyName("weatherScore")]
         public float WeatherScore { get; set; }
@@ -29,27 +29,45 @@ namespace Client
 
     class Program
     {
-        private static async Task<List<ClientResponse>> Client()
+        private static async Task<List<ClientResponse>> RecommendationClient(string endpoint)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
-            string url = "https://localhost:5001/api/recommendations";
-            var streamTask = await client.GetStreamAsync(url);
-            Console.WriteLine(streamTask.ToString());
-            var responses = await System.Text.Json.JsonSerializer.DeserializeAsync<List<ClientResponse>>(streamTask);
-            return responses;
+
+            var streamTask = await client.GetStreamAsync(endpoint);
+            var response = await System.Text.Json.JsonSerializer.DeserializeAsync<List<ClientResponse>>(streamTask);
+            return response;
+        }
+        private static async Task<ClientResponse> LocationInquiryClient(string endpoint)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            var streamTask = await client.GetStreamAsync(endpoint);
+            var response = await System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask);
+            return response;
         }
 
         static async Task Main(string[] args)
         {
             Console.WriteLine("Starting client...");
 
-            // start client with an enter after service is fully running
-            Console.ReadLine();
+            // can hit either recommendation or location inquiry endpoint from Safe Travel Service
+            string recommendationEndpoint = "https://localhost:5001/api/recommendations";
+            string locationInquiryEndpoint = "https://localhost:5001/api/recommendations/country/US/state/California";
 
-            var task = await Client();
-            foreach (var itm in task)
-                Console.WriteLine($"{itm.State}, {itm.RecommendationState}, {itm.OverAllScore}");
+            // start location inquiry client with an enter after service is fully running
+            Console.ReadLine();
+            var locationInquiryTask = await LocationInquiryClient(locationInquiryEndpoint);
+            Console.WriteLine($"{locationInquiryTask.State}, {locationInquiryTask.RecommendationState}, {locationInquiryTask.OverallScore}");
+
+            // start recommendation client with another enter
+            Console.ReadLine();
+            var recommendationTask = await RecommendationClient(recommendationEndpoint);
+            foreach (var item in recommendationTask)
+                Console.WriteLine($"{item.State}, {item.RecommendationState}, {item.OverallScore}");
+
+            // TODO: @alinaying, make console app do something with the retrieved responses
         }
     }
 }
