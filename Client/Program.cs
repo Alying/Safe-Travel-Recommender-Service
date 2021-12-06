@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -29,6 +31,24 @@ namespace Client
 
     public class Program
     {
+        public static string url = "http://localhost:8000/";
+        public static HttpListener listener;
+        public static int requestCount = 0;
+        public static int pageViews = 0;
+        public static string pageData =
+            "<!DOCTYPE>" +
+            "<html>" +
+            "  <head>" +
+            "    <title>HttpListener Example</title>" +
+            "  </head>" +
+            "  <body>" +
+            "    <p>Page Views: {0}</p>" +
+            "    <form method=\"post\" action=\"shutdown\">" +
+            "      <input type=\"submit\" value=\"Shutdown\" {1}>" +
+            "    </form>" +
+            "  </body>" +
+            "</html>";
+
         private static async Task<List<ClientResponse>> RecommendationClient(string endpoint)
         {
             HttpClient client = new HttpClient();
@@ -46,6 +66,36 @@ namespace Client
             var streamTask = await client.GetStreamAsync(endpoint);
             var response = await System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask);
             return response;
+        }
+
+        public static async Task HandleIncomingConnections()
+        {
+            bool runServer = true;
+            while (runServer)
+            {
+                HttpListenerContext ctx = await listener.GetContextAsync();
+                HttpListenerRequest req = ctx.Request;
+                HttpListenerResponse resp = ctx.Response;
+                Console.WriteLine($"{++requestCount}, {req.Url.ToString()}, {req.HttpMethod}, {req.UserHostName}, {req.UserAgent}");
+
+                if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath) == "shutdown")
+                {
+                    Console.WriteLine("SHutdown requ4ested");
+                    runServer = false;
+                }
+
+                if (req.Url.AbsolutePath != "/favicon.ico")
+                {
+                    pageViews += 1;
+                }
+
+                string disableSubmit = !runServer ? "disabled" : "";
+                byte[] data = Encoding.UTF8.GetBytes(String.Format(pageData, pageViews, disableSubmit));
+                resp.ContentType = "text/html";
+                resp.ContentEncoding = Encoding.UTF8;
+                resp.ContentLength64 = data.LongLength;
+
+            }
         }
 
         private static async Task Main(string[] args)
@@ -68,6 +118,18 @@ namespace Client
                 Console.WriteLine($"{item.State}, {item.RecommendationState}, {item.OverallScore}");
 
             // TODO: @alinaying, make console app do something with the retrieved responses
+            // create a service
+            listener = new HttpListener();
+            listener.Prefixes.Add(url);
+            listener.Start();
+            Console.WriteLine($"Listening to {url}");
+
+            Task listenTask = HandleIncomingConnections();
+            listenTask.GetAwaiter().GetResult();
+            listener.Close();
+
+            //Console.WriteLine("Hello World!");
+            Console.ReadLine();
         }
     }
 }
