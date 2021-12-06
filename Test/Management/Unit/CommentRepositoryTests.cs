@@ -19,6 +19,8 @@ namespace Test.Management.Unit
     /// </summary>
     public class CommentRepositoryTests
     {
+        private const string TestFlag = "disable for CI/CD";
+
         private Mock<IRepository> _mockRepository;
         private CommentRepository _commentRepository;
         private readonly ITestOutputHelper _output;
@@ -38,7 +40,7 @@ namespace Test.Management.Unit
         /// Test to see if successfully get all comments
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task GetAllCommentsAsync_Success()
         {
             var colVals = new Dictionary<string, string>()
@@ -74,7 +76,7 @@ namespace Test.Management.Unit
         /// Test to see if successfully post comment
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task AddCommentAsync_Success()
         {
             var testComment = new DomainComment(
