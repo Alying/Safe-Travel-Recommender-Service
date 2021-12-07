@@ -80,7 +80,6 @@ namespace Client
 
                 if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath) == "shutdown")
                 {
-                    Console.WriteLine("SHutdown requ4ested");
                     runServer = false;
                 }
 
@@ -117,8 +116,7 @@ namespace Client
             foreach (var item in recommendationTask)
                 Console.WriteLine($"{item.State}, {item.RecommendationState}, {item.OverallScore}");
 
-            // TODO: @alinaying, make console app do something with the retrieved responses
-            // create a service
+            // starts listening at localhost:8000
             listener = new HttpListener();
             listener.Prefixes.Add(url);
             listener.Start();
@@ -128,7 +126,6 @@ namespace Client
             listenTask.GetAwaiter().GetResult();
             listener.Close();
 
-            //Console.WriteLine("Hello World!");
             Console.ReadLine();
         }
     }
