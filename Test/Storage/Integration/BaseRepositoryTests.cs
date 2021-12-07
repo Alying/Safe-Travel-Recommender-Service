@@ -16,6 +16,8 @@ namespace Test.Storage.Integration
     /// </summary>
     public class BaseRepositoryTests : IDisposable
     {
+        private const string TestFlag = "disable for CI/CD";
+
         private readonly string _tableName = "user";
         private readonly ITestOutputHelper _output;
         private readonly MockRepository _mockRepo;
@@ -51,7 +53,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully get all table items
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task GetAllAsync_ValidInput_Success()
         {
             var result = await _repository.GetAllAsync<User>(_tableName);
@@ -63,7 +65,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully get specific table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task GetAsync_ValidInput_Success()
         {
             var result = await _repository.GetAsync<User>(_tableName, "UserId", "2");
@@ -80,7 +82,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully insert new table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task InsertAsync_ValidInput_Success()
         {
             await _repository.InsertAsync<User>(_tableName, new List<string>[]
@@ -98,7 +100,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully update table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task UpdateAsync_ValidInput_Success()
         {
             await _repository.UpdateAsync(_tableName, "UserId", "2", new Dictionary<string, string>
