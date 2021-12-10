@@ -23,13 +23,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: success() || failure()    # run this step even if previous step failed
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v1
+      if: always()
       with:
-        name: Dotnet Tests            # Name of the check run which will be created
-        path: reports/dotnet-*.xml    # Path to test results
-        reporter: dotnet-trx        # Format of test results
+        files: reports/*.xml
     - name: Run .NET Code Analysis
       uses: dotnet/code-analysis@main
       id: code-analysis
