@@ -27,7 +27,7 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action/composite@v1
       if: always()
       with:
-        files: Test/TestResults/result.xml
+        files: ./Test/TestResults/result.xml
     - name: Run .NET Code Analysis
       uses: dotnet/code-analysis@main
       id: code-analysis
