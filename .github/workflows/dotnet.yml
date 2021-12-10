@@ -23,15 +23,14 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@main
-      id: code-analysis
-      with:
-        build-breaking: false
-    - name: Test Report
       uses: dorny/test-reporter@v1
       if: success() || failure()    # run this step even if previous step failed
       with:
         name: Dotnet Tests            # Name of the check run which will be created
         path: reports/dotnet-*.xml    # Path to test results
         reporter: dotnet-trx        # Format of test results
+    - name: Run .NET Code Analysis
+      uses: dotnet/code-analysis@main
+      id: code-analysis
+      with:
+        build-breaking: false
