@@ -1,6 +1,3 @@
-// <copyright file="DecisionEngine.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -52,16 +49,19 @@ namespace Management
                 _airQualityDataClient,
             };
 
-            // Temp solution for demo purpose
-            // TODO: Add static mapping for State - cities
-            // For now hardcode 2 cities for California
+            // Currently only implemented US
             _defaultUsStates = new List<State>
             {
-                State.Wrap("Massachusetts"),
-                State.Wrap("Georgia"),
-                State.Wrap("California"),
-                State.Wrap("Illinois"),
-                State.Wrap("Washington"),
+                State.Wrap("CA"),
+                State.Wrap("FL"),
+                State.Wrap("GA"),
+                State.Wrap("IL"),
+                State.Wrap("MA"),
+                State.Wrap("MD"),
+                State.Wrap("NC"),
+                State.Wrap("NJ"),
+                State.Wrap("NY"),
+                State.Wrap("WA"),
             };
 
             _defaultCaStates = new List<State>
@@ -111,7 +111,10 @@ namespace Management
             var covidScore = await _covidDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken);
             var weatherScore = await _weatherDataClient.CalculateScoreForStateAsync(state, countryCode, cancellationToken);
 
-            var finalScore = (airScore.score + covidScore.score + weatherScore.score) / 3;
+            var finalScore = Math.Round(
+                                         (AirQualityWeight * airScore.score) +
+                                         (CovidDataWeight * covidScore.score) +
+                                         (WeatherDataWeight * weatherScore.score), 1);
 
             return new Recommendation(
                 countryCode: countryCode,
@@ -123,14 +126,19 @@ namespace Management
                 weatherScore: weatherScore.score);
         }
 
+        /// <summary>
+        /// Determines the score for the state.
+        /// </summary>
+        /// <param name="finalScore">The final score of the state.</param>
+        /// <returns>The state's level of recommendation.</returns>
         private static RecommendationState GetRecommendationState(double finalScore)
         {
-            if ( finalScore >= 80 && finalScore <= 100)
+            if (finalScore >= 80 && finalScore <= 100)
             {
                 return RecommendationState.Highly_Recommended;
             }
 
-            if (finalScore >= 40 && finalScore < 70)
+            if (finalScore >= 60 && finalScore < 80)
             {
                 return RecommendationState.Recommended;
             }

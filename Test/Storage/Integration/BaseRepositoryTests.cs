@@ -16,6 +16,8 @@ namespace Test.Storage.Integration
     /// </summary>
     public class BaseRepositoryTests : IDisposable
     {
+        private const string TestFlag = "disable for CI/CD";
+
         private readonly string _tableName = "user";
         private readonly ITestOutputHelper _output;
         private readonly MockRepository _mockRepo;
@@ -51,7 +53,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully get all table items
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task GetAllAsync_ValidInput_Success()
         {
             var result = await _repository.GetAllAsync<User>(_tableName);
@@ -63,7 +65,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully get specific table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task GetAsync_ValidInput_Success()
         {
             var result = await _repository.GetAsync<User>(_tableName, "UserId", "2");
@@ -80,7 +82,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully insert new table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task InsertAsync_ValidInput_Success()
         {
             await _repository.InsertAsync<User>(_tableName, new List<string>[]
@@ -98,7 +100,7 @@ namespace Test.Storage.Integration
         /// Test to see if successfully update table item
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact]
+        [Fact(Skip = TestFlag)]
         public async Task UpdateAsync_ValidInput_Success()
         {
             await _repository.UpdateAsync(_tableName, "UserId", "2", new Dictionary<string, string>
@@ -116,8 +118,15 @@ namespace Test.Storage.Integration
         }
     }
 
+    /// <summary>
+    /// Representation of configuration section
+    /// </summary>
     public class Section : IConfigurationSection
     {
+        /// <summary>
+        /// Gets database server config
+        /// </summary>
+        /// <param name="key">database server string.</param>
         public string this[string key] { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
         /// <summary>
@@ -131,20 +140,33 @@ namespace Test.Storage.Integration
         public string Path => throw new NotImplementedException();
 
         /// <summary>
-        /// Gets or sets server config
+        /// Gets or sets api key
         /// </summary>
         public string Value { get => "Server=localhost; port=3306; database=asesharptestdb; UID=root; password=asesharp"; set => throw new NotImplementedException(); }
 
+        /// <summary>
+        /// Gets the immediate descendant configuration sub-sections.
+        /// </summary>
+        /// <returns>configuration section.</returns>
         public IEnumerable<IConfigurationSection> GetChildren()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns a IChangeToken that can be used to observe when this configuration is reloaded.
+        /// </summary>
+        /// <returns>IChangeToken.</returns>
         public IChangeToken GetReloadToken()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns the specified ConfigurationSection object.
+        /// </summary>
+        /// <param name="key">key string.</param>
+        /// <returns>IConfigurationSection.</returns>
         public IConfigurationSection GetSection(string key)
         {
             throw new NotImplementedException();
