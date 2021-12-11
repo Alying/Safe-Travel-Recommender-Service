@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -44,21 +44,18 @@ namespace WebClient.Controllers
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
 
-            var streamTask = client.GetStreamAsync(endpoint).Result;
-            var response = System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask).Result;
+            var streamTask = await client.GetStreamAsync(endpoint);
+            var response = await System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask);
             return response;
         }
 
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] {
-                "endpoint should be https://localhost:44324/api/values/1 for the Recommendation Client",
-                "endpoint should be https://localhost:44324/api/values/2 for the Location Inquiry Client"
-            };
+            return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/{id}
+        // GET api/values/5
         public string Get(int id)
         {
             // can hit either recommendation or location inquiry endpoint from Safe Travel Service
@@ -69,39 +66,40 @@ namespace WebClient.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(id);
 
-                string result = "";
+                /*
+                 * <div class="jumbotron">
+    <h1>Test Web Client</h1>
+    <p class="lead">This is a web client that tests out the Team ASE# Safe Travel Service.</p>
+    <p><a href="https://localhost:44323/api/values/1" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+                 */
+                string result = "<div class='jumbotron'>";
                 var task = RecommendationClient(recommendationEndpoint);
                 foreach (var clientResponse in task.Result)
                 {
                     result += clientResponse.State + " " + clientResponse.RecommendationState + " " + clientResponse.OverallScore + "\n";
                 }
 
-                return result;
+                return result + "</div>";
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine($"{locationInquiryEndpoint}");
-                var task = LocationInquiryClient(locationInquiryEndpoint);
-                var clientResponse = task.Result;
-                string result = clientResponse.CovidIndexScore + " " +
-                    clientResponse.AirQualityScore + " " +
-                    clientResponse.OverallScore + " " +
-                    clientResponse.RecommendationState;
-                return result;
+                return "hi2";
             }
         }
 
-        // POST api/values. Not used.
+        // POST api/values
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/values/5. Not used.
+        // PUT api/values/5
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5. Not used.
+        // DELETE api/values/5
         public void Delete(int id)
         {
         }
