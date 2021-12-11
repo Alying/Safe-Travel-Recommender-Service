@@ -72,6 +72,9 @@ We are using the following 3 APIs in order to make decisions for safe-travel loc
   - Weather API: https://openweathermap.org/current#call
   - Air Quality API: https://api-docs.iqair.com/?version=latest
 
+# Client Documentation
+To run the test client included in this codebase, check that there are multiple startup projects. Right-click the solution, click 'Properties', navigate to 'Startup Project' and make sure the 'Multiple startup projects' is selected. The projects that should have a 'Start' Action are WebClient and Service (i.e. on running 'Start', which is the green run arrow, both the Service and the test client WebClient will be run together.) 
+
 # Style documentation
 We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
 
