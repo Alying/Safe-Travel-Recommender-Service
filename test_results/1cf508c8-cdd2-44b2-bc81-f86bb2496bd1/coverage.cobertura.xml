@@ -1,168 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.3812" branch-rate="0.2783" version="1.9" timestamp="1638150776" lines-covered="342" lines-valid="897" branches-covered="59" branches-valid="212">
+<coverage line-rate="0.5086999999999999" branch-rate="0.3018" version="1.9" timestamp="1639252258" lines-covered="437" lines-valid="859" branches-covered="64" branches-valid="212">
   <sources>
-    <source>C:\Users\8xiao\Documents\College\Grad\2021\2021 Fall\COMS 4156\Assignments\Team\team_ase_sharp\</source>
+    <source>C:\Users\Yihon\OneDrive\Desktop\new_tp\team_ase_sharp\</source>
   </sources>
   <packages>
-    <package name="Common" line-rate="0.3333" branch-rate="0.5" complexity="11">
+    <package name="Common" line-rate="0.6111" branch-rate="0.5" complexity="11">
       <classes>
         <class name="Common.TaggedString`1" filename="Common\TaggedString.cs" line-rate="0.46149999999999997" branch-rate="0.5" complexity="6">
           <methods>
             <method name="get_Value" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="33" hits="448" branch="False" />
+                <line number="29" hits="566" branch="False" />
               </lines>
             </method>
             <method name="UnWrap" signature="(Common.TaggedString`1&lt;TTag&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="41" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
               </lines>
             </method>
             <method name="CompareTo" signature="(Common.TaggedString`1&lt;TTag&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
               </lines>
             </method>
             <method name="Equals" signature="(Common.TaggedString`1&lt;TTag&gt;)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.String)" line-rate="0.7142000000000001" branch-rate="0.5" complexity="2">
               <lines>
-                <line number="20" hits="346" branch="False" />
-                <line number="21" hits="346" branch="False" />
-                <line number="22" hits="346" branch="True" condition-coverage="50% (1/2)">
+                <line number="16" hits="410" branch="False" />
+                <line number="17" hits="410" branch="False" />
+                <line number="18" hits="410" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="16" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="23" hits="0" branch="False" />
-                <line number="24" hits="0" branch="False" />
-                <line number="27" hits="346" branch="False" />
-                <line number="28" hits="346" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
+                <line number="23" hits="410" branch="False" />
+                <line number="24" hits="410" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="33" hits="448" branch="False" />
-            <line number="41" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="20" hits="346" branch="False" />
-            <line number="21" hits="346" branch="False" />
-            <line number="22" hits="346" branch="True" condition-coverage="50% (1/2)">
+            <line number="29" hits="566" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="16" hits="410" branch="False" />
+            <line number="17" hits="410" branch="False" />
+            <line number="18" hits="410" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="16" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="23" hits="0" branch="False" />
-            <line number="24" hits="0" branch="False" />
-            <line number="27" hits="346" branch="False" />
-            <line number="28" hits="346" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+            <line number="23" hits="410" branch="False" />
+            <line number="24" hits="410" branch="False" />
           </lines>
         </class>
-        <class name="Common.StorageModels.User" filename="Common\StorageModels\User.cs" line-rate="0" branch-rate="1" complexity="5">
+        <class name="Common.StorageModels.User" filename="Common\StorageModels\User.cs" line-rate="1" branch-rate="1" complexity="5">
           <methods>
-            <method name="get_UserId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_UserId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="False" />
+                <line number="11" hits="6" branch="False" />
               </lines>
             </method>
-            <method name="get_FullName" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_FullName" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="0" branch="False" />
+                <line number="16" hits="6" branch="False" />
               </lines>
             </method>
-            <method name="get_CountryCode" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_CountryCode" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="21" hits="0" branch="False" />
+                <line number="21" hits="6" branch="False" />
               </lines>
             </method>
-            <method name="get_CreatedAt" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_CreatedAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="26" hits="0" branch="False" />
+                <line number="26" hits="6" branch="False" />
               </lines>
             </method>
-            <method name="get_PassportId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_PassportId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="32" hits="0" branch="False" />
+                <line number="32" hits="6" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="11" hits="0" branch="False" />
-            <line number="16" hits="0" branch="False" />
-            <line number="21" hits="0" branch="False" />
-            <line number="26" hits="0" branch="False" />
-            <line number="32" hits="0" branch="False" />
+            <line number="11" hits="6" branch="False" />
+            <line number="16" hits="6" branch="False" />
+            <line number="21" hits="6" branch="False" />
+            <line number="26" hits="6" branch="False" />
+            <line number="32" hits="6" branch="False" />
           </lines>
         </class>
       </classes>
     </package>
-    <package name="Management" line-rate="0.4636" branch-rate="0.3653" complexity="271">
+    <package name="Management" line-rate="0.6425" branch-rate="0.40380000000000005" complexity="271">
       <classes>
         <class name="Management.DecisionEngine" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="0" complexity="14">
           <methods>
             <method name="GetRecommendationState" signature="(System.Double)" line-rate="0" branch-rate="0" complexity="8">
               <lines>
-                <line number="169" hits="0" branch="False" />
-                <line number="170" hits="0" branch="True" condition-coverage="0% (0/4)">
+                <line number="135" hits="0" branch="False" />
+                <line number="136" hits="0" branch="True" condition-coverage="0% (0/4)">
                   <conditions>
                     <condition number="11" type="jump" coverage="0%" />
                     <condition number="33" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="171" hits="0" branch="False" />
-                <line number="172" hits="0" branch="False" />
-                <line number="175" hits="0" branch="True" condition-coverage="0% (0/4)">
+                <line number="137" hits="0" branch="False" />
+                <line number="138" hits="0" branch="False" />
+                <line number="141" hits="0" branch="True" condition-coverage="0% (0/4)">
                   <conditions>
                     <condition number="50" type="jump" coverage="0%" />
                     <condition number="69" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="176" hits="0" branch="False" />
-                <line number="177" hits="0" branch="False" />
-                <line number="180" hits="0" branch="False" />
-                <line number="181" hits="0" branch="False" />
+                <line number="142" hits="0" branch="False" />
+                <line number="143" hits="0" branch="False" />
+                <line number="146" hits="0" branch="False" />
+                <line number="147" hits="0" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(Management.Interface.ICovidDataClient,Management.Interface.IWeatherDataClient,Management.Interface.IAirQualityDataClient)" line-rate="0" branch-rate="0" complexity="6">
               <lines>
-                <line number="33" hits="0" branch="False" />
-                <line number="34" hits="0" branch="False" />
-                <line number="35" hits="0" branch="False" />
-                <line number="36" hits="0" branch="False" />
                 <line number="37" hits="0" branch="False" />
-                <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="11" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="39" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="33" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="40" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="44" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="55" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="41" hits="0" branch="False" />
-                <line number="42" hits="0" branch="False" />
-                <line number="43" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
                 <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
                 <line number="49" hits="0" branch="False" />
                 <line number="50" hits="0" branch="False" />
-                <line number="51" hits="0" branch="False" />
-                <line number="52" hits="0" branch="False" />
                 <line number="53" hits="0" branch="False" />
                 <line number="54" hits="0" branch="False" />
                 <line number="55" hits="0" branch="False" />
@@ -176,7 +172,6 @@
                 <line number="63" hits="0" branch="False" />
                 <line number="64" hits="0" branch="False" />
                 <line number="65" hits="0" branch="False" />
-                <line number="66" hits="0" branch="False" />
                 <line number="67" hits="0" branch="False" />
                 <line number="68" hits="0" branch="False" />
                 <line number="69" hits="0" branch="False" />
@@ -186,95 +181,55 @@
                 <line number="73" hits="0" branch="False" />
                 <line number="74" hits="0" branch="False" />
                 <line number="75" hits="0" branch="False" />
-                <line number="76" hits="0" branch="False" />
-                <line number="77" hits="0" branch="False" />
-                <line number="78" hits="0" branch="False" />
-                <line number="79" hits="0" branch="False" />
-                <line number="80" hits="0" branch="False" />
-                <line number="81" hits="0" branch="False" />
-                <line number="82" hits="0" branch="False" />
-                <line number="83" hits="0" branch="False" />
-                <line number="84" hits="0" branch="False" />
-                <line number="85" hits="0" branch="False" />
-                <line number="86" hits="0" branch="False" />
-                <line number="87" hits="0" branch="False" />
-                <line number="88" hits="0" branch="False" />
-                <line number="89" hits="0" branch="False" />
-                <line number="90" hits="0" branch="False" />
-                <line number="91" hits="0" branch="False" />
-                <line number="92" hits="0" branch="False" />
-                <line number="93" hits="0" branch="False" />
-                <line number="94" hits="0" branch="False" />
-                <line number="95" hits="0" branch="False" />
-                <line number="96" hits="0" branch="False" />
-                <line number="97" hits="0" branch="False" />
-                <line number="98" hits="0" branch="False" />
-                <line number="99" hits="0" branch="False" />
-                <line number="100" hits="0" branch="False" />
-                <line number="101" hits="0" branch="False" />
-                <line number="102" hits="0" branch="False" />
-                <line number="104" hits="0" branch="False" />
-                <line number="105" hits="0" branch="False" />
-                <line number="106" hits="0" branch="False" />
-                <line number="107" hits="0" branch="False" />
-                <line number="108" hits="0" branch="False" />
-                <line number="109" hits="0" branch="False" />
-                <line number="110" hits="0" branch="False" />
-                <line number="111" hits="0" branch="False" />
-                <line number="112" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="169" hits="0" branch="False" />
-            <line number="170" hits="0" branch="True" condition-coverage="0% (0/4)">
+            <line number="135" hits="0" branch="False" />
+            <line number="136" hits="0" branch="True" condition-coverage="0% (0/4)">
               <conditions>
                 <condition number="11" type="jump" coverage="0%" />
                 <condition number="33" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="171" hits="0" branch="False" />
-            <line number="172" hits="0" branch="False" />
-            <line number="175" hits="0" branch="True" condition-coverage="0% (0/4)">
+            <line number="137" hits="0" branch="False" />
+            <line number="138" hits="0" branch="False" />
+            <line number="141" hits="0" branch="True" condition-coverage="0% (0/4)">
               <conditions>
                 <condition number="50" type="jump" coverage="0%" />
                 <condition number="69" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="176" hits="0" branch="False" />
-            <line number="177" hits="0" branch="False" />
-            <line number="180" hits="0" branch="False" />
-            <line number="181" hits="0" branch="False" />
-            <line number="33" hits="0" branch="False" />
-            <line number="34" hits="0" branch="False" />
-            <line number="35" hits="0" branch="False" />
-            <line number="36" hits="0" branch="False" />
+            <line number="142" hits="0" branch="False" />
+            <line number="143" hits="0" branch="False" />
+            <line number="146" hits="0" branch="False" />
+            <line number="147" hits="0" branch="False" />
             <line number="37" hits="0" branch="False" />
-            <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="11" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="39" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="33" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="40" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="44" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="55" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="41" hits="0" branch="False" />
-            <line number="42" hits="0" branch="False" />
-            <line number="43" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
             <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
             <line number="49" hits="0" branch="False" />
             <line number="50" hits="0" branch="False" />
-            <line number="51" hits="0" branch="False" />
-            <line number="52" hits="0" branch="False" />
             <line number="53" hits="0" branch="False" />
             <line number="54" hits="0" branch="False" />
             <line number="55" hits="0" branch="False" />
@@ -288,7 +243,6 @@
             <line number="63" hits="0" branch="False" />
             <line number="64" hits="0" branch="False" />
             <line number="65" hits="0" branch="False" />
-            <line number="66" hits="0" branch="False" />
             <line number="67" hits="0" branch="False" />
             <line number="68" hits="0" branch="False" />
             <line number="69" hits="0" branch="False" />
@@ -298,150 +252,120 @@
             <line number="73" hits="0" branch="False" />
             <line number="74" hits="0" branch="False" />
             <line number="75" hits="0" branch="False" />
-            <line number="76" hits="0" branch="False" />
-            <line number="77" hits="0" branch="False" />
-            <line number="78" hits="0" branch="False" />
-            <line number="79" hits="0" branch="False" />
-            <line number="80" hits="0" branch="False" />
-            <line number="81" hits="0" branch="False" />
-            <line number="82" hits="0" branch="False" />
-            <line number="83" hits="0" branch="False" />
-            <line number="84" hits="0" branch="False" />
-            <line number="85" hits="0" branch="False" />
-            <line number="86" hits="0" branch="False" />
-            <line number="87" hits="0" branch="False" />
-            <line number="88" hits="0" branch="False" />
-            <line number="89" hits="0" branch="False" />
-            <line number="90" hits="0" branch="False" />
-            <line number="91" hits="0" branch="False" />
-            <line number="92" hits="0" branch="False" />
-            <line number="93" hits="0" branch="False" />
-            <line number="94" hits="0" branch="False" />
-            <line number="95" hits="0" branch="False" />
-            <line number="96" hits="0" branch="False" />
-            <line number="97" hits="0" branch="False" />
-            <line number="98" hits="0" branch="False" />
-            <line number="99" hits="0" branch="False" />
-            <line number="100" hits="0" branch="False" />
-            <line number="101" hits="0" branch="False" />
-            <line number="102" hits="0" branch="False" />
-            <line number="104" hits="0" branch="False" />
-            <line number="105" hits="0" branch="False" />
-            <line number="106" hits="0" branch="False" />
-            <line number="107" hits="0" branch="False" />
-            <line number="108" hits="0" branch="False" />
-            <line number="109" hits="0" branch="False" />
-            <line number="110" hits="0" branch="False" />
-            <line number="111" hits="0" branch="False" />
-            <line number="112" hits="0" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.DecisionEngine/&lt;&gt;c__DisplayClass7_0/&lt;&lt;GetDefaultCountryRecommendationAsync&gt;b__0&gt;d" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="129" hits="0" branch="False" />
-                <line number="130" hits="0" branch="False" />
-                <line number="131" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="129" hits="0" branch="False" />
-            <line number="130" hits="0" branch="False" />
-            <line number="131" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.DecisionEngine/&lt;&gt;c" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
-            <method name="&lt;GetDefaultCountryRecommendationAsync&gt;b__7_1" signature="(Management.DomainModels.Recommendation)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="&lt;GetDefaultCountryRecommendationAsync&gt;b__10_1" signature="(Management.DomainModels.Recommendation)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="135" hits="0" branch="False" />
+                <line number="98" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="135" hits="0" branch="False" />
+            <line number="98" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Management.DecisionEngine/&lt;GetDefaultCountryRecommendationAsync&gt;d__7" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="0" complexity="2">
+        <class name="Management.DecisionEngine/&lt;&gt;c__DisplayClass10_0/&lt;&lt;GetDefaultCountryRecommendationAsync&gt;b__0&gt;d" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="92" hits="0" branch="False" />
+                <line number="93" hits="0" branch="False" />
+                <line number="94" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="92" hits="0" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="94" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.DecisionEngine/&lt;GetDefaultCountryRecommendationAsync&gt;d__10" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="123" hits="0" branch="False" />
-                <line number="124" hits="0" branch="False" />
-                <line number="126" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="86" hits="0" branch="False" />
+                <line number="87" hits="0" branch="False" />
+                <line number="89" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="109" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="128" hits="0" branch="False" />
-                <line number="133" hits="0" branch="False" />
-                <line number="136" hits="0" branch="False" />
+                <line number="91" hits="0" branch="False" />
+                <line number="96" hits="0" branch="False" />
+                <line number="99" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="123" hits="0" branch="False" />
-            <line number="124" hits="0" branch="False" />
-            <line number="126" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="86" hits="0" branch="False" />
+            <line number="87" hits="0" branch="False" />
+            <line number="89" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="109" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="128" hits="0" branch="False" />
-            <line number="133" hits="0" branch="False" />
-            <line number="136" hits="0" branch="False" />
+            <line number="91" hits="0" branch="False" />
+            <line number="96" hits="0" branch="False" />
+            <line number="99" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Management.DecisionEngine/&lt;GetStateInfoAsync&gt;d__8" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Management.DecisionEngine/&lt;GetStateInfoAsync&gt;d__11" filename="Management\DecisionEngine.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="146" hits="0" branch="False" />
-                <line number="147" hits="0" branch="False" />
-                <line number="148" hits="0" branch="False" />
-                <line number="149" hits="0" branch="False" />
-                <line number="151" hits="0" branch="False" />
-                <line number="153" hits="0" branch="False" />
-                <line number="154" hits="0" branch="False" />
-                <line number="155" hits="0" branch="False" />
-                <line number="156" hits="0" branch="False" />
-                <line number="157" hits="0" branch="False" />
-                <line number="158" hits="0" branch="False" />
-                <line number="159" hits="0" branch="False" />
-                <line number="160" hits="0" branch="False" />
-                <line number="161" hits="0" branch="False" />
+                <line number="109" hits="0" branch="False" />
+                <line number="110" hits="0" branch="False" />
+                <line number="111" hits="0" branch="False" />
+                <line number="112" hits="0" branch="False" />
+                <line number="114" hits="0" branch="False" />
+                <line number="115" hits="0" branch="False" />
+                <line number="116" hits="0" branch="False" />
+                <line number="117" hits="0" branch="False" />
+                <line number="119" hits="0" branch="False" />
+                <line number="120" hits="0" branch="False" />
+                <line number="121" hits="0" branch="False" />
+                <line number="122" hits="0" branch="False" />
+                <line number="123" hits="0" branch="False" />
+                <line number="124" hits="0" branch="False" />
+                <line number="125" hits="0" branch="False" />
+                <line number="126" hits="0" branch="False" />
+                <line number="127" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="146" hits="0" branch="False" />
-            <line number="147" hits="0" branch="False" />
-            <line number="148" hits="0" branch="False" />
-            <line number="149" hits="0" branch="False" />
-            <line number="151" hits="0" branch="False" />
-            <line number="153" hits="0" branch="False" />
-            <line number="154" hits="0" branch="False" />
-            <line number="155" hits="0" branch="False" />
-            <line number="156" hits="0" branch="False" />
-            <line number="157" hits="0" branch="False" />
-            <line number="158" hits="0" branch="False" />
-            <line number="159" hits="0" branch="False" />
-            <line number="160" hits="0" branch="False" />
-            <line number="161" hits="0" branch="False" />
+            <line number="109" hits="0" branch="False" />
+            <line number="110" hits="0" branch="False" />
+            <line number="111" hits="0" branch="False" />
+            <line number="112" hits="0" branch="False" />
+            <line number="114" hits="0" branch="False" />
+            <line number="115" hits="0" branch="False" />
+            <line number="116" hits="0" branch="False" />
+            <line number="117" hits="0" branch="False" />
+            <line number="119" hits="0" branch="False" />
+            <line number="120" hits="0" branch="False" />
+            <line number="121" hits="0" branch="False" />
+            <line number="122" hits="0" branch="False" />
+            <line number="123" hits="0" branch="False" />
+            <line number="124" hits="0" branch="False" />
+            <line number="125" hits="0" branch="False" />
+            <line number="126" hits="0" branch="False" />
+            <line number="127" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.AbbreviationToState" filename="Management\DomainModels\AbbreviationToState.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
             <method name="GetStateFullName" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="122" hits="1" branch="False" />
+                <line number="127" hits="1" branch="False" />
               </lines>
             </method>
             <method name="GetSupportedCities" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="125" hits="6" branch="False" />
+                <line number="135" hits="6" branch="False" />
               </lines>
             </method>
             <method name=".cctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -558,8 +482,8 @@
             </method>
           </methods>
           <lines>
-            <line number="122" hits="1" branch="False" />
-            <line number="125" hits="6" branch="False" />
+            <line number="127" hits="1" branch="False" />
+            <line number="135" hits="6" branch="False" />
             <line number="11" hits="1" branch="False" />
             <line number="12" hits="1" branch="False" />
             <line number="13" hits="1" branch="False" />
@@ -674,12 +598,12 @@
           <methods>
             <method name="get_CommentStr" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="3" branch="False" />
+                <line number="13" hits="4" branch="False" />
               </lines>
             </method>
             <method name="get_UserId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="3" branch="False" />
+                <line number="18" hits="4" branch="False" />
               </lines>
             </method>
             <method name="get_Country" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -704,8 +628,8 @@
             </method>
           </methods>
           <lines>
-            <line number="13" hits="3" branch="False" />
-            <line number="18" hits="3" branch="False" />
+            <line number="13" hits="4" branch="False" />
+            <line number="18" hits="4" branch="False" />
             <line number="23" hits="4" branch="False" />
             <line number="28" hits="4" branch="False" />
             <line number="33" hits="3" branch="False" />
@@ -774,6 +698,26 @@
             <line number="31" hits="2" branch="False" />
           </lines>
         </class>
+        <class name="Management.Repository.CommentRepository/&lt;AddCommentAsync&gt;d__5" filename="Management\Repository\CommentRepository.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="56" hits="1" branch="False" />
+                <line number="57" hits="1" branch="False" />
+                <line number="60" hits="1" branch="False" />
+                <line number="61" hits="1" branch="False" />
+                <line number="62" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="56" hits="1" branch="False" />
+            <line number="57" hits="1" branch="False" />
+            <line number="60" hits="1" branch="False" />
+            <line number="61" hits="1" branch="False" />
+            <line number="62" hits="1" branch="False" />
+          </lines>
+        </class>
         <class name="Management.Repository.CommentRepository/&lt;GetAllCommentsAsync&gt;d__4" filename="Management\Repository\CommentRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -802,226 +746,206 @@
             <line number="48" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="Management.Repository.CommentRepository/&lt;AddCommentAsync&gt;d__5" filename="Management\Repository\CommentRepository.cs" line-rate="1" branch-rate="1" complexity="1">
+        <class name="Management.Repository.UserRepository" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="0.5" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(Storage.Interface.IRepository)" line-rate="1" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="28" hits="11" branch="False" />
+                <line number="29" hits="11" branch="False" />
+                <line number="30" hits="11" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="11" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="31" hits="11" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="28" hits="11" branch="False" />
+            <line number="29" hits="11" branch="False" />
+            <line number="30" hits="11" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="11" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="31" hits="11" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Repository.UserRepository/&lt;&gt;c" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="&lt;AddUsersAsync&gt;b__4_0" signature="(Management.DomainModels.User)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="43" hits="6" branch="False" />
+                <line number="44" hits="6" branch="False" />
+                <line number="45" hits="6" branch="False" />
+                <line number="46" hits="6" branch="False" />
+                <line number="47" hits="6" branch="False" />
+                <line number="48" hits="6" branch="False" />
+                <line number="49" hits="6" branch="False" />
+                <line number="50" hits="6" branch="False" />
+              </lines>
+            </method>
+            <method name="&lt;GetAllUsersAsync&gt;b__5_0" signature="(Common.StorageModels.User)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="71" hits="2" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="43" hits="6" branch="False" />
+            <line number="44" hits="6" branch="False" />
+            <line number="45" hits="6" branch="False" />
+            <line number="46" hits="6" branch="False" />
+            <line number="47" hits="6" branch="False" />
+            <line number="48" hits="6" branch="False" />
+            <line number="49" hits="6" branch="False" />
+            <line number="50" hits="6" branch="False" />
+            <line number="71" hits="2" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Repository.UserRepository/&lt;AddUsersAsync&gt;d__4" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
+                <line number="39" hits="2" branch="False" />
+                <line number="41" hits="2" branch="False" />
+                <line number="42" hits="2" branch="False" />
+                <line number="52" hits="2" branch="False" />
+                <line number="53" hits="1" branch="False" />
+                <line number="55" hits="1" branch="False" />
                 <line number="56" hits="1" branch="False" />
                 <line number="57" hits="1" branch="False" />
-                <line number="60" hits="1" branch="False" />
-                <line number="61" hits="1" branch="False" />
-                <line number="62" hits="1" branch="False" />
+                <line number="59" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="39" hits="2" branch="False" />
+            <line number="41" hits="2" branch="False" />
+            <line number="42" hits="2" branch="False" />
+            <line number="52" hits="2" branch="False" />
+            <line number="53" hits="1" branch="False" />
+            <line number="55" hits="1" branch="False" />
             <line number="56" hits="1" branch="False" />
             <line number="57" hits="1" branch="False" />
-            <line number="60" hits="1" branch="False" />
-            <line number="61" hits="1" branch="False" />
-            <line number="62" hits="1" branch="False" />
+            <line number="59" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="Management.Repository.UserRepository" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="0" complexity="2">
+        <class name="Management.Repository.UserRepository/&lt;GetAllUsersAsync&gt;d__5" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name=".ctor" signature="(Storage.Interface.IRepository)" line-rate="0" branch-rate="0" complexity="2">
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
-                  <conditions>
-                    <condition number="11" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="31" hits="0" branch="False" />
+                <line number="66" hits="2" branch="False" />
+                <line number="68" hits="2" branch="False" />
+                <line number="69" hits="2" branch="False" />
+                <line number="73" hits="1" branch="False" />
+                <line number="74" hits="1" branch="False" />
+                <line number="75" hits="1" branch="False" />
+                <line number="77" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
-              <conditions>
-                <condition number="11" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="31" hits="0" branch="False" />
+            <line number="66" hits="2" branch="False" />
+            <line number="68" hits="2" branch="False" />
+            <line number="69" hits="2" branch="False" />
+            <line number="73" hits="1" branch="False" />
+            <line number="74" hits="1" branch="False" />
+            <line number="75" hits="1" branch="False" />
+            <line number="77" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="Management.Repository.UserRepository/&lt;&gt;c" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Management.Repository.UserRepository/&lt;GetUserAsync&gt;d__6" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="&lt;AddUsersAsync&gt;b__4_0" signature="(Management.DomainModels.User)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="43" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-              </lines>
-            </method>
-            <method name="&lt;GetAllUsersAsync&gt;b__5_0" signature="(Common.StorageModels.User)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="71" hits="0" branch="False" />
+                <line number="85" hits="2" branch="False" />
+                <line number="87" hits="2" branch="False" />
+                <line number="88" hits="2" branch="False" />
+                <line number="89" hits="1" branch="False" />
+                <line number="91" hits="1" branch="False" />
+                <line number="92" hits="1" branch="False" />
+                <line number="93" hits="1" branch="False" />
+                <line number="95" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="43" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
-            <line number="71" hits="0" branch="False" />
+            <line number="85" hits="2" branch="False" />
+            <line number="87" hits="2" branch="False" />
+            <line number="88" hits="2" branch="False" />
+            <line number="89" hits="1" branch="False" />
+            <line number="91" hits="1" branch="False" />
+            <line number="92" hits="1" branch="False" />
+            <line number="93" hits="1" branch="False" />
+            <line number="95" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="Management.Repository.UserRepository/&lt;AddUsersAsync&gt;d__4" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Management.Repository.UserRepository/&lt;RemoveUserAsync&gt;d__7" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="39" hits="0" branch="False" />
-                <line number="41" hits="0" branch="False" />
-                <line number="42" hits="0" branch="False" />
-                <line number="52" hits="0" branch="False" />
-                <line number="53" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
-                <line number="56" hits="0" branch="False" />
-                <line number="57" hits="0" branch="False" />
-                <line number="59" hits="0" branch="False" />
+                <line number="103" hits="3" branch="False" />
+                <line number="105" hits="3" branch="False" />
+                <line number="106" hits="3" branch="False" />
+                <line number="107" hits="2" branch="False" />
+                <line number="109" hits="1" branch="False" />
+                <line number="111" hits="2" branch="False" />
+                <line number="112" hits="2" branch="False" />
+                <line number="113" hits="2" branch="False" />
+                <line number="115" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="39" hits="0" branch="False" />
-            <line number="41" hits="0" branch="False" />
-            <line number="42" hits="0" branch="False" />
-            <line number="52" hits="0" branch="False" />
-            <line number="53" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
-            <line number="56" hits="0" branch="False" />
-            <line number="57" hits="0" branch="False" />
-            <line number="59" hits="0" branch="False" />
+            <line number="103" hits="3" branch="False" />
+            <line number="105" hits="3" branch="False" />
+            <line number="106" hits="3" branch="False" />
+            <line number="107" hits="2" branch="False" />
+            <line number="109" hits="1" branch="False" />
+            <line number="111" hits="2" branch="False" />
+            <line number="112" hits="2" branch="False" />
+            <line number="113" hits="2" branch="False" />
+            <line number="115" hits="3" branch="False" />
           </lines>
         </class>
-        <class name="Management.Repository.UserRepository/&lt;GetAllUsersAsync&gt;d__5" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Management.Repository.UserRepository/&lt;UpdateUserAsync&gt;d__8" filename="Management\Repository\UserRepository.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="66" hits="0" branch="False" />
-                <line number="68" hits="0" branch="False" />
-                <line number="69" hits="0" branch="False" />
-                <line number="73" hits="0" branch="False" />
-                <line number="74" hits="0" branch="False" />
-                <line number="75" hits="0" branch="False" />
-                <line number="77" hits="0" branch="False" />
+                <line number="124" hits="2" branch="False" />
+                <line number="126" hits="2" branch="False" />
+                <line number="127" hits="2" branch="False" />
+                <line number="128" hits="2" branch="False" />
+                <line number="129" hits="2" branch="False" />
+                <line number="130" hits="2" branch="False" />
+                <line number="131" hits="2" branch="False" />
+                <line number="132" hits="2" branch="False" />
+                <line number="134" hits="2" branch="False" />
+                <line number="135" hits="1" branch="False" />
+                <line number="137" hits="1" branch="False" />
+                <line number="138" hits="1" branch="False" />
+                <line number="139" hits="1" branch="False" />
+                <line number="141" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="66" hits="0" branch="False" />
-            <line number="68" hits="0" branch="False" />
-            <line number="69" hits="0" branch="False" />
-            <line number="73" hits="0" branch="False" />
-            <line number="74" hits="0" branch="False" />
-            <line number="75" hits="0" branch="False" />
-            <line number="77" hits="0" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Repository.UserRepository/&lt;GetUserAsync&gt;d__6" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="85" hits="0" branch="False" />
-                <line number="87" hits="0" branch="False" />
-                <line number="88" hits="0" branch="False" />
-                <line number="89" hits="0" branch="False" />
-                <line number="91" hits="0" branch="False" />
-                <line number="92" hits="0" branch="False" />
-                <line number="93" hits="0" branch="False" />
-                <line number="95" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="85" hits="0" branch="False" />
-            <line number="87" hits="0" branch="False" />
-            <line number="88" hits="0" branch="False" />
-            <line number="89" hits="0" branch="False" />
-            <line number="91" hits="0" branch="False" />
-            <line number="92" hits="0" branch="False" />
-            <line number="93" hits="0" branch="False" />
-            <line number="95" hits="0" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Repository.UserRepository/&lt;RemoveUserAsync&gt;d__7" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="103" hits="0" branch="False" />
-                <line number="105" hits="0" branch="False" />
-                <line number="106" hits="0" branch="False" />
-                <line number="107" hits="0" branch="False" />
-                <line number="109" hits="0" branch="False" />
-                <line number="111" hits="0" branch="False" />
-                <line number="112" hits="0" branch="False" />
-                <line number="113" hits="0" branch="False" />
-                <line number="115" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="103" hits="0" branch="False" />
-            <line number="105" hits="0" branch="False" />
-            <line number="106" hits="0" branch="False" />
-            <line number="107" hits="0" branch="False" />
-            <line number="109" hits="0" branch="False" />
-            <line number="111" hits="0" branch="False" />
-            <line number="112" hits="0" branch="False" />
-            <line number="113" hits="0" branch="False" />
-            <line number="115" hits="0" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Repository.UserRepository/&lt;UpdateUserAsync&gt;d__8" filename="Management\Repository\UserRepository.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="124" hits="0" branch="False" />
-                <line number="126" hits="0" branch="False" />
-                <line number="127" hits="0" branch="False" />
-                <line number="128" hits="0" branch="False" />
-                <line number="129" hits="0" branch="False" />
-                <line number="130" hits="0" branch="False" />
-                <line number="131" hits="0" branch="False" />
-                <line number="132" hits="0" branch="False" />
-                <line number="134" hits="0" branch="False" />
-                <line number="135" hits="0" branch="False" />
-                <line number="137" hits="0" branch="False" />
-                <line number="138" hits="0" branch="False" />
-                <line number="139" hits="0" branch="False" />
-                <line number="141" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="124" hits="0" branch="False" />
-            <line number="126" hits="0" branch="False" />
-            <line number="127" hits="0" branch="False" />
-            <line number="128" hits="0" branch="False" />
-            <line number="129" hits="0" branch="False" />
-            <line number="130" hits="0" branch="False" />
-            <line number="131" hits="0" branch="False" />
-            <line number="132" hits="0" branch="False" />
-            <line number="134" hits="0" branch="False" />
-            <line number="135" hits="0" branch="False" />
-            <line number="137" hits="0" branch="False" />
-            <line number="138" hits="0" branch="False" />
-            <line number="139" hits="0" branch="False" />
-            <line number="141" hits="0" branch="False" />
+            <line number="124" hits="2" branch="False" />
+            <line number="126" hits="2" branch="False" />
+            <line number="127" hits="2" branch="False" />
+            <line number="128" hits="2" branch="False" />
+            <line number="129" hits="2" branch="False" />
+            <line number="130" hits="2" branch="False" />
+            <line number="131" hits="2" branch="False" />
+            <line number="132" hits="2" branch="False" />
+            <line number="134" hits="2" branch="False" />
+            <line number="135" hits="1" branch="False" />
+            <line number="137" hits="1" branch="False" />
+            <line number="138" hits="1" branch="False" />
+            <line number="139" hits="1" branch="False" />
+            <line number="141" hits="2" branch="False" />
           </lines>
         </class>
         <class name="Management.Ports.CommentPort" filename="Management\Ports\CommentPort.cs" line-rate="0" branch-rate="0" complexity="5">
@@ -1202,9 +1126,9 @@
             <line number="51" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Management.Mapping.CountryStateValidator" filename="Management\Mapping\CountryStateValidator.cs" line-rate="0.25" branch-rate="0.2857" complexity="14">
+        <class name="Management.Mapping.CountryStateValidator" filename="Management\Mapping\CountryStateValidator.cs" line-rate="0.3333" branch-rate="0.2857" complexity="14">
           <methods>
-            <method name="ValidateCountryState" signature="(System.String,System.String)" line-rate="0.3333" branch-rate="0.3333" complexity="12">
+            <method name="ValidateCountryState" signature="(System.String,System.String)" line-rate="0.44439999999999996" branch-rate="0.3333" complexity="12">
               <lines>
                 <line number="19" hits="1" branch="False" />
                 <line number="20" hits="1" branch="True" condition-coverage="50% (2/4)">
@@ -1226,9 +1150,9 @@
                     <condition number="59" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="32" hits="1" branch="False" />
+                <line number="28" hits="1" branch="False" />
+                <line number="29" hits="1" branch="False" />
+                <line number="32" hits="0" branch="False" />
                 <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="112" type="jump" coverage="0%" />
@@ -1244,21 +1168,21 @@
                 <line number="39" hits="0" branch="False" />
                 <line number="42" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
+                <line number="46" hits="1" branch="False" />
               </lines>
             </method>
             <method name="ValidateCountry" signature="(System.String)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="11" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="51" hits="0" branch="False" />
-                <line number="52" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
                 <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -1283,9 +1207,9 @@
                 <condition number="59" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="32" hits="1" branch="False" />
+            <line number="28" hits="1" branch="False" />
+            <line number="29" hits="1" branch="False" />
+            <line number="32" hits="0" branch="False" />
             <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="112" type="jump" coverage="0%" />
@@ -1301,17 +1225,17 @@
             <line number="39" hits="0" branch="False" />
             <line number="42" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="46" hits="1" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="11" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="51" hits="0" branch="False" />
-            <line number="52" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
             <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.Mapping.DomainToApiMapper" filename="Management\Mapping\DomainToApiMapper.cs" line-rate="0" branch-rate="1" complexity="2">
@@ -1330,16 +1254,16 @@
             </method>
             <method name="ToApi" signature="(Management.DomainModels.Recommendation)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="27" hits="0" branch="False" />
-                <line number="28" hits="0" branch="False" />
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="False" />
-                <line number="31" hits="0" branch="False" />
                 <line number="32" hits="0" branch="False" />
                 <line number="33" hits="0" branch="False" />
                 <line number="34" hits="0" branch="False" />
                 <line number="35" hits="0" branch="False" />
                 <line number="36" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -1352,16 +1276,16 @@
             <line number="22" hits="0" branch="False" />
             <line number="23" hits="0" branch="False" />
             <line number="24" hits="0" branch="False" />
-            <line number="27" hits="0" branch="False" />
-            <line number="28" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="False" />
-            <line number="31" hits="0" branch="False" />
             <line number="32" hits="0" branch="False" />
             <line number="33" hits="0" branch="False" />
             <line number="34" hits="0" branch="False" />
             <line number="35" hits="0" branch="False" />
             <line number="36" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.Mapping.DomainToStorageMapper" filename="Management\Mapping\DomainToStorageMapper.cs" line-rate="0.5294" branch-rate="1" complexity="2">
@@ -1412,97 +1336,97 @@
             <line number="38" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="Management.Mapping.StorageToDomainMapper" filename="Management\Mapping\StorageToDomainMapper.cs" line-rate="0.1333" branch-rate="0" complexity="5">
+        <class name="Management.Mapping.StorageToDomainMapper" filename="Management\Mapping\StorageToDomainMapper.cs" line-rate="1" branch-rate="0.5" complexity="5">
           <methods>
-            <method name="ToDomain" signature="(Common.StorageModels.User)" line-rate="0" branch-rate="0" complexity="4">
+            <method name="ToDomain" signature="(Common.StorageModels.User)" line-rate="1" branch-rate="0.5" complexity="4">
               <lines>
-                <line number="17" hits="0" branch="True" condition-coverage="0% (0/4)">
+                <line number="17" hits="3" branch="True" condition-coverage="50% (2/4)">
                   <conditions>
-                    <condition number="46" type="jump" coverage="0%" />
-                    <condition number="73" type="jump" coverage="0%" />
+                    <condition number="46" type="jump" coverage="50%" />
+                    <condition number="73" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="18" hits="0" branch="False" />
-                <line number="19" hits="0" branch="False" />
-                <line number="20" hits="0" branch="False" />
-                <line number="21" hits="0" branch="False" />
-                <line number="22" hits="0" branch="False" />
-                <line number="23" hits="0" branch="False" />
-                <line number="24" hits="0" branch="False" />
+                <line number="18" hits="3" branch="False" />
+                <line number="19" hits="3" branch="False" />
+                <line number="20" hits="3" branch="False" />
+                <line number="21" hits="3" branch="False" />
+                <line number="22" hits="3" branch="False" />
+                <line number="23" hits="3" branch="False" />
+                <line number="24" hits="3" branch="False" />
               </lines>
             </method>
-            <method name="ToDomain" signature="(Management.StorageModels.Comment)" line-rate="0.2857" branch-rate="1" complexity="1">
+            <method name="ToDomain" signature="(Management.StorageModels.Comment)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="32" hits="1" branch="False" />
                 <line number="33" hits="1" branch="False" />
-                <line number="35" hits="0" branch="False" />
-                <line number="36" hits="0" branch="False" />
-                <line number="37" hits="0" branch="False" />
-                <line number="38" hits="0" branch="False" />
-                <line number="39" hits="0" branch="False" />
+                <line number="35" hits="1" branch="False" />
+                <line number="36" hits="1" branch="False" />
+                <line number="37" hits="1" branch="False" />
+                <line number="38" hits="1" branch="False" />
+                <line number="39" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="17" hits="0" branch="True" condition-coverage="0% (0/4)">
+            <line number="17" hits="3" branch="True" condition-coverage="50% (2/4)">
               <conditions>
-                <condition number="46" type="jump" coverage="0%" />
-                <condition number="73" type="jump" coverage="0%" />
+                <condition number="46" type="jump" coverage="50%" />
+                <condition number="73" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="18" hits="0" branch="False" />
-            <line number="19" hits="0" branch="False" />
-            <line number="20" hits="0" branch="False" />
-            <line number="21" hits="0" branch="False" />
-            <line number="22" hits="0" branch="False" />
-            <line number="23" hits="0" branch="False" />
-            <line number="24" hits="0" branch="False" />
+            <line number="18" hits="3" branch="False" />
+            <line number="19" hits="3" branch="False" />
+            <line number="20" hits="3" branch="False" />
+            <line number="21" hits="3" branch="False" />
+            <line number="22" hits="3" branch="False" />
+            <line number="23" hits="3" branch="False" />
+            <line number="24" hits="3" branch="False" />
             <line number="32" hits="1" branch="False" />
             <line number="33" hits="1" branch="False" />
-            <line number="35" hits="0" branch="False" />
-            <line number="36" hits="0" branch="False" />
-            <line number="37" hits="0" branch="False" />
-            <line number="38" hits="0" branch="False" />
-            <line number="39" hits="0" branch="False" />
+            <line number="35" hits="1" branch="False" />
+            <line number="36" hits="1" branch="False" />
+            <line number="37" hits="1" branch="False" />
+            <line number="38" hits="1" branch="False" />
+            <line number="39" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Management.DomainModels.City" filename="Management\DomainModels\City.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name="Wrap" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="275" branch="False" />
+                <line number="20" hits="276" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="275" branch="False" />
-                <line number="12" hits="275" branch="False" />
-                <line number="13" hits="275" branch="False" />
+                <line number="11" hits="276" branch="False" />
+                <line number="12" hits="276" branch="False" />
+                <line number="13" hits="276" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="20" hits="275" branch="False" />
-            <line number="11" hits="275" branch="False" />
-            <line number="12" hits="275" branch="False" />
-            <line number="13" hits="275" branch="False" />
+            <line number="20" hits="276" branch="False" />
+            <line number="11" hits="276" branch="False" />
+            <line number="12" hits="276" branch="False" />
+            <line number="13" hits="276" branch="False" />
           </lines>
         </class>
-        <class name="Management.DomainModels.Comment" filename="Management\DomainModels\Comment.cs" line-rate="1" branch-rate="0.5" complexity="12">
+        <class name="Management.DomainModels.Comment" filename="Management\DomainModels\Comment.cs" line-rate="1" branch-rate="0.625" complexity="12">
           <methods>
             <method name="get_Location" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="4" branch="False" />
+                <line number="13" hits="6" branch="False" />
               </lines>
             </method>
             <method name="get_UserId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="2" branch="False" />
+                <line number="18" hits="3" branch="False" />
               </lines>
             </method>
             <method name="get_CommentStr" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="23" hits="2" branch="False" />
+                <line number="23" hits="3" branch="False" />
               </lines>
             </method>
             <method name="get_CreatedAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -1510,146 +1434,146 @@
                 <line number="28" hits="2" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(Management.DomainModels.Location,Management.DomainModels.UserId,System.String,System.Nullable`1&lt;System.DateTimeOffset&gt;)" line-rate="1" branch-rate="0.5" complexity="8">
+            <method name=".ctor" signature="(Management.DomainModels.Location,Management.DomainModels.UserId,System.String,System.Nullable`1&lt;System.DateTimeOffset&gt;)" line-rate="1" branch-rate="0.625" complexity="8">
               <lines>
-                <line number="37" hits="1" branch="False" />
-                <line number="38" hits="1" branch="False" />
-                <line number="39" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="37" hits="2" branch="False" />
+                <line number="38" hits="2" branch="False" />
+                <line number="39" hits="2" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="11" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="40" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="40" hits="2" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="33" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="41" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="41" hits="2" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="55" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="42" hits="1" branch="True" condition-coverage="50% (1/2)">
+                <line number="42" hits="2" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
-                    <condition number="85" type="jump" coverage="50%" />
+                    <condition number="85" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="43" hits="1" branch="False" />
+                <line number="43" hits="2" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="13" hits="4" branch="False" />
-            <line number="18" hits="2" branch="False" />
-            <line number="23" hits="2" branch="False" />
+            <line number="13" hits="6" branch="False" />
+            <line number="18" hits="3" branch="False" />
+            <line number="23" hits="3" branch="False" />
             <line number="28" hits="2" branch="False" />
-            <line number="37" hits="1" branch="False" />
-            <line number="38" hits="1" branch="False" />
-            <line number="39" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="37" hits="2" branch="False" />
+            <line number="38" hits="2" branch="False" />
+            <line number="39" hits="2" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="11" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="40" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="40" hits="2" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="33" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="41" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="41" hits="2" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="55" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="42" hits="1" branch="True" condition-coverage="50% (1/2)">
+            <line number="42" hits="2" branch="True" condition-coverage="100% (2/2)">
               <conditions>
-                <condition number="85" type="jump" coverage="50%" />
+                <condition number="85" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="43" hits="1" branch="False" />
+            <line number="43" hits="2" branch="False" />
           </lines>
         </class>
-        <class name="Management.DomainModels.FullName" filename="Management\DomainModels\FullName.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Management.DomainModels.FullName" filename="Management\DomainModels\FullName.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
-            <method name="Wrap" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="Wrap" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="21" hits="0" branch="False" />
+                <line number="21" hits="18" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="False" />
-                <line number="12" hits="0" branch="False" />
-                <line number="13" hits="0" branch="False" />
+                <line number="11" hits="18" branch="False" />
+                <line number="12" hits="18" branch="False" />
+                <line number="13" hits="18" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="21" hits="0" branch="False" />
-            <line number="11" hits="0" branch="False" />
-            <line number="12" hits="0" branch="False" />
-            <line number="13" hits="0" branch="False" />
+            <line number="21" hits="18" branch="False" />
+            <line number="11" hits="18" branch="False" />
+            <line number="12" hits="18" branch="False" />
+            <line number="13" hits="18" branch="False" />
           </lines>
         </class>
         <class name="Management.DomainModels.Location" filename="Management\DomainModels\Location.cs" line-rate="1" branch-rate="0.5" complexity="4">
           <methods>
             <method name="get_CountryCode" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="3" branch="False" />
+                <line number="14" hits="4" branch="False" />
               </lines>
             </method>
             <method name="get_State" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="3" branch="False" />
+                <line number="19" hits="4" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(Management.Enum.CountryCode,Management.DomainModels.State)" line-rate="1" branch-rate="0.5" complexity="2">
               <lines>
-                <line number="26" hits="2" branch="False" />
-                <line number="27" hits="2" branch="False" />
-                <line number="28" hits="2" branch="False" />
-                <line number="29" hits="2" branch="True" condition-coverage="50% (1/2)">
+                <line number="26" hits="3" branch="False" />
+                <line number="27" hits="3" branch="False" />
+                <line number="28" hits="3" branch="False" />
+                <line number="29" hits="3" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="18" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="30" hits="2" branch="False" />
+                <line number="30" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="3" branch="False" />
-            <line number="19" hits="3" branch="False" />
-            <line number="26" hits="2" branch="False" />
-            <line number="27" hits="2" branch="False" />
-            <line number="28" hits="2" branch="False" />
-            <line number="29" hits="2" branch="True" condition-coverage="50% (1/2)">
+            <line number="14" hits="4" branch="False" />
+            <line number="19" hits="4" branch="False" />
+            <line number="26" hits="3" branch="False" />
+            <line number="27" hits="3" branch="False" />
+            <line number="28" hits="3" branch="False" />
+            <line number="29" hits="3" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="18" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="30" hits="2" branch="False" />
+            <line number="30" hits="3" branch="False" />
           </lines>
         </class>
-        <class name="Management.DomainModels.PassportId" filename="Management\DomainModels\PassportId.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Management.DomainModels.PassportId" filename="Management\DomainModels\PassportId.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
-            <method name="Wrap" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="Wrap" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="21" hits="0" branch="False" />
+                <line number="21" hits="18" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+            <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="False" />
-                <line number="12" hits="0" branch="False" />
-                <line number="13" hits="0" branch="False" />
+                <line number="11" hits="18" branch="False" />
+                <line number="12" hits="18" branch="False" />
+                <line number="13" hits="18" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="21" hits="0" branch="False" />
-            <line number="11" hits="0" branch="False" />
-            <line number="12" hits="0" branch="False" />
-            <line number="13" hits="0" branch="False" />
+            <line number="21" hits="18" branch="False" />
+            <line number="11" hits="18" branch="False" />
+            <line number="12" hits="18" branch="False" />
+            <line number="13" hits="18" branch="False" />
           </lines>
         </class>
         <class name="Management.DomainModels.Recommendation" filename="Management\DomainModels\Recommendation.cs" line-rate="0" branch-rate="0" complexity="9">
@@ -1750,126 +1674,126 @@
           <methods>
             <method name="Wrap" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="69" branch="False" />
+                <line number="22" hits="70" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="69" branch="False" />
-                <line number="14" hits="69" branch="False" />
-                <line number="15" hits="69" branch="False" />
+                <line number="13" hits="70" branch="False" />
+                <line number="14" hits="70" branch="False" />
+                <line number="15" hits="70" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="22" hits="69" branch="False" />
-            <line number="13" hits="69" branch="False" />
-            <line number="14" hits="69" branch="False" />
-            <line number="15" hits="69" branch="False" />
+            <line number="22" hits="70" branch="False" />
+            <line number="13" hits="70" branch="False" />
+            <line number="14" hits="70" branch="False" />
+            <line number="15" hits="70" branch="False" />
           </lines>
         </class>
-        <class name="Management.DomainModels.User" filename="Management\DomainModels\User.cs" line-rate="0" branch-rate="0" complexity="9">
+        <class name="Management.DomainModels.User" filename="Management\DomainModels\User.cs" line-rate="1" branch-rate="0.5" complexity="9">
           <methods>
-            <method name="get_UserId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_UserId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="0" branch="False" />
+                <line number="14" hits="11" branch="False" />
               </lines>
             </method>
-            <method name="get_FullName" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_FullName" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="0" branch="False" />
+                <line number="19" hits="16" branch="False" />
               </lines>
             </method>
-            <method name="get_PassportId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_PassportId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="24" hits="0" branch="False" />
+                <line number="24" hits="16" branch="False" />
               </lines>
             </method>
-            <method name="get_CreatedAt" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_CreatedAt" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="29" hits="0" branch="False" />
+                <line number="29" hits="9" branch="False" />
               </lines>
             </method>
-            <method name="get_CountryCode" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_CountryCode" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="34" hits="0" branch="False" />
+                <line number="34" hits="16" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(Management.DomainModels.UserId,Management.DomainModels.FullName,Management.DomainModels.PassportId,System.DateTimeOffset,Management.Enum.CountryCode)" line-rate="0" branch-rate="0" complexity="4">
+            <method name=".ctor" signature="(Management.DomainModels.UserId,Management.DomainModels.FullName,Management.DomainModels.PassportId,System.DateTimeOffset,Management.Enum.CountryCode)" line-rate="1" branch-rate="0.5" complexity="4">
               <lines>
-                <line number="44" hits="0" branch="False" />
-                <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-                <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="44" hits="18" branch="False" />
+                <line number="45" hits="18" branch="False" />
+                <line number="46" hits="18" branch="False" />
+                <line number="47" hits="18" branch="False" />
+                <line number="48" hits="18" branch="False" />
+                <line number="49" hits="18" branch="False" />
+                <line number="50" hits="18" branch="False" />
+                <line number="51" hits="18" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
-                    <condition number="11" type="jump" coverage="0%" />
+                    <condition number="11" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="52" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="52" hits="18" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
-                    <condition number="33" type="jump" coverage="0%" />
+                    <condition number="33" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="53" hits="0" branch="False" />
-                <line number="54" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
-                <line number="56" hits="0" branch="False" />
+                <line number="53" hits="18" branch="False" />
+                <line number="54" hits="18" branch="False" />
+                <line number="55" hits="18" branch="False" />
+                <line number="56" hits="18" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="0" branch="False" />
-            <line number="19" hits="0" branch="False" />
-            <line number="24" hits="0" branch="False" />
-            <line number="29" hits="0" branch="False" />
-            <line number="34" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
-            <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="14" hits="11" branch="False" />
+            <line number="19" hits="16" branch="False" />
+            <line number="24" hits="16" branch="False" />
+            <line number="29" hits="9" branch="False" />
+            <line number="34" hits="16" branch="False" />
+            <line number="44" hits="18" branch="False" />
+            <line number="45" hits="18" branch="False" />
+            <line number="46" hits="18" branch="False" />
+            <line number="47" hits="18" branch="False" />
+            <line number="48" hits="18" branch="False" />
+            <line number="49" hits="18" branch="False" />
+            <line number="50" hits="18" branch="False" />
+            <line number="51" hits="18" branch="True" condition-coverage="50% (1/2)">
               <conditions>
-                <condition number="11" type="jump" coverage="0%" />
+                <condition number="11" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="52" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="52" hits="18" branch="True" condition-coverage="50% (1/2)">
               <conditions>
-                <condition number="33" type="jump" coverage="0%" />
+                <condition number="33" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="53" hits="0" branch="False" />
-            <line number="54" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
-            <line number="56" hits="0" branch="False" />
+            <line number="53" hits="18" branch="False" />
+            <line number="54" hits="18" branch="False" />
+            <line number="55" hits="18" branch="False" />
+            <line number="56" hits="18" branch="False" />
           </lines>
         </class>
         <class name="Management.DomainModels.UserId" filename="Management\DomainModels\UserId.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name="Wrap" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="2" branch="False" />
+                <line number="20" hits="28" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="2" branch="False" />
-                <line number="12" hits="2" branch="False" />
-                <line number="13" hits="2" branch="False" />
+                <line number="11" hits="28" branch="False" />
+                <line number="12" hits="28" branch="False" />
+                <line number="13" hits="28" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="20" hits="2" branch="False" />
-            <line number="11" hits="2" branch="False" />
-            <line number="12" hits="2" branch="False" />
-            <line number="13" hits="2" branch="False" />
+            <line number="20" hits="28" branch="False" />
+            <line number="11" hits="28" branch="False" />
+            <line number="12" hits="28" branch="False" />
+            <line number="13" hits="28" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.AirQualityDataClient" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="0.5" complexity="3">
@@ -1904,6 +1828,72 @@
               </conditions>
             </line>
             <line number="36" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.AirQualityDataClient/&lt;&gt;c" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="&lt;CalculateScoreForStateAsync&gt;b__6_1" signature="(System.ValueTuple`2&lt;Management.DomainModels.City,System.Int32&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="112" hits="6" branch="False" />
+              </lines>
+            </method>
+            <method name="&lt;GetDefaultCitiesAsync&gt;b__7_0" signature="(Management.Clients.Models.CityData)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="140" hits="22" branch="False" />
+              </lines>
+            </method>
+            <method name="&lt;GetDefaultCitiesAsync&gt;b__7_1" signature="(Management.DomainModels.City)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="141" hits="22" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="112" hits="6" branch="False" />
+            <line number="140" hits="22" branch="False" />
+            <line number="141" hits="22" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.AirQualityDataClient/&lt;&gt;c__DisplayClass6_0/&lt;&lt;CalculateScoreForStateAsync&gt;b__0&gt;d" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="106" hits="5" branch="False" />
+                <line number="107" hits="5" branch="False" />
+                <line number="108" hits="5" branch="False" />
+                <line number="109" hits="6" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="106" hits="5" branch="False" />
+            <line number="107" hits="5" branch="False" />
+            <line number="108" hits="5" branch="False" />
+            <line number="109" hits="6" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.AirQualityDataClient/&lt;CalculateScoreForStateAsync&gt;d__6" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="100" hits="1" branch="False" />
+                <line number="101" hits="1" branch="False" />
+                <line number="103" hits="1" branch="False" />
+                <line number="104" hits="1" branch="False" />
+                <line number="105" hits="1" branch="False" />
+                <line number="110" hits="1" branch="False" />
+                <line number="113" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="100" hits="1" branch="False" />
+            <line number="101" hits="1" branch="False" />
+            <line number="103" hits="1" branch="False" />
+            <line number="104" hits="1" branch="False" />
+            <line number="105" hits="1" branch="False" />
+            <line number="110" hits="1" branch="False" />
+            <line number="113" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.AirQualityDataClient/&lt;GetCityAirQualityDataAsync&gt;d__5" filename="Management\Clients\AirQualityDataClient.cs" line-rate="0.4827" branch-rate="0.6666" complexity="6">
@@ -1996,72 +1986,6 @@
             <line number="83" hits="0" branch="False" />
             <line number="86" hits="1" branch="False" />
             <line number="87" hits="5" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Clients.AirQualityDataClient/&lt;&gt;c__DisplayClass6_0/&lt;&lt;CalculateScoreForStateAsync&gt;b__0&gt;d" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="106" hits="5" branch="False" />
-                <line number="107" hits="5" branch="False" />
-                <line number="108" hits="5" branch="False" />
-                <line number="109" hits="6" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="106" hits="5" branch="False" />
-            <line number="107" hits="5" branch="False" />
-            <line number="108" hits="5" branch="False" />
-            <line number="109" hits="6" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Clients.AirQualityDataClient/&lt;&gt;c" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="3">
-          <methods>
-            <method name="&lt;CalculateScoreForStateAsync&gt;b__6_1" signature="(System.ValueTuple`2&lt;Management.DomainModels.City,System.Int32&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="112" hits="6" branch="False" />
-              </lines>
-            </method>
-            <method name="&lt;GetDefaultCitiesAsync&gt;b__7_0" signature="(Management.Clients.Models.CityData)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="140" hits="21" branch="False" />
-              </lines>
-            </method>
-            <method name="&lt;GetDefaultCitiesAsync&gt;b__7_1" signature="(Management.DomainModels.City)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="141" hits="21" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="112" hits="6" branch="False" />
-            <line number="140" hits="21" branch="False" />
-            <line number="141" hits="21" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Clients.AirQualityDataClient/&lt;CalculateScoreForStateAsync&gt;d__6" filename="Management\Clients\AirQualityDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="100" hits="1" branch="False" />
-                <line number="101" hits="1" branch="False" />
-                <line number="103" hits="1" branch="False" />
-                <line number="104" hits="1" branch="False" />
-                <line number="105" hits="1" branch="False" />
-                <line number="110" hits="1" branch="False" />
-                <line number="113" hits="1" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="100" hits="1" branch="False" />
-            <line number="101" hits="1" branch="False" />
-            <line number="103" hits="1" branch="False" />
-            <line number="104" hits="1" branch="False" />
-            <line number="105" hits="1" branch="False" />
-            <line number="110" hits="1" branch="False" />
-            <line number="113" hits="1" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.AirQualityDataClient/&lt;GetDefaultCitiesAsync&gt;d__7" filename="Management\Clients\AirQualityDataClient.cs" line-rate="0.9333" branch-rate="0.5" complexity="4">
@@ -2290,40 +2214,6 @@
             <line number="33" hits="1" branch="False" />
           </lines>
         </class>
-        <class name="Management.Clients.CovidDataClient/&lt;GetStateCovidDataAsync&gt;d__3" filename="Management\Clients\CovidDataClient.cs" line-rate="1" branch-rate="1" complexity="2">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="2">
-              <lines>
-                <line number="44" hits="7" branch="False" />
-                <line number="46" hits="7" branch="False" />
-                <line number="48" hits="7" branch="False" />
-                <line number="50" hits="7" branch="True" condition-coverage="100% (2/2)">
-                  <conditions>
-                    <condition number="222" type="jump" coverage="100%" />
-                  </conditions>
-                </line>
-                <line number="51" hits="6" branch="False" />
-                <line number="52" hits="6" branch="False" />
-                <line number="55" hits="1" branch="False" />
-                <line number="56" hits="6" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="44" hits="7" branch="False" />
-            <line number="46" hits="7" branch="False" />
-            <line number="48" hits="7" branch="False" />
-            <line number="50" hits="7" branch="True" condition-coverage="100% (2/2)">
-              <conditions>
-                <condition number="222" type="jump" coverage="100%" />
-              </conditions>
-            </line>
-            <line number="51" hits="6" branch="False" />
-            <line number="52" hits="6" branch="False" />
-            <line number="55" hits="1" branch="False" />
-            <line number="56" hits="6" branch="False" />
-          </lines>
-        </class>
         <class name="Management.Clients.CovidDataClient/&lt;CalculateScoreForStateAsync&gt;d__4" filename="Management\Clients\CovidDataClient.cs" line-rate="0.9129999999999999" branch-rate="0.6666" complexity="30">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0.9129999999999999" branch-rate="0.6666" complexity="30">
@@ -2452,6 +2342,40 @@
             <line number="105" hits="6" branch="False" />
           </lines>
         </class>
+        <class name="Management.Clients.CovidDataClient/&lt;GetStateCovidDataAsync&gt;d__3" filename="Management\Clients\CovidDataClient.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="44" hits="7" branch="False" />
+                <line number="46" hits="7" branch="False" />
+                <line number="48" hits="7" branch="False" />
+                <line number="50" hits="7" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="222" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="51" hits="6" branch="False" />
+                <line number="52" hits="6" branch="False" />
+                <line number="55" hits="1" branch="False" />
+                <line number="56" hits="6" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="44" hits="7" branch="False" />
+            <line number="46" hits="7" branch="False" />
+            <line number="48" hits="7" branch="False" />
+            <line number="50" hits="7" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="222" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="51" hits="6" branch="False" />
+            <line number="52" hits="6" branch="False" />
+            <line number="55" hits="1" branch="False" />
+            <line number="56" hits="6" branch="False" />
+          </lines>
+        </class>
         <class name="Management.Clients.WeatherDataClient" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="0.5" complexity="3">
           <methods>
             <method name="get_ApiKey" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -2484,6 +2408,58 @@
               </conditions>
             </line>
             <line number="35" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.WeatherDataClient/&lt;&gt;c" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="&lt;CalculateScoreForStateAsync&gt;b__6_1" signature="(System.ValueTuple`2&lt;Management.DomainModels.City,System.Int32&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="105" hits="36" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="105" hits="36" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.WeatherDataClient/&lt;&gt;c__DisplayClass6_0/&lt;&lt;CalculateScoreForStateAsync&gt;b__0&gt;d" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="99" hits="30" branch="False" />
+                <line number="100" hits="30" branch="False" />
+                <line number="101" hits="30" branch="False" />
+                <line number="102" hits="36" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="99" hits="30" branch="False" />
+            <line number="100" hits="30" branch="False" />
+            <line number="101" hits="30" branch="False" />
+            <line number="102" hits="36" branch="False" />
+          </lines>
+        </class>
+        <class name="Management.Clients.WeatherDataClient/&lt;CalculateScoreForStateAsync&gt;d__6" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="94" hits="6" branch="False" />
+                <line number="95" hits="6" branch="False" />
+                <line number="97" hits="6" branch="False" />
+                <line number="98" hits="6" branch="False" />
+                <line number="103" hits="6" branch="False" />
+                <line number="106" hits="6" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="94" hits="6" branch="False" />
+            <line number="95" hits="6" branch="False" />
+            <line number="97" hits="6" branch="False" />
+            <line number="98" hits="6" branch="False" />
+            <line number="103" hits="6" branch="False" />
+            <line number="106" hits="6" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.WeatherDataClient/&lt;GetCityWeatherDataAsync&gt;d__5" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="2">
@@ -2526,78 +2502,26 @@
             <line number="81" hits="30" branch="False" />
           </lines>
         </class>
-        <class name="Management.Clients.WeatherDataClient/&lt;&gt;c__DisplayClass6_0/&lt;&lt;CalculateScoreForStateAsync&gt;b__0&gt;d" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="99" hits="30" branch="False" />
-                <line number="100" hits="30" branch="False" />
-                <line number="101" hits="30" branch="False" />
-                <line number="102" hits="36" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="99" hits="30" branch="False" />
-            <line number="100" hits="30" branch="False" />
-            <line number="101" hits="30" branch="False" />
-            <line number="102" hits="36" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Clients.WeatherDataClient/&lt;&gt;c" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name="&lt;CalculateScoreForStateAsync&gt;b__6_1" signature="(System.ValueTuple`2&lt;Management.DomainModels.City,System.Int32&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="106" hits="36" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="106" hits="36" branch="False" />
-          </lines>
-        </class>
-        <class name="Management.Clients.WeatherDataClient/&lt;CalculateScoreForStateAsync&gt;d__6" filename="Management\Clients\WeatherDataClient.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="94" hits="6" branch="False" />
-                <line number="95" hits="6" branch="False" />
-                <line number="97" hits="6" branch="False" />
-                <line number="98" hits="6" branch="False" />
-                <line number="103" hits="6" branch="False" />
-                <line number="107" hits="6" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="94" hits="6" branch="False" />
-            <line number="95" hits="6" branch="False" />
-            <line number="97" hits="6" branch="False" />
-            <line number="98" hits="6" branch="False" />
-            <line number="103" hits="6" branch="False" />
-            <line number="107" hits="6" branch="False" />
-          </lines>
-        </class>
         <class name="Management.Clients.WeatherDataClient/&lt;GetSingleCityAsync&gt;d__7" filename="Management\Clients\WeatherDataClient.cs" line-rate="0.7777" branch-rate="0.5" complexity="14">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0.7777" branch-rate="0.5" complexity="14">
               <lines>
+                <line number="120" hits="30" branch="False" />
                 <line number="121" hits="30" branch="False" />
-                <line number="122" hits="30" branch="False" />
-                <line number="124" hits="30" branch="True" condition-coverage="50% (2/4)">
+                <line number="123" hits="30" branch="True" condition-coverage="50% (2/4)">
                   <conditions>
                     <condition number="172" type="jump" coverage="50%" />
                     <condition number="193" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="126" hits="30" branch="True" condition-coverage="50% (1/2)">
+                <line number="125" hits="30" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
                     <condition number="241" type="jump" coverage="50%" />
                   </conditions>
                 </line>
+                <line number="126" hits="0" branch="False" />
                 <line number="127" hits="0" branch="False" />
-                <line number="128" hits="0" branch="False" />
-                <line number="132" hits="30" branch="True" condition-coverage="50% (4/8)">
+                <line number="131" hits="30" branch="True" condition-coverage="50% (4/8)">
                   <conditions>
                     <condition number="282" type="jump" coverage="50%" />
                     <condition number="325" type="jump" coverage="50%" />
@@ -2605,28 +2529,28 @@
                     <condition number="410" type="jump" coverage="50%" />
                   </conditions>
                 </line>
+                <line number="135" hits="30" branch="False" />
                 <line number="136" hits="30" branch="False" />
-                <line number="137" hits="30" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="120" hits="30" branch="False" />
             <line number="121" hits="30" branch="False" />
-            <line number="122" hits="30" branch="False" />
-            <line number="124" hits="30" branch="True" condition-coverage="50% (2/4)">
+            <line number="123" hits="30" branch="True" condition-coverage="50% (2/4)">
               <conditions>
                 <condition number="172" type="jump" coverage="50%" />
                 <condition number="193" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="126" hits="30" branch="True" condition-coverage="50% (1/2)">
+            <line number="125" hits="30" branch="True" condition-coverage="50% (1/2)">
               <conditions>
                 <condition number="241" type="jump" coverage="50%" />
               </conditions>
             </line>
+            <line number="126" hits="0" branch="False" />
             <line number="127" hits="0" branch="False" />
-            <line number="128" hits="0" branch="False" />
-            <line number="132" hits="30" branch="True" condition-coverage="50% (4/8)">
+            <line number="131" hits="30" branch="True" condition-coverage="50% (4/8)">
               <conditions>
                 <condition number="282" type="jump" coverage="50%" />
                 <condition number="325" type="jump" coverage="50%" />
@@ -2634,8 +2558,8 @@
                 <condition number="410" type="jump" coverage="50%" />
               </conditions>
             </line>
+            <line number="135" hits="30" branch="False" />
             <line number="136" hits="30" branch="False" />
-            <line number="137" hits="30" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.Models.AirQualityCityResponse" filename="Management\Clients\Models\AirQualityCityResponse.cs" line-rate="1" branch-rate="1" complexity="2">
@@ -2726,12 +2650,12 @@
           <methods>
             <method name="get_CityName" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="33" hits="42" branch="False" />
+                <line number="33" hits="44" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="33" hits="42" branch="False" />
+            <line number="33" hits="44" branch="False" />
           </lines>
         </class>
         <class name="Management.Clients.Models.CovidStateResponse" filename="Management\Clients\Models\CovidStateResponse.cs" line-rate="1" branch-rate="1" complexity="1">
@@ -2846,78 +2770,78 @@
           <methods>
             <method name="get_LocationName" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="0" branch="False" />
+                <line number="11" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_AirScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="False" />
+                <line number="16" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_CovidScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="0" branch="False" />
+                <line number="21" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_WheatherScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="9" hits="0" branch="False" />
             <line number="11" hits="0" branch="False" />
-            <line number="13" hits="0" branch="False" />
-            <line number="15" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.ApiModels.Recommendation" filename="Management\ApiModels\Recommendation.cs" line-rate="0" branch-rate="1" complexity="7">
           <methods>
             <method name="get_CountryCode" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="7" hits="0" branch="False" />
+                <line number="11" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_State" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="0" branch="False" />
+                <line number="16" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_RecommendationState" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="False" />
+                <line number="21" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_OverallScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_AirQualityScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_CovidIndexScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
               </lines>
             </method>
             <method name="get_WeatherScore" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="7" hits="0" branch="False" />
-            <line number="9" hits="0" branch="False" />
             <line number="11" hits="0" branch="False" />
-            <line number="13" hits="0" branch="False" />
-            <line number="15" hits="0" branch="False" />
-            <line number="17" hits="0" branch="False" />
-            <line number="19" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Management.ApiModels.User" filename="Management\ApiModels\User.cs" line-rate="0" branch-rate="1" complexity="5">
@@ -3114,34 +3038,6 @@
             <line number="28" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Service.Controllers.CommentController/&lt;GetCommentByLocation&gt;d__2" filename="Service\Controllers\CommentController.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="41" hits="0" branch="False" />
-                <line number="42" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="45" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-                <line number="52" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="41" hits="0" branch="False" />
-            <line number="42" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="45" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
-            <line number="52" hits="0" branch="False" />
-          </lines>
-        </class>
         <class name="Service.Controllers.CommentController/&lt;CreateNewComment&gt;d__3" filename="Service\Controllers\CommentController.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
@@ -3172,6 +3068,34 @@
             <line number="76" hits="0" branch="False" />
           </lines>
         </class>
+        <class name="Service.Controllers.CommentController/&lt;GetCommentByLocation&gt;d__2" filename="Service\Controllers\CommentController.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
+                <line number="49" hits="0" branch="False" />
+                <line number="50" hits="0" branch="False" />
+                <line number="52" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
+            <line number="49" hits="0" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="52" hits="0" branch="False" />
+          </lines>
+        </class>
         <class name="Service.Controllers.RecommendationController" filename="Service\Controllers\RecommendationController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name=".ctor" signature="(Management.Ports.RecommendationPort)" line-rate="0" branch-rate="0" complexity="2">
@@ -3196,30 +3120,6 @@
               </conditions>
             </line>
             <line number="30" hits="0" branch="False" />
-          </lines>
-        </class>
-        <class name="Service.Controllers.RecommendationController/&lt;GetTopRecommendations&gt;d__2" filename="Service\Controllers\RecommendationController.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="39" hits="0" branch="False" />
-                <line number="41" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="39" hits="0" branch="False" />
-            <line number="41" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Service.Controllers.RecommendationController/&lt;GetRecommendationByCountryCode&gt;d__3" filename="Service\Controllers\RecommendationController.cs" line-rate="0" branch-rate="1" complexity="1">
@@ -3272,15 +3172,39 @@
             <line number="97" hits="0" branch="False" />
           </lines>
         </class>
+        <class name="Service.Controllers.RecommendationController/&lt;GetTopRecommendations&gt;d__2" filename="Service\Controllers\RecommendationController.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
+                <line number="50" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="39" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
+            <line number="50" hits="0" branch="False" />
+          </lines>
+        </class>
       </classes>
     </package>
-    <package name="Storage" line-rate="0.1182" branch-rate="0.0208" complexity="53">
+    <package name="Storage" line-rate="0" branch-rate="0" complexity="53">
       <classes>
-        <class name="Storage.BaseRepository" filename="Storage\BaseRepository.cs" line-rate="0.15710000000000002" branch-rate="0.0263" complexity="41">
+        <class name="Storage.BaseRepository" filename="Storage\BaseRepository.cs" line-rate="0" branch-rate="0" complexity="41">
           <methods>
-            <method name="get__connectionString" signature="()" line-rate="1" branch-rate="1" complexity="1">
+            <method name="get__connectionString" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="29" hits="4" branch="False" />
+                <line number="29" hits="0" branch="False" />
               </lines>
             </method>
             <method name="GetAllAsync" signature="(System.String)" line-rate="0" branch-rate="0" complexity="2">
@@ -3399,40 +3323,40 @@
                 <line number="181" hits="0" branch="False" />
               </lines>
             </method>
-            <method name="DeleteAllAsync" signature="(System.String)" line-rate="0.5" branch-rate="1" complexity="1">
+            <method name="DeleteAllAsync" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="189" hits="4" branch="False" />
-                <line number="190" hits="4" branch="False" />
-                <line number="192" hits="4" branch="False" />
+                <line number="189" hits="0" branch="False" />
+                <line number="190" hits="0" branch="False" />
+                <line number="192" hits="0" branch="False" />
                 <line number="193" hits="0" branch="False" />
                 <line number="194" hits="0" branch="False" />
                 <line number="196" hits="0" branch="False" />
               </lines>
             </method>
-            <method name="Connect" signature="()" line-rate="0.6" branch-rate="1" complexity="1">
+            <method name="Connect" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="203" hits="4" branch="False" />
-                <line number="204" hits="4" branch="False" />
-                <line number="205" hits="4" branch="False" />
+                <line number="203" hits="0" branch="False" />
+                <line number="204" hits="0" branch="False" />
+                <line number="205" hits="0" branch="False" />
                 <line number="206" hits="0" branch="False" />
                 <line number="207" hits="0" branch="False" />
               </lines>
             </method>
-            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="1" branch-rate="0.5" complexity="2">
+            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="0" branch-rate="0" complexity="2">
               <lines>
-                <line number="24" hits="4" branch="False" />
-                <line number="25" hits="4" branch="False" />
-                <line number="26" hits="4" branch="True" condition-coverage="50% (1/2)">
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="26" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="11" type="jump" coverage="50%" />
+                    <condition number="11" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="27" hits="4" branch="False" />
+                <line number="27" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="29" hits="4" branch="False" />
+            <line number="29" hits="0" branch="False" />
             <line number="37" hits="0" branch="False" />
             <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
@@ -3529,25 +3453,25 @@
             <line number="178" hits="0" branch="False" />
             <line number="179" hits="0" branch="False" />
             <line number="181" hits="0" branch="False" />
-            <line number="189" hits="4" branch="False" />
-            <line number="190" hits="4" branch="False" />
-            <line number="192" hits="4" branch="False" />
+            <line number="189" hits="0" branch="False" />
+            <line number="190" hits="0" branch="False" />
+            <line number="192" hits="0" branch="False" />
             <line number="193" hits="0" branch="False" />
             <line number="194" hits="0" branch="False" />
             <line number="196" hits="0" branch="False" />
-            <line number="203" hits="4" branch="False" />
-            <line number="204" hits="4" branch="False" />
-            <line number="205" hits="4" branch="False" />
+            <line number="203" hits="0" branch="False" />
+            <line number="204" hits="0" branch="False" />
+            <line number="205" hits="0" branch="False" />
             <line number="206" hits="0" branch="False" />
             <line number="207" hits="0" branch="False" />
-            <line number="24" hits="4" branch="False" />
-            <line number="25" hits="4" branch="False" />
-            <line number="26" hits="4" branch="True" condition-coverage="50% (1/2)">
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="26" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="11" type="jump" coverage="50%" />
+                <condition number="11" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="27" hits="4" branch="False" />
+            <line number="27" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Storage.BaseRepository/&lt;GetAsync&gt;d__5`1" filename="Storage\BaseRepository.cs" line-rate="0" branch-rate="0" complexity="6">

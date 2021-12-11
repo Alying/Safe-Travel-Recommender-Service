@@ -19,8 +19,6 @@ namespace Test.Management.Unit
     /// </summary>
     public class CommentRepositoryTests
     {
-        private const string TestFlag = "disable for CI/CD";
-
         private Mock<IRepository> _mockRepository;
         private CommentRepository _commentRepository;
         private readonly ITestOutputHelper _output;
@@ -40,14 +38,14 @@ namespace Test.Management.Unit
         /// Test to see if successfully get all comments
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact(Skip = TestFlag)]
+        [Fact]
         public async Task GetAllCommentsAsync_Success()
         {
             var colVals = new Dictionary<string, string>()
             {
                 { "userId", "newUser" },
                 { "country", "US" },
-                { "state", "California" },
+                { "state", "CA" },
             };
             _mockRepository.Setup(t => t.GetSomeAsync<StorageComment>(It.Is<string>(arg => arg == "comment"), It.Is<IReadOnlyDictionary<string, string>>(arg => IsDictEqual(arg, colVals)))).ReturnsAsync(new List<StorageComment>()
             {
@@ -56,18 +54,18 @@ namespace Test.Management.Unit
                     CommentStr = "Hello World!",
                     UserId = "newUser",
                     Country = "US",
-                    State = "California",
+                    State = "CA",
                     CreatedAt = "11/14/2021 7:47:41 PM +00:00",
                     UniqueId = "somerandomuniquestuff",
                 },
             });
-            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("California")));
+            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("CA")));
 
             var retrievedComment = Assert.Single(comments);
             Assert.Equal("Hello World!", retrievedComment.CommentStr);
             Assert.Equal("newUser", retrievedComment.UserId.Value);
             Assert.Equal("US", retrievedComment.Location.CountryCode.ToString());
-            Assert.Equal("California", retrievedComment.Location.State.Value);
+            Assert.Equal("CA", retrievedComment.Location.State.Value);
 
             _mockRepository.VerifyAll();
         }
@@ -76,7 +74,7 @@ namespace Test.Management.Unit
         /// Test to see if successfully post comment
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
-        [Fact(Skip = TestFlag)]
+        [Fact]
         public async Task AddCommentAsync_Success()
         {
             var testComment = new DomainComment(

@@ -98,18 +98,18 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
-            var fullNameState = AbbreviationToState.GetStateFullName(state.Value);
+            state = AbbreviationToState.GetStateFullName(state.Value);
 
-            var sampledCities = await GetDefaultCitiesAsync(state, fullNameState, countryCode, cancellationToken);
+            var sampledCities = await GetDefaultCitiesAsync(state, countryCode, cancellationToken);
             var cityBag = new ConcurrentBag<(City city, int score)>();
             var cityTasks = sampledCities.Select(async city =>
             {
-                var result = await GetSingleCityAsync(city, fullNameState, countryCode, cancellationToken);
+                var result = await GetSingleCityAsync(city, state, countryCode, cancellationToken);
                 cityBag.Add(result);
             });
             await Task.WhenAll(cityTasks);
 
-            return (fullNameState, cityBag.Select(res => res.score).Sum() / cityBag.Count());
+            return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
         }
 
         /// <summary>
@@ -120,14 +120,13 @@ namespace Management.Clients
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         public async Task<IEnumerable<City>> GetDefaultCitiesAsync(
-            State abbState,
-            State fullNameState,
+            State state,
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
             var request = new RestRequest("v2/cities", Method.GET);
             request
-                .AddQueryParameter("state", fullNameState.Value)
+                .AddQueryParameter("state", state.Value)
                 .AddQueryParameter("country", countryCode == CountryCode.US ? "USA" : "CANADA")
                 .AddQueryParameter("key", ApiKey);
 
@@ -141,10 +140,6 @@ namespace Management.Clients
                     .Select(cityData => City.Wrap(cityData.CityName))
                     .OrderBy(x => new Random().Next())
                     .Take(5);
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-            {
-                return AbbreviationToState.GetSupportedCities(abbState.Value);
             }
 
             throw new Exception("Retrieve Data Failed");
