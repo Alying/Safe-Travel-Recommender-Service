@@ -39,6 +39,7 @@ namespace WebClient.Controllers
             var response = System.Text.Json.JsonSerializer.DeserializeAsync<List<ClientResponse>>(streamTask).Result;
             return response;
         }
+
         private static async Task<ClientResponse> LocationInquiryClient(string endpoint)
         {
             HttpClient client = new HttpClient();
@@ -46,6 +47,7 @@ namespace WebClient.Controllers
 
             var streamTask = client.GetStreamAsync(endpoint).Result;
             var response = System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask).Result;
+
             return response;
         }
 
@@ -61,7 +63,7 @@ namespace WebClient.Controllers
         // GET api/values/{id}
         public string Get(int id)
         {
-            // can hit either recommendation or location inquiry endpoint from Safe Travel Service
+            // can hit either recommendation or location inquiry endpoint from Safe Travel Service _once_
             string recommendationEndpoint = "https://localhost:5001/api/recommendations";
             string locationInquiryEndpoint = "https://localhost:5001/api/recommendations/country/US/state/California";
 
@@ -80,7 +82,6 @@ namespace WebClient.Controllers
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine($"{locationInquiryEndpoint}");
                 var task = LocationInquiryClient(locationInquiryEndpoint);
                 var clientResponse = task.Result;
                 string result = clientResponse.CovidIndexScore + " " +
