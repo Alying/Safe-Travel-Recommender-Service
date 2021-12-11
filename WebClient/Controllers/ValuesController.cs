@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web.Http;
-
+using Newtonsoft.Json;
 
 namespace WebClient.Controllers
 {
@@ -33,22 +33,19 @@ namespace WebClient.Controllers
         private static async Task<List<ClientResponse>> RecommendationClient(string endpoint)
         {
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
 
-            var streamTask = client.GetStreamAsync(endpoint).Result;
-            var response = System.Text.Json.JsonSerializer.DeserializeAsync<List<ClientResponse>>(streamTask).Result;
-            return response;
+            var resp = await client.GetAsync(endpoint);
+            var stringValue = await resp.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<ClientResponse>>(stringValue);
         }
 
         private static async Task<ClientResponse> LocationInquiryClient(string endpoint)
         {
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
 
-            var streamTask = client.GetStreamAsync(endpoint).Result;
-            var response = System.Text.Json.JsonSerializer.DeserializeAsync<ClientResponse>(streamTask).Result;
-
-            return response;
+            var resp = await client.GetAsync(endpoint);
+            var stringValue = await resp.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<ClientResponse>(stringValue);
         }
 
         // GET api/values
@@ -61,19 +58,19 @@ namespace WebClient.Controllers
         }
 
         // GET api/values/{id}
-        public string Get(int id)
+        public async Task<string> Get(int id)
         {
             // can hit either recommendation or location inquiry endpoint from Safe Travel Service _once_
             string recommendationEndpoint = "https://localhost:5001/api/recommendations";
-            string locationInquiryEndpoint = "https://localhost:5001/api/recommendations/country/US/state/California";
+            string locationInquiryEndpoint = "https://localhost:5001/api/recommendations/country/US/state/CA";
 
             if (id == 1)
             {
                 System.Diagnostics.Debug.WriteLine(id);
 
                 string result = "";
-                var task = RecommendationClient(recommendationEndpoint);
-                foreach (var clientResponse in task.Result)
+                var task = await RecommendationClient(recommendationEndpoint);
+                foreach (var clientResponse in task)
                 {
                     result += clientResponse.State + " " + clientResponse.RecommendationState + " " + clientResponse.OverallScore + "\n";
                 }
@@ -82,8 +79,7 @@ namespace WebClient.Controllers
             }
             else
             {
-                var task = LocationInquiryClient(locationInquiryEndpoint);
-                var clientResponse = task.Result;
+                var clientResponse = await LocationInquiryClient(locationInquiryEndpoint);
                 string result = clientResponse.CovidIndexScore + " " +
                     clientResponse.AirQualityScore + " " +
                     clientResponse.OverallScore + " " +
