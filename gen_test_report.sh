@@ -4,6 +4,9 @@
 # https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage?tabs=windows
 # https://tonyranieri.com/blog/measuring-net-core-test-coverage-with-coverlet
 
+# Export env variable to enable db related integration tests.
+export LOCAL_TEST=1
+
 # Remove the last generated report.
 rm -rf ./test_results
 

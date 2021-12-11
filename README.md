@@ -26,13 +26,15 @@ In order to run the service, you must create the schema `asesharpdb`, and then t
 - `comment`: This table holds user's comments for a specific trip.
   - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
 - `user`: This table holds user information.
-  - `CREATE TABLE IF NOT EXISTS user (UserName VARCHAR(500), UserId VARCHAR(100) PRIMARY KEY, UserRole VARCHAR(50), CreatedAt VARCHAR(50), CountryCode VARCHAR(50))`
+  - `CREATE TABLE IF NOT EXISTS user (UserId VARCHAR(500) PRIMARY KEY, FullName VARCHAR(500), CountryCode VARCHAR(50), CreatedAt VARCHAR(50), PassportId VARCHAR(50))`
 
 In order to run the unit and integration tests, you must create the schema `asesharptestdb`, and then the following tables (the queries to run are listed below):
 - `comment`: This table holds user's comments data for integration test.
   - `CREATE TABLE IF NOT EXISTS comment (uniqueId VARCHAR(100) PRIMARY KEY, userId VARCHAR(100), country VARCHAR(50), state VARCHAR(50), createdAt VARCHAR(50), commentStr VARCHAR(500)) `
 - `user`: This table holds user data for integration test.
-  - `CREATE TABLE IF NOT EXISTS user (UserName VARCHAR(500), UserId VARCHAR(100) PRIMARY KEY, UserRole VARCHAR(50), CreatedAt VARCHAR(50), CountryCode VARCHAR(50))`
+  - `CREATE TABLE IF NOT EXISTS user (UserId VARCHAR(500) PRIMARY KEY, FullName VARCHAR(500), CountryCode VARCHAR(50), CreatedAt VARCHAR(50), PassportId VARCHAR(50))`
+
+In order to run integration tests, you must create the schema `asesharptestdb`, and the same set of tables as above.
 
 #### Running the service
 - Running from IDE (`Visual Studio`):

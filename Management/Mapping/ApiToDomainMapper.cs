@@ -17,13 +17,12 @@ namespace Management.Mapping
         /// </summary>
         /// <param name="api">api user.</param>
         /// <returns>domain user.</returns>
-        // TODO: @mli: Update DomainUser to use Country.
         public static DomainUser ToDomain(ApiUser api)
             => new DomainUser(
             userId: UserId.Wrap(api.UserId),
             fullName: FullName.Wrap(api.FullName),
             passportId: PassportId.Wrap(api.PassportId),
-            createAt: DateTime.UtcNow,
+            createAt: api.CreatedAt,
             countryCode: GetCountryCode(api.CountryCode));
 
         /// <summary>
