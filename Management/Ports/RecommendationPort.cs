@@ -1,12 +1,8 @@
-﻿// <copyright file="RecommendationPort.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Management.DomainModels;
 using Management.Interface;
 using Management.Mapping;
 
@@ -29,7 +25,7 @@ namespace Management.Ports
         }
 
         /// <summary>
-        /// Get cities with their covid, weather, and air quality scores.
+        /// Get top 10 recommended locations for a specific country
         /// </summary>
         /// <param name="country">country of interest eg. US.</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>

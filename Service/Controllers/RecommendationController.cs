@@ -30,7 +30,7 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Intended to get the top-10 recommendations for safe travel for the user.
+        /// Get top 10 recommended places from any countries
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
         /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
@@ -50,8 +50,7 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Intended to get the basic travel information about a specific country,
-        /// which can include COVID-19, weather, and air quality information for the user.
+        /// Get top 10 recommended locations for a specific country
         /// </summary>
         /// <param name="countryCode">country code eg. "US".</param>
         /// /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
