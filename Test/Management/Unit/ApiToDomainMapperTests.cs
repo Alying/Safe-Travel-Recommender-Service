@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Management.DomainModels;
 using Management.Enum;
-using Management.Repository;
-using Moq;
-using Storage.Interface;
+using Management.Mapping;
 using Xunit;
 using Xunit.Abstractions;
 
-using Management.DomainModels;
-using Management.Enum;
 using ApiComment = Management.ApiModels.Comment;
 using ApiUser = Management.ApiModels.User;
-using DomainUser = Management.DomainModels.User;
-
-using Management.Mapping;
 
 namespace Test.Management.Unit
 {

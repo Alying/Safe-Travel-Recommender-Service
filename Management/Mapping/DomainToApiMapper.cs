@@ -18,7 +18,7 @@ namespace Management.Mapping
             {
                 UserId = domain.UserId.Value,
                 FullName = domain.FullName.Value,
-                PassportId = domain.PassportId.ToString(),
+                PassportId = domain.PassportId.Value,
                 CreatedAt = domain.CreatedAt,
                 CountryCode = domain.CountryCode.ToString(),
             };
