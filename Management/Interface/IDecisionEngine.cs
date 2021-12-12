@@ -12,7 +12,7 @@ namespace Management.Interface
     public interface IDecisionEngine
     {
         /// <summary>
-        /// Calculate the desired location using weighted scores from COVID-19, weather, and air quality.
+        /// Get top 10 recommended locations for a specific country
         /// </summary>
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="cancellationToken">used to signal that the asynchronous task should cancel itself.</param>
