@@ -74,6 +74,13 @@ We are using the following 3 APIs in order to make decisions for safe-travel loc
   - Weather API: https://openweathermap.org/current#call
   - Air Quality API: https://api-docs.iqair.com/?version=latest
 
+# Test Client documentation
+A test client example has been provided in this repository: https://github.com/Alying/team_ase_sharp_testclient.git
+
+To run the client: first, clone both repositories (this original Safe Travel Service repository and the Test Client repository). Then, run the Safe Travel Service ("Start" with the green play button); while this is running, you may run ("Start") the WebClient. An html page should pop up on localhost, and you may click two buttons:
+  - Get recommendations: this will hit the Safe Travel Service recommendations endpoint and return data
+  - Get location inquiry information for California: this will hit the Safe Travel Service location inquiry endpoint for California and return data
+
 # Style documentation
 We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
 
