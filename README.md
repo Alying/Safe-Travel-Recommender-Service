@@ -79,12 +79,16 @@ To run the client: first, clone both repositories (this original Safe Travel Ser
   - Get recommendations: this will hit the Safe Travel Service recommendations endpoint and return data
   - Get location inquiry information for California: this will hit the Safe Travel Service location inquiry endpoint for California and return data
 
-# Style documentation
-We use StyleCop, which gives a StyleCop.Cache for every directory. This is our style report.
+# CI / CD documentation
+We have included an automatic CI/CD suite that runs after every PR request is submitted or changed. To see all the generated reports, go to the 'Actions' section of this Github. Within each 'workflow' report, there will be 2 tabs: the build itself, and the Xunit tests that are run. You may click on each to see the details of the CI/CD runs.
+
+# Style Checker and Static Analysis Bug Finder
+For style: we use StyleCop, which gives us a StyleCop.Cache for every directory; this is our style report. 
+For static analysis bug finding: we use Sarif, which will generate reports in the 'Security' tab of this Github page.
 
 # Technology
 #### StyleCop
-Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines.
+Style checker that is used to check C# code to conform StyleCop's recommended coding styles and Microsoft's .NET Framework Design Guidelines. StyleCop gives us a StyleCop.Cache for every directory, which is our style report.
 #### XUnit + Moq 
 Test runner for .NET Framework projects
 #### Coverlet + ReportGenerator
