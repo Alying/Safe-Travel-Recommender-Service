@@ -125,7 +125,7 @@ Copyright © 2007 Free Software Foundation, Inc. https://fsf.org/
 Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
 
 # Acknowledgments
-We sincerely appreciate Prof. Gail Kaiser and Head TA Claire's helps on this project. They have been very helpful whenever we needed help.
+We sincerely appreciate Prof. Gail Kaiser and Head TA Claire's support for this project. They have been very helpful whenever we reached out for assistance.
 
 # Useful links:
 - [ReportGenerator](https://github.com/danielpalme/ReportGenerator)
