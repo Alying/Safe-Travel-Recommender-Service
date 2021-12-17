@@ -61,6 +61,18 @@ namespace Management
             { "WI", State.Wrap("Wisconsin") },
             { "WV", State.Wrap("West Virginia") },
             { "WY", State.Wrap("Wyoming") },
+            { "AB", State.Wrap("Alberta") },
+            { "BC", State.Wrap("British Columbia") },
+            { "MB", State.Wrap("Manitoba") },
+            { "NB", State.Wrap("New Brunswick") },
+            { "NL", State.Wrap("Newfoundland and Labrador") },
+            { "NT", State.Wrap("Northwest Territories") },
+            { "NS", State.Wrap("Nova Scotia") },
+            { "ON", State.Wrap("Ontario") },
+            { "PE", State.Wrap("Prince Edward Island") },
+            { "QC", State.Wrap("Quebec") },
+            { "SK", State.Wrap("Saskatchewan") },
+            { "YT", State.Wrap("Yukon") },
         };
 
         private static readonly Dictionary<string, List<City>> _cityLookUp = new Dictionary<string, List<City>>()
@@ -116,6 +128,15 @@ namespace Management
             { "WI", new List<City>() { City.Wrap("La Crosse"), City.Wrap("Madison"), City.Wrap("Butler"), City.Wrap("Baraboo"), City.Wrap("Rice Lake") } },
             { "WV", new List<City>() { City.Wrap("Wheeling"), City.Wrap("Shannondale"), City.Wrap("Huntington"), City.Wrap("Washington"), City.Wrap("Martinsburg") } },
             { "WY", new List<City>() { City.Wrap("South Greeley"), City.Wrap("Kaycee"), City.Wrap("Moose Wilson Road"), City.Wrap("Wilson"), City.Wrap("Saratoga") } },
+            { "AB", new List<City>() { City.Wrap("Brooks"), City.Wrap("Airdrie"), City.Wrap("Camrose"), City.Wrap("Lacombe"), City.Wrap("Lethbridge") } },
+            { "BC", new List<City>() { City.Wrap("Abbotsford"), City.Wrap("Burnaby"), City.Wrap("Castlegar"), City.Wrap("Coquitlam"), City.Wrap("Vancouver") } },
+            { "MB", new List<City>() { City.Wrap("Brandon"), City.Wrap("Selkirk"), City.Wrap("Steinbach"), City.Wrap("Thompson"), City.Wrap("Winkler") } },
+            { "NB", new List<City>() { City.Wrap("Bathurst"), City.Wrap("Dieppe"), City.Wrap("Edmundston"), City.Wrap("Miramichi"), City.Wrap("Fredericton") } },
+            { "NL", new List<City>() { City.Wrap("Corner Brook"), City.Wrap("Mount Pearl") } },
+            { "NT", new List<City>() { City.Wrap("Yellowknife") } },
+            { "ON", new List<City>() { City.Wrap("Brampton"), City.Wrap("Brockville"), City.Wrap("Kenora"), City.Wrap("Orillia"), City.Wrap("Sarnia") } },
+            { "QC", new List<City>() { City.Wrap("Alma"), City.Wrap("Bedford"), City.Wrap("Bromont"), City.Wrap("Chandler"), City.Wrap("Coaticook") } },
+
         };
 
         /// <summary>
