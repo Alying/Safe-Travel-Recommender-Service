@@ -22,24 +22,27 @@ namespace Management.Mapping
                 throw new Exception("Invalid country and/or state");
             }
 
-            if (System.Enum.TryParse<CountryCode>(countryCode, out var usCountryCode))
+            if (System.Enum.TryParse<CountryCode>(countryCode, out var validCountryCode))
             {
-                if (System.Enum.TryParse<UsState>(state, out _))
+                if (validCountryCode == CountryCode.US)
                 {
-                    return (usCountryCode, State.Wrap(state));
+                    if (System.Enum.TryParse<UsState>(state, out _))
+                    {
+                        return (validCountryCode, State.Wrap(state));
+                    }
+
+                    throw new Exception($"State: {state} is not valid in USA");
                 }
 
-                throw new Exception($"State: {state} is not valid in USA");
-            }
-
-            if (System.Enum.TryParse<CountryCode>(countryCode, out var caCountryCode))
-            {
-                if (System.Enum.TryParse<CaState>(state, out _))
+                if (validCountryCode == CountryCode.CA)
                 {
-                    return (caCountryCode, State.Wrap(state));
-                }
+                    if (System.Enum.TryParse<CaState>(state, out _))
+                    {
+                        return (validCountryCode, State.Wrap(state));
+                    }
 
-                throw new Exception($"State: {state} is not valid in Canada");
+                    throw new Exception($"State: {state} is not valid in Canada");
+                }
             }
 
             throw new Exception($"Country: {countryCode} not supported");

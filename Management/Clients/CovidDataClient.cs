@@ -67,6 +67,11 @@ namespace Management.Clients
             CountryCode countryCode,
             CancellationToken cancellationToken)
         {
+            if (countryCode != CountryCode.US)
+            {
+                return (state, 0);
+            }
+
             var result = await GetStateCovidDataAsync(state, cancellationToken);
 
             var confirmedCases = result?.CovidData?.Cases?.Total?.Value;
