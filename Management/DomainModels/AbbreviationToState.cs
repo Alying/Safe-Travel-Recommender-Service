@@ -129,7 +129,7 @@ namespace Management
             { "WV", new List<City>() { City.Wrap("Wheeling"), City.Wrap("Shannondale"), City.Wrap("Huntington"), City.Wrap("Washington"), City.Wrap("Martinsburg") } },
             { "WY", new List<City>() { City.Wrap("South Greeley"), City.Wrap("Kaycee"), City.Wrap("Moose Wilson Road"), City.Wrap("Wilson"), City.Wrap("Saratoga") } },
             { "AB", new List<City>() { City.Wrap("Brooks"), City.Wrap("Airdrie"), City.Wrap("Camrose"), City.Wrap("Lacombe"), City.Wrap("Lethbridge") } },
-            { "BC", new List<City>() { City.Wrap("Abbotsford"), City.Wrap("Burnaby"), City.Wrap("Castlegar"), City.Wrap("Coquitlam"), City.Wrap("Vancouver") } },
+            { "BC", new List<City>() { City.Wrap("Abbotsford"), City.Wrap("Burnaby"), City.Wrap("Castlegar"), City.Wrap("Coquitlam"), City.Wrap("Vernon") } },
             { "MB", new List<City>() { City.Wrap("Brandon"), City.Wrap("Selkirk"), City.Wrap("Steinbach"), City.Wrap("Thompson"), City.Wrap("Winkler") } },
             { "NB", new List<City>() { City.Wrap("Bathurst"), City.Wrap("Dieppe"), City.Wrap("Edmundston"), City.Wrap("Miramichi"), City.Wrap("Fredericton") } },
             { "NL", new List<City>() { City.Wrap("Corner Brook"), City.Wrap("Mount Pearl") } },
