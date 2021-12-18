@@ -30,23 +30,18 @@ namespace Service.Controllers
         /// <summary>
         /// Intended to get the comments for the specified country and state for the user.
         /// </summary>
-        /// <param name="apiUserId">unique user id for the user that made the commend.</param>
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="state">state code eg. "CA".</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation with the response status code.</returns>
-        // TODO: @mli: Get apiUserId from auth token instead of from body later.
         [HttpGet]
         [Route("country/{countryCode}/state/{state}")]
-        public async Task<IActionResult> GetCommentByLocation([FromHeader] string authorization, /*[FromBody] ApiUserId apiUserId,*/ [FromRoute] string countryCode, [FromRoute] string state)
+        public async Task<IActionResult> GetCommentByLocation([FromHeader] string authorization, [FromRoute] string countryCode, [FromRoute] string state)
         {
-            ApiUserId apiUserId = new ApiUserId();
-            apiUserId.UserIdStr = "NewUser1";
             Console.WriteLine($"Authorization: {authorization}");
-            Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, state: {state}");
             try
             {
                 var userEmail = TokenUtils.validAuthHeader(authorization);
-                Console.WriteLine($"userEmail: {userEmail}");
+                Console.WriteLine($"GetCommentByLocation: userId: {userEmail}. countryCode: {countryCode}, state: {state}");
                 return Ok(await _commentPort.GetCommentAsync(userEmail, countryCode, state));
             }
             catch (Exception e)
