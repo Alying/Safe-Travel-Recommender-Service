@@ -65,7 +65,7 @@ namespace Test.Service.Controllers
                                         CancellationToken.None)).Returns(Task.FromResult<IEnumerable<Recommendation>>(expected));
 
             var controller = new RecommendationController(new RecommendationPort(mockEngine.Object));
-            var result = await controller.GetRecommendationByCountryCode("US", CancellationToken.None);
+            var result = await controller.GetRecommendationByCountryCode(null, "US", CancellationToken.None);
 
             var okResult = Assert.IsType<OkObjectResult>(result);
             Assert.NotNull(okResult.Value);
@@ -80,7 +80,7 @@ namespace Test.Service.Controllers
             var mockEngine = mockRepo.Create<IDecisionEngine>();
 
             var controller = new RecommendationController(new RecommendationPort(mockEngine.Object));
-            var result = await controller.GetRecommendationByCountryCode(country, CancellationToken.None);
+            var result = await controller.GetRecommendationByCountryCode(null, country, CancellationToken.None);
 
             var notFoundResult = Assert.IsType<NotFoundResult>(result);
             Assert.NotNull(notFoundResult);
@@ -106,7 +106,7 @@ namespace Test.Service.Controllers
                                                                                           51));
 
             var controller = new RecommendationController(new RecommendationPort(mockEngine.Object));
-            var result = await controller.GetRecommendationByCountryCodeAndStateCode("US", "CA", CancellationToken.None);
+            var result = await controller.GetRecommendationByCountryCodeAndStateCode(null, "US", "CA", CancellationToken.None);
 
             var okResult = Assert.IsType<OkObjectResult>(result);
             Assert.NotNull(okResult.Value);
@@ -122,7 +122,7 @@ namespace Test.Service.Controllers
             var mockEngine = mockRepo.Create<IDecisionEngine>();
 
             var controller = new RecommendationController(new RecommendationPort(mockEngine.Object));
-            var result = await controller.GetRecommendationByCountryCodeAndStateCode(country, state, CancellationToken.None);
+            var result = await controller.GetRecommendationByCountryCodeAndStateCode(null, country, state, CancellationToken.None);
 
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
             Assert.NotNull(notFoundResult.Value);

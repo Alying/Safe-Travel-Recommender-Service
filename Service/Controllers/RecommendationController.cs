@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Management.Mapping;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
+using Common;
 
 namespace Service.Controllers
 {
@@ -57,10 +58,11 @@ namespace Service.Controllers
         /// <returns>status code.</returns>
         [HttpGet]
         [Route("country/{countryCode}")]
-        public async Task<IActionResult> GetRecommendationByCountryCode([FromRoute] string countryCode, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetRecommendationByCountryCode([FromHeader] string authorization, [FromRoute] string countryCode, CancellationToken cancellationToken)
         {
             try
             {
+                TokenUtils.validAuthHeader(authorization);
                 return Ok(await _recommendationPort.GetDefaultRecommendationAsync(countryCode, cancellationToken));
             }
             catch (Exception)
@@ -80,12 +82,14 @@ namespace Service.Controllers
         [HttpGet]
         [Route("country/{countryCode}/state/{stateCode}")]
         public async Task<IActionResult> GetRecommendationByCountryCodeAndStateCode(
+            [FromHeader] string authorization,
             [FromRoute] string countryCode,
             [FromRoute] string stateCode,
             CancellationToken cancellationToken)
         {
             try
             {
+                TokenUtils.validAuthHeader(authorization);
                 _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
                 return Ok(await _recommendationPort.GetStateInfoAsync(countryCode, stateCode, cancellationToken));
             }

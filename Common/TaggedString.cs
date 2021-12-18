@@ -28,13 +28,13 @@ namespace Common
         /// </summary>
         public string Value { get; set; }
 
-        /// <summary>
-        /// Unwraps value. of tagged string.
-        /// </summary>
-        /// <param name="tStr">tagged string.</param>
-        /// <returns>tagged string value.</returns>
-        public static string UnWrap(TaggedString<TTag> tStr)
-            => tStr.Value;
+        ///// <summary>
+        ///// Unwraps value. of tagged string.
+        ///// </summary>
+        ///// <param name="tStr">tagged string.</param>
+        ///// <returns>tagged string value.</returns>
+        //public static string UnWrap(TaggedString<TTag> tStr)
+        //    => tStr.Value;
 
         /// <summary>
         /// Compare two tagged strings

@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
+using Common;
 using ApiComment = Management.ApiModels.Comment;
 using ApiUserId = Management.ApiModels.UserId;
 using DomainUserId = Management.DomainModels.UserId;
@@ -37,12 +38,15 @@ namespace Service.Controllers
         // TODO: @mli: Get apiUserId from auth token instead of from body latter.
         [HttpGet]
         [Route("country/{countryCode}/state/{state}")]
-        public async Task<IActionResult> GetCommentByLocation([FromBody] ApiUserId apiUserId, [FromRoute] string countryCode, [FromRoute] string state)
+        public async Task<IActionResult> GetCommentByLocation([FromHeader] string authorization, [FromBody] ApiUserId apiUserId, [FromRoute] string countryCode, [FromRoute] string state)
         {
+            Console.WriteLine($"Authorization: {authorization}");
             Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, state: {state}");
             try
             {
-                return Ok(await _commentPort.GetCommentAsync(apiUserId.UserIdStr, countryCode, state));
+                var userEmail = TokenUtils.validAuthHeader(authorization);
+                Console.WriteLine($"userEmail: {userEmail}");
+                return Ok(await _commentPort.GetCommentAsync(userEmail, countryCode, state));
             }
             catch (Exception e)
             {
@@ -60,11 +64,14 @@ namespace Service.Controllers
         /// <returns>The state's information.</returns>
         [HttpPost]
         [Route("country/{countryCode}/state/{stateCode}")]
-        public async Task<IActionResult> CreateNewComment([FromBody] ApiComment apiComment, [FromRoute] string countryCode, [FromRoute] string stateCode)
+        public async Task<IActionResult> CreateNewComment([FromHeader] string authorization, [FromBody] ApiComment apiComment, [FromRoute] string countryCode, [FromRoute] string stateCode)
         {
             Console.WriteLine($"CreateNewComment: countryCode: {countryCode}, stateCode: {stateCode}, body: {JsonSerializer.Serialize(apiComment)}");
             try
             {
+                var userEmail = TokenUtils.validAuthHeader(authorization);
+                Console.WriteLine($"userEmail: {userEmail}");
+                apiComment.UserIdStr = userEmail;
                 await _commentPort.AddCommentAsync(countryCode, stateCode, apiComment);
                 return Ok();
             }
