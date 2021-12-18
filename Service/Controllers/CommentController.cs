@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Common;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
-using Common;
 using ApiComment = Management.ApiModels.Comment;
 using ApiUserId = Management.ApiModels.UserId;
-using DomainUserId = Management.DomainModels.UserId;
 
 namespace Service.Controllers
 {
@@ -35,11 +34,13 @@ namespace Service.Controllers
         /// <param name="countryCode">country code eg. "US".</param>
         /// <param name="state">state code eg. "CA".</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation with the response status code.</returns>
-        // TODO: @mli: Get apiUserId from auth token instead of from body latter.
+        // TODO: @mli: Get apiUserId from auth token instead of from body later.
         [HttpGet]
         [Route("country/{countryCode}/state/{state}")]
-        public async Task<IActionResult> GetCommentByLocation([FromHeader] string authorization, [FromBody] ApiUserId apiUserId, [FromRoute] string countryCode, [FromRoute] string state)
+        public async Task<IActionResult> GetCommentByLocation([FromHeader] string authorization, /*[FromBody] ApiUserId apiUserId,*/ [FromRoute] string countryCode, [FromRoute] string state)
         {
+            ApiUserId apiUserId = new ApiUserId();
+            apiUserId.UserIdStr = "NewUser1";
             Console.WriteLine($"Authorization: {authorization}");
             Console.WriteLine($"GetCommentByLocation: userId: {apiUserId.UserIdStr}. countryCode: {countryCode}, state: {state}");
             try
