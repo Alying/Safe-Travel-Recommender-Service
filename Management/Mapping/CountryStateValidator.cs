@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Management.DomainModels;
 using Management.Enum;
 
@@ -20,6 +21,16 @@ namespace Management.Mapping
             if (string.IsNullOrEmpty(countryCode) || string.IsNullOrEmpty(state))
             {
                 throw new Exception("Invalid country and/or state");
+            }
+
+            var reg = new Regex("^[A-Z]+$");
+
+            var stateResult = reg.Match(state);
+            var countryResult = reg.Match(countryCode);
+
+            if (!stateResult.Success || !countryResult.Success)
+            {
+                throw new Exception("CountryCode and/or StateCode not Valid. It should be from A-Z uppercase");
             }
 
             if (System.Enum.TryParse<CountryCode>(countryCode, out var validCountryCode))
