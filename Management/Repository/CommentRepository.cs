@@ -36,11 +36,10 @@ namespace Management.Repository
         /// <param name="userId">user who wrote the comment.</param>
         /// <param name="location">location the comment is for.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
-        public async Task<IEnumerable<DomainComment>> GetAllCommentsAsync(UserId userId, Location location)
+        public async Task<IEnumerable<DomainComment>> GetAllCommentsAsync(Location location)
         {
             var result = await _repository.GetSomeAsync<StorageComment>(_tableName, new Dictionary<string, string>()
             {
-                { "userId", userId.Value },
                 { "country", location.CountryCode.ToString() },
                 { "state", location.State.Value },
             });

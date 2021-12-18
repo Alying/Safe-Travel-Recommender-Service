@@ -43,7 +43,6 @@ namespace Test.Management.Unit
         {
             var colVals = new Dictionary<string, string>()
             {
-                { "userId", "newUser" },
                 { "country", "US" },
                 { "state", "CA" },
             };
@@ -59,7 +58,7 @@ namespace Test.Management.Unit
                     UniqueId = "somerandomuniquestuff",
                 },
             });
-            var comments = await _commentRepository.GetAllCommentsAsync(UserId.Wrap("newUser"), new Location(CountryCode.US, State.Wrap("CA")));
+            var comments = await _commentRepository.GetAllCommentsAsync(new Location(CountryCode.US, State.Wrap("CA")));
 
             var retrievedComment = Assert.Single(comments);
             Assert.Equal("Hello World!", retrievedComment.CommentStr);

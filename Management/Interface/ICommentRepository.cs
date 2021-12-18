@@ -13,10 +13,9 @@ namespace Management.Interface
         /// <summary>
         /// Gets all comments stored in database for this location.
         /// </summary>
-        /// <param name="userId">user who wrote the comment.</param>
         /// <param name="location">location the comment is for.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
-        Task<IEnumerable<DomainComment>> GetAllCommentsAsync(UserId userId, Location location);
+        Task<IEnumerable<DomainComment>> GetAllCommentsAsync(Location location);
 
         /// <summary>
         /// Posts a comment to the database.

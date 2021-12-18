@@ -33,7 +33,7 @@ namespace Management.Ports
         /// <param name="state">state code eg. NY.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a list of the comments. </returns>
         public Task<IEnumerable<DomainComment>> GetCommentAsync(string userId, string countryCode, string state)
-            => _commentRepository.GetAllCommentsAsync(UserId.Wrap(userId), ConstructLocation(countryCode, state));
+            => _commentRepository.GetAllCommentsAsync(ConstructLocation(countryCode, state));
 
         /// <summary>
         /// Posts a comment to the database.
