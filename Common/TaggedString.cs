@@ -57,5 +57,7 @@ namespace Common
         public override bool Equals(object obj)
         => obj is TaggedString<TTag> objS && Equals(objS);
 
+        public override int GetHashCode()
+        => Value.GetHashCode();
     }
 }
