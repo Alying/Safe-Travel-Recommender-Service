@@ -58,7 +58,7 @@ In order to run integration tests, you must create the schema `asesharptestdb`, 
     - Now, if you run `reportgenerator` in the command line, it should run with no errors but with `No report files specified` and `No target directory specified` warnings.
 2. From the project root directory, run command `./gen_test_report.sh` __from bash__. This command will run all the unit tests, and generate the html coverage report.
     - On Windows, this can be run from git shell.
-3. The generated reports are stored in `test_results/`. There is an index.html that shows the coverage of the project. Here is the link to the index.html: https://rawcdn.githack.com/Alying/team_ase_sharp/645b6b052998723146fdf7dded37262655589f88/test_results/html/index.html
+3. The generated reports are stored in `test_results/`. There is an index.html that shows the coverage of the project. Here is the link to the index.html: https://rawcdn.githack.com/Alying/team_ase_sharp/94cfc9bbca508caeac906c7862be0a70650cc637/test_results/html/index.html
     - Change `Grouping` slider to `No grouping` to see the line coverage percentage for the entire project.
  
 
