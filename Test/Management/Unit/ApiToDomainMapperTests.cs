@@ -12,15 +12,12 @@ namespace Test.Management.Unit
 {
     public class ApiToDomainMapperTests
     {
-        private readonly ITestOutputHelper _output;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiToDomainMapperTests"/> class.
         /// </summary>
         /// <param name="output">test output helper.</param>
         public ApiToDomainMapperTests(ITestOutputHelper output)
         {
-            _output = output;
         }
 
         /// <summary>

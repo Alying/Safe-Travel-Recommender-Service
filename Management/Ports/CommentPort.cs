@@ -45,7 +45,7 @@ namespace Management.Ports
         public Task AddCommentAsync(string countryCode, string state, ApiComment apiComment)
             => _commentRepository.AddCommentAsync(ApiToDomainMapper.ToDomain(ConstructLocation(countryCode, state), apiComment));
 
-        private Location ConstructLocation(string countryCode, string state)
+        private static Location ConstructLocation(string countryCode, string state)
         {
             var validatedResult = CountryStateValidator.ValidateCountryState(countryCode, state);
 

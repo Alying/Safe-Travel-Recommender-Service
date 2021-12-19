@@ -12,15 +12,12 @@ namespace Test.Management.Unit
 {
     public class DomainToStorageMapperTests
     {
-        private readonly ITestOutputHelper _output;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DomainToStorageMapperTests"/> class.
         /// </summary>
         /// <param name="output">test output helper.</param>
         public DomainToStorageMapperTests(ITestOutputHelper output)
         {
-            _output = output;
         }
 
         /// <summary>

@@ -21,7 +21,6 @@ namespace Test.Management.Unit
     {
         private Mock<IRepository> _mockRepository;
         private CommentRepository _commentRepository;
-        private readonly ITestOutputHelper _output;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommentRepositoryTests"/> class.
@@ -29,7 +28,6 @@ namespace Test.Management.Unit
         /// <param name="output">test output helper.</param>
         public CommentRepositoryTests(ITestOutputHelper output)
         {
-            _output = output;
             _mockRepository = new Mock<IRepository>();
             _commentRepository = new CommentRepository(_mockRepository.Object);
         }
@@ -102,7 +100,7 @@ namespace Test.Management.Unit
             _mockRepository.VerifyAll();
         }
 
-        private bool IsListContainElement(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
+        private static bool IsListContainElement(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
         {
             if (lhs.Count() != rhs.Count() || lhs.Count() != 1)
             {
@@ -124,10 +122,10 @@ namespace Test.Management.Unit
                 }
             }
 
-            return count == rhsFirst.Count();
+            return count == rhsFirst.Count;
         }
 
-        private bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
+        private static bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
         {
             if (lhs.Count != rhs.Count)
             {

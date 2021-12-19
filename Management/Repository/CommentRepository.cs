@@ -17,8 +17,6 @@ namespace Management.Repository
     {
         private const string _tableName = "comment";
 
-        private const string _keyColumnName = "uniqueId";
-
         private readonly IRepository _repository;
 
         /// <summary>

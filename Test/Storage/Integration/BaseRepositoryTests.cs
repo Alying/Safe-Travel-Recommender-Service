@@ -36,7 +36,6 @@ namespace Test.Storage.Integration
     public class BaseRepositoryTests : IDisposable
     {
         private readonly string _tableName = "user";
-        private readonly ITestOutputHelper _output;
         private readonly MockRepository _mockRepo;
         private readonly BaseRepository _repository;
 
@@ -46,7 +45,6 @@ namespace Test.Storage.Integration
         /// <param name="output">test output helper.</param>
         public BaseRepositoryTests(ITestOutputHelper output)
         {
-            this._output = output;
             _mockRepo = new MockRepository(MockBehavior.Strict);
             var iConfigMock = _mockRepo.Create<IConfiguration>();
             iConfigMock.Setup(config => config.GetSection(It.IsAny<string>())).Returns(new Section());
@@ -64,6 +62,7 @@ namespace Test.Storage.Integration
         public void Dispose()
         {
             _repository.DeleteAllAsync(_tableName).Wait();
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

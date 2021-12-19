@@ -102,7 +102,7 @@ namespace Management.Clients
             });
             await Task.WhenAll(cityTasks);
 
-            return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count());
+            return (state, cityBag.Select(res => res.score).Sum() / cityBag.Count);
         }
 
         /// <summary>

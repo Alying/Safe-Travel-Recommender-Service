@@ -18,18 +18,14 @@ namespace Management.Clients
     /// </summary>
     public class CovidDataClient : ICovidDataClient
     {
-        private readonly IConfiguration _configuration;
-
         private IRestClient _restClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CovidDataClient"/> class.
         /// </summary>
-        /// <param name="configuration">configuration for weather data client.</param>
-        public CovidDataClient(IConfiguration configuration)
+        public CovidDataClient()
         {
             _restClient = new RestClient("https://api.covidtracking.com");
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         /// <summary>

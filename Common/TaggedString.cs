@@ -53,5 +53,9 @@ namespace Common
         {
             return Value.Equals(other.Value);
         }
+
+        public override bool Equals(object obj)
+        => obj is TaggedString<TTag> objS && Equals(objS);
+
     }
 }
