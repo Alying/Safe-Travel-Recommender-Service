@@ -203,6 +203,18 @@ namespace Test.Storage.Integration
         }
 
         /// <summary>
+        /// Test to make sure that exception is thrown on invalid input.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>
+        [IgnoreOnCiCdFact]
+        public async Task GetSomeAsync_InvalidInput_Exception()
+        {
+            var emptyInput = new List<List<string>>();
+            Assert.ThrowsAny<Exception>(() => _repository.GetSomeAsync<User>(string.Empty, null).Wait());
+            _mockRepo.VerifyAll();
+        }
+
+        /// <summary>
         /// Test to see if successfully remove entry from table
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation, with a status code.</returns>

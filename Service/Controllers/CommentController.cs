@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Common;
 using Management.Ports;
 using Microsoft.AspNetCore.Mvc;
+using Management.Mapping;
 using ApiComment = Management.ApiModels.Comment;
 using ApiUserId = Management.ApiModels.UserId;
 
@@ -40,6 +41,7 @@ namespace Service.Controllers
             Console.WriteLine($"Authorization: {authorization}");
             try
             {
+                _ = CountryStateValidator.ValidateCountryState(countryCode, state);
                 var userEmail = TokenUtils.validAuthHeader(authorization);
                 Console.WriteLine($"GetCommentByLocation: userId: {userEmail}. countryCode: {countryCode}, state: {state}");
                 return Ok(await _commentPort.GetCommentAsync(userEmail, countryCode, state));
@@ -65,6 +67,7 @@ namespace Service.Controllers
             Console.WriteLine($"CreateNewComment: countryCode: {countryCode}, stateCode: {stateCode}, body: {JsonSerializer.Serialize(apiComment)}");
             try
             {
+                _ = CountryStateValidator.ValidateCountryState(countryCode, stateCode);
                 var userEmail = TokenUtils.validAuthHeader(authorization);
                 Console.WriteLine($"userEmail: {userEmail}");
                 apiComment.UserIdStr = userEmail;
