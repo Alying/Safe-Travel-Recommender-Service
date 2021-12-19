@@ -19,10 +19,9 @@ namespace Test.Management.Unit
     {
         private Mock<IRepository> _mockRepository;
         private UserRepository _userRepository;
-        private readonly ITestOutputHelper _output;
         private readonly DomainUser _dummyUser;
 
-        private bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
+        private static bool IsDictEqual(IReadOnlyDictionary<string, string> lhs, IReadOnlyDictionary<string, string> rhs)
         {
             if (lhs.Count != rhs.Count)
             {
@@ -40,7 +39,7 @@ namespace Test.Management.Unit
             return true;
         }
 
-        private bool IsListsEqual(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
+        private static bool IsListsEqual(IEnumerable<IReadOnlyList<string>> lhs, IEnumerable<IReadOnlyList<string>> rhs)
         {
             if (lhs.Count() != rhs.Count())
             {
@@ -75,7 +74,6 @@ namespace Test.Management.Unit
         /// <param name="output">test output helper.</param>
         public UserRepositoryTests(ITestOutputHelper output)
         {
-            _output = output;
             _mockRepository = new Mock<IRepository>();
             _userRepository = new UserRepository(_mockRepository.Object);
             _dummyUser = new DomainUser(UserId.Wrap(" "), FullName.Wrap(" "), PassportId.Wrap(" "), DateTimeOffset.Now, CountryCode.Unknown);

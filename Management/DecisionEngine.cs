@@ -26,7 +26,6 @@ namespace Management
         private readonly ICovidDataClient _covidDataClient;
         private readonly IWeatherDataClient _weatherDataClient;
         private readonly IAirQualityDataClient _airQualityDataClient;
-        private readonly List<IWeightedClient> _clients;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DecisionEngine"/> class.
@@ -42,12 +41,6 @@ namespace Management
             _covidDataClient = covidDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
             _weatherDataClient = weatherDataClient ?? throw new ArgumentNullException(nameof(covidDataClient));
             _airQualityDataClient = airQualityDataClient ?? throw new ArgumentNullException(nameof(airQualityDataClient));
-            _clients = new List<IWeightedClient>
-            {
-                _covidDataClient,
-                _weatherDataClient,
-                _airQualityDataClient,
-            };
 
             // Currently only implemented US
             _defaultUsStates = new List<State>

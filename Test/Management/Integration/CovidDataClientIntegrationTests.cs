@@ -24,12 +24,12 @@ namespace Test.Management.Integration
         [Fact]
         public async Task GetRequest_ValidData_CanReceiveSuccessResponse()
         {
-            var mockRepo = new MockRepository(MockBehavior.Strict);
-            var configMock = mockRepo.Create<IConfiguration>();
+            //var mockRepo = new MockRepository(MockBehavior.Strict);
+            //var configMock = mockRepo.Create<IConfiguration>();
 
-            configMock.Setup(config => config.GetSection(It.IsAny<string>())).Returns(new Section());
+            //configMock.Setup(config => config.GetSection(It.IsAny<string>())).Returns(new Section());
 
-            var covidClient = new CovidDataClient(configMock.Object);
+            var covidClient = new CovidDataClient();
 
             var resultME = await covidClient.CalculateScoreForStateAsync(State.Wrap("ME"), CountryCode.US, CancellationToken.None);
             Assert.Equal(100, resultME.Item2);
